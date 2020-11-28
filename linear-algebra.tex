@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{unicode-math}
+
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\begin{document}
+\title{Linear Algebra}
+\author{枫聆}
+\maketitle
+
+\tableofcontents
+\section{Vector Space}
+\subsection{Definition of Vector Space}       
+
+\begin{definition}
+vector spaces是一个具有加法(addition)和数量乘法(salar multiplication)的集合$V$
+
+\begin{itemize}
+	\item 加法是指对任意的元素$u,v \in V$,有$u+v \in V$
+	\item 数量乘法是指对任意的元素$\lambda \in F$和$v \in V$，有$\lambda v \in V$
+\end{itemize}
+
+同时它们存在下面的属性:
+\begin{itemize}
+	\item 加法交换律 $\forall u,v \in V,u+v=v+u$
+	\item 结合律 $\forall u,v,w,(u+v)+w=u+(v+w)$和$\forall a,b \in F,(ab)v=a(bv)$
+	\item 加法单位元 $\forall v\in V,v+0=v$
+	\item 加法逆元 $\forall v \in V,\exists v^{-1} ,v+v^{-1}=0$
+	\item 数量乘法的单位元 $\forall v \in V,1v=v$
+	\item 分配律 $\forall v,w \in V ,\forall a,b \in F, a(u+v)=au+av,(a+b)v=av+bv$
+\end{itemize}
+\end{definition}
+
+
+vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication.很明显addition包含了abelian group的所有性质，vector space是 R-module的特殊化，R-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法，这样可以把ideal和商环都归纳进来，一般情况下它们都不是子环，但是有了R-module之后让环也有类似于群那样例如正规子群是一个子群优美性质。
+
+我想这里多记录一些R-module的东西，如何把一个环弱化成一个模结构呢？首先我们还是需要把一个abelian group弄出来（有点群表示论的意思），定义“the left-action of a ring R on M”为\[\func{\sigma}{R}{\textsf{End}_{Ab}(M)}\]是一个环同态，$M$表示一个abelian group。为什么$\textsf{End}_{Ab}(M)$是一个环结构？首先这个环里面的元素都是关于$M$的endomorphisms,乘法定义为endomorphisms之间的复合，加法定义为$(f+g)(a)=f(a)+g(a)$，其中$f,b \in \textsf{End}_{Ab}(M)$。我们说$\sigma$把$M$变成了一个left-R-module，为什么呢？\[\sigma(r)(m) \in _{R}M\]间接的定义了数量乘法，并且有一些有趣的性质,其实都是环同态的性质
+
+\begin{itemize}
+	\item $\sigma(r_1+r_2)(m)=\sigma(r_1)(m)+\sigma(r_2)(m)$
+	\item $\sigma(r_1r_2)(m)=\sigma(r_1)(\sigma(r_2)(m))$
+	\item $\sigma(1)(m)=m$
+\end{itemize}
+
+如果要定义更清楚一点，可以这样\[\func{\rho}{R \times M}{M}\],$\rho$和$\sigma$的关系为\[\rho(r,m)=\sigma(r)(m)\],但是这里不是环同态无法保证上面的一些性质，所以需要额外规定一些东西
+
+\begin{itemize}
+	\item $\rho(r_1+r_2,m)=\rho(r_1,m)+\rho(r_2,m)$（交换率）
+	\item $\rho(r,m_1+m_2)=\rho(r,m_1)+\rho(r,m_2)$（交换律）
+	\item $\rho(r_1r_2,m) = \rho(r_1,\rho(r_2,m))$（结合率）
+	\item $\rho(1,m) = m$ （单位元）
+\end{itemize}
+
+把vector space一般化的感觉是不是很爽？其实R-module在一定程度要要比vector space更复杂，我想用更抽象方式去理解vector space，我们定义了一个$\sigma$环同态，这个环同态很精妙的把环作用在abelian group的action表示出来，所以我们用理解R-module的方式去理解vector space，就是首先我们要有一个abelian group定义了加法，然后把一个field作用在了它之上，定义为数量乘法，最后我们就得到了这样的一个结构。
+
+这篇note既然是在《linear algebra done right》的基础上记录的，我会尽可能的记录一些抽象的延伸的东西，让自己对linear algebra有一个不同于大学的颠覆性的认知。
+
+
+\end{document}
