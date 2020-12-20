@@ -23,7 +23,7 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
-\titleformat{\subsection}[hang]{\bfseries}{}{0em}{}
+\titleformat{\subsection}[hang]{\color{red}\bfseries}{}{0em}{}
 %\setcounter{secnumdepth}{1} %section 序号
 
 \newtheorem{theorem}{Theorem}[section]
@@ -37,6 +37,9 @@
 
 \newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
 \newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
 
 \begin{document}
 \title{Linear Algebra}
@@ -69,26 +72,83 @@ vector spaces是一个具有加法(addition)和数量乘法(salar multiplication
 
 vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication.很明显addition包含了abelian group的所有性质，vector space是 R-module的特殊化，R-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法，这样可以把ideal和商环都归纳进来，一般情况下它们都不是子环，但是有了R-module之后让环也有类似于群那样例如正规子群是一个子群优美性质。
 
-我想这里多记录一些R-module的东西，如何把一个环弱化成一个模结构呢？首先我们还是需要把一个abelian group弄出来（有点群表示论的意思），定义“the left-action of a ring R on M”为\[\func{\sigma}{R}{\textsf{End}_{Ab}(M)}\]是一个环同态，$M$表示一个abelian group。为什么$\textsf{End}_{Ab}(M)$是一个环结构？首先这个环里面的元素都是关于$M$的endomorphisms,乘法定义为endomorphisms之间的复合，加法定义为$(f+g)(a)=f(a)+g(a)$，其中$f,b \in \textsf{End}_{Ab}(M)$。我们说$\sigma$把$M$变成了一个left-R-module，为什么呢？\[\sigma(r)(m) \in _{R}M\]间接的定义了数量乘法，并且有一些有趣的性质,其实都是环同态的性质
+我想这里多记录一些R-module的东西，如何把一个环弱化成一个模结构呢？首先我们需要一个abelian group $M$，定义“the left-action of a ring R on M”为\[\func{\sigma}{R}{\textsf{End}_{Ab}(M)}\]是一个环同态，为什么这是一个环同态呢？首先为什么$\textsf{End}_{Ab}(M)$是一个环结构？首先这个环里面的元素都是关于$M$的endomorphisms,乘法定义为endomorphisms之间的复合，加法定义为$(f+g)(a)=f(a)+g(a)$，其中$f,g \in \textsf{End}_{Ab}(M)$，然后呢？。我们说$\sigma$把$M$变成了一个left-R-module，$\sigma$这个映射可以理解为left-R-module structure(算子)，\[\sigma(r)(m) \in _{R}M\]间接的定义了数量乘法，并且有一些有趣的性质:
 
 \begin{itemize}
-	\item $\sigma(r_1+r_2)(m)=\sigma(r_1)(m)+\sigma(r_2)(m)$
-	\item $\sigma(r_1r_2)(m)=\sigma(r_1)(\sigma(r_2)(m))$
-	\item $\sigma(1)(m)=m$
+	\item 分配律 $\sigma(r)(m_1+m_2)=\sigma(r)(m_1)+\sigma(r)(m_2)$ 
+	\item 分配律 $\sigma(r_1+r_2)(m)=\sigma(r_1)(m)+\sigma(r_2)(m)$ (环同态下可以保证)
+	\item 结合性 $\sigma(r_1r_2)(m)=\sigma(r_1)(\sigma(r_2)(m))$
+	\item 单位元 $\sigma(1)(m)=m$
 \end{itemize}
 
 如果要定义更清楚一点，可以这样\[\func{\rho}{R \times M}{M}\],$\rho$和$\sigma$的关系为\[\rho(r,m)=\sigma(r)(m)\],但是这里不是环同态无法保证上面的一些性质，所以需要额外规定一些东西
 
 \begin{itemize}
-	\item $\rho(r_1+r_2,m)=\rho(r_1,m)+\rho(r_2,m)$（交换率）
-	\item $\rho(r,m_1+m_2)=\rho(r,m_1)+\rho(r,m_2)$（交换律）
+	\item $\rho(r_1+r_2,m)=\rho(r_1,m)+\rho(r_2,m)$（分配律）
+	\item $\rho(r,m_1+m_2)=\rho(r,m_1)+\rho(r,m_2)$（分配律）
 	\item $\rho(r_1r_2,m) = \rho(r_1,\rho(r_2,m))$（结合率）
 	\item $\rho(1,m) = m$ （单位元）
 \end{itemize}
 
-把vector space一般化的感觉是不是很爽？其实R-module在一定程度要要比vector space更复杂，我想用更抽象方式去理解vector space，我们定义了一个$\sigma$环同态，这个环同态很精妙的把环作用在abelian group的action表示出来，所以我们用理解R-module的方式去理解vector space，就是首先我们要有一个abelian group定义了加法，然后把一个field作用在了它之上，定义为数量乘法，最后我们就得到了这样的一个结构。
+把vector space一般化的感觉是不是很爽？其实R-module在一定程度要比vector space更复杂，当用更抽象方式去理解vector space，我们定义了一个$\sigma$环同态，这个环同态很精妙的把环作用在abelian group的action表示出来，所以我们用理解R-module的方式去理解vector space，就是首先我们要有一个abelian group定义了加法，然后把一个field作用在了它之上，定义为数量乘法，最后我们就得到了这样的一个结构。
 
 这篇note既然是在《linear algebra done right》的基础上记录的，我会尽可能的记录一些抽象的延伸的东西，让自己对linear algebra有一个不同于大学的颠覆性的认知。
 
+
+\newpage
+\subsection{Subspace}
+
+\begin{definition}
+如果$V$中的子集$U$是一个子空间，当且仅当满足一下条件:
+\begin{enumerate}
+	\item $0 \in U$
+	\item $u,w \in U$蕴含$ u+w \in U$
+	\item $a \in F$,$u \in U$ 蕴含$au \in U$
+\end{enumerate}
+\end{definition}
+
+也就是说，$V$下子空间一定是子集，包含加法单位元，且在加法和数量乘法下封闭。
+
+\begin{definition}
+定义$U_1,\cdots,U_m$是$V$的子集.这些子集的和表示为\[U_1 + \cdots + U_m = \Set{u_1 + \cdots + u_m}{u_1 \in U_1,\cdots,u_m \in U_m}\]
+\end{definition}
+
+定义子集和，是为了引入下面这个性质
+
+\begin{proposition}
+定义$U_1,\cdots,U_m$都是$V$中的子空间，则$U_1 + \cdots + U_m$是包含$U_1,\cdots,U_m$的最小子空间.
+\end{proposition}
+
+\begin{proof}
+最小的就是指$V$里面任意包含$U_1,\cdots,U_m$的子空间都包含$U_1 + \cdots + U_m$,首先得证明一下$U_1 + \cdots + U_m$是一个子空间，按照子空间的定义，加法单位元和封闭性都很显然，满足上述条件的子空间很也显然需要包含所有子空间对应的子集和。
+\end{proof}
+
+\begin{definition}
+定义$U_1,\cdots,U_m$都是$V$中的子空间，如果$U_1 + \cdots + U_m$中的每个元素都有唯一表示形式即$u_1,\cdots,u_m$，则$U_1 + \cdots + U_m$是直和(direct sum)，用$U_1 \oplus \cdots \oplus U_m$表示。
+\end{definition}
+
+那怎么判定一个子集合是不是直和呢？
+
+\begin{proposition}
+定义$U_1,\cdots,U_m$都是$V$中的子空间,如果$U_1 + \cdots + U_m$是直和当且仅当$u_1+\cdots+u_m = 0$时，$u_1=\ldots=u_m=0$。
+\end{proposition}
+
+即只需要$0$有唯一的表示形式就够了，来证明一下
+
+\begin{proof}
+假设\[u_1+\cdots+\u_m = u_1'+\cdots+u_m'\],整理一下\[(u_1-u_1')+\cdots+(u_m-u_m')=0\],$0$有唯一的表示方式，则$u_1=u_1',\ldots,u_m=u_m'$($u_1-u_1' \in U_1,\ldots,u_m -u_m' \in U_m$)
+\end{proof}
+
+下面再来个特殊情况,只有两个子空间，怎么判定它们的子集和是不是直和
+
+\begin{proposition}
+定义$U$和$W$是$V$中的两个子空间，如果$U+W$是直和当且仅当$U \cap W = {0}$.
+\end{proposition}
+
+\begin{proof}
+\Rightarrow 如果$U+W$是直和，任取$v \in U \cap W$,则$-v \in U \cap W$,而$0 = v + (-v)$,所以$v$只能是$0$.
+
+\Leftarrow 如果$U \cap W = \{0\}$,我们假设还有$0 = v+w$，其中$v,w$不为0，则$w=(-v)$,则$v \in U \cap W$，与前提矛盾.所以$0$有唯一表示。
+\end{proof}
 
 \end{document}
