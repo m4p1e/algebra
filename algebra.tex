@@ -1,0 +1,105 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{unicode-math}
+
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+
+\begin{document}
+\title{Linear Algebra}
+\author{枫聆}
+\maketitle
+
+\tableofcontents
+
+\newpage	
+\section{Group}
+
+
+\newpage
+\section{Ring}
+
+\begin{definition}
+\rm 在集合$R$上定义两种二元运算操作$+$和$\cdot$，并且满足以下条件
+\begin{enumerate}
+	\item $R$在$+$下是一个abelian group:
+	\begin{itemize}
+		\item 加法结合律: $\forall a,b,c \in R, (a+b)+c = a+(b+c).$
+		\item 加法交换律: $\forall a,b \in R, a+b=b+a.$
+		\item 加法零元: $\forall a \in R, a+0 = a.$
+		\item 加法逆元: $\forall a \in R, \exists -a \in R,  a+(-a)=0.$
+	\end{itemize}
+	\item $R$在$\cdot$下是一个monoid:
+	\begin{itemize}
+		\item 乘法结合律: $\forall a,b,c \in R, (a\cdot b)\cdot c = a \cdot (b \cdot c).$
+		\item 乘法单位元: $\forall a \in R, 1 \cdot a = a , a \cdot 1 = a.$
+	\end{itemize}
+	\item 乘法分配率
+	\begin{itemize}
+		\item 左分配: $\forall a,b,c \in R , a\cdot (b+c) = (a\cdot b) + (a \cdot c).$
+		\item 右分配: $\forall a,b,c \in R , (b+c) \cdot a = (b \cdot a)+(c \cdot a).$
+	\end{itemize}
+\end{enumerate}
+则称$R$是一个\textbf{ring}，上面条件称为\textbf{ring axioms}.
+\end{definition}
+
+\newpage
+\section{Module}
+%https://sites.math.washington.edu/~smith/Teaching/504/rings.pdf
+\begin{definition}
+\rm 给定一个带乘法单位元的ring $R$. 一个$\textbf{left}$ $R$ $\textbf{-module}$ $M$由一个abelian group $(M,+)$ 和 一个操作$\cdot \colon R \times M \rightarrow M$组成，并且对于任意的$r,s \in R$和任意的$x,y \in M$满足以下条件:
+
+\begin{enumerate}
+	\item $r \cdot (x+y) = r \cdot x + r \cdot y.$ 
+	\item $(r+s) \cdot x = r \cdot x + s \cdot x.$
+	\item $(rs) \cdot x = r \cdot (s \cdot x).$
+	\item $1 \cdot x  = x.$
+\end{enumerate}
+类似也有\textbf{right $R$-module}.
+\end{definition}
+
+{ \color{red} 关于module更形象的理解可以去看看写在linear algebra最前面的东西}.
+
+%https://en.wikipedia.org/wiki/Module_(mathematics)#:~:text=Such%20a%20representation%20R%20%E2%86%92,M%2C%20then%20r%20%3D%200.
+{ \color{blue} If $M$ is a left $R$-module, then the action of an element $r$ in $R$ is defined to be the map $M \rightarrow M$ that sends each $x$ to $rx$ (or $xr$ in the case of a right module), and is necessarily a group endomorphism of the abelian group $(M, +)$. The set of all group endomorphisms of $M$ is denoted $End_Z(M)$ and forms a ring under addition and composition, and sending a ring element $r$ of $R$ to its action actually defines a ring homomorphism from $R$ to $End_Z(M)$}.
+
+注意这里的环同态是在确定$M$是一个module的情况下反过来推.
+
+
+\end{document}
