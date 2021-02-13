@@ -152,4 +152,35 @@ vector spaces背后的直觉是什么？《linear algebra done right》上说来
 \Leftarrow 如果$U \cap W = \{0\}$,我们假设还有$0 = v+w$，其中$v,w$不为0，则$w=(-v)$,则$v \in U \cap W$，与前提矛盾.所以$0$有唯一表示。
 \end{proof}
 
+\newpage
+\section{Finite-Dimensional Vector Space}
+
+\subsection{Linear Combinations and Span}
+
+\begin{definition}
+\rm 给定$V$里面一系列向量$v_1,v_2,\cdots,v_m$(vector list)，它们的线性组合表示为
+$$
+a_1v_1 + a_2v_2 + \cdots + a_mv_m,
+$$
+其中$a_1,a_2,\cdots,a_m \in F.$
+\end{definition}
+
+\begin{definition}
+\rm 给定$V$里面一系列向量$v_1,v_2,\cdots,v_m$，所有的它们的线性组合构成的集合叫一个\textbf{span}(linear span). 
+$$
+\text{span}(v_1,v_2,\cdots,v_m) = \Set{a_1v_1 + a_2v_2 + \cdots + a_mv_m}{a_1,a_2,\cdots,a_m \in F}.
+$$
+空的vector list的span表示为$\{0\}.$
+\end{definition}
+
+{\color{red}下面是关于span一些有趣的性质}.
+
+\begin{proposition}
+\rm span是包含当前vector list里面所有vectors的smallest subspace.
+\end{proposition}
+
+\begin{proof}
+首先你得证明span确实是一个subspace，然后所有其他的subspace都包含它.
+\end{proof}
+
 \end{document}
