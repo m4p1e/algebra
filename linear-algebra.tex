@@ -71,7 +71,7 @@
 \end{definition}
 
 
-vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication. 很明显addition包含了abelian group的所有性质，vector space是 $R$-module的特殊化，$R$-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法. 这样做的好处是可以让可以把环上一些看起来不那么好性质都变得好一点，例如ideal在一般情况下并不是一个子环，商环类似. 不那么好是相对于群的一些性质来说的，例如正规子群是一个子群。
+vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication. 很明显addition包含了abelian group的所有性质，vector space是 $R$-module的特殊化，$R$-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法. 这样做的好处是可以让可以把环上一些看起来不那么好性质都变得好一点，例如ideal在一般情况下并不一定还是是一个环，商环类似. 不那么好是相对于群的一些性质来说的，例如正规子群. 在定义了module之后，你会发现ideal就是一个module了，我们的操作终于都在一个东西下面了，不会轻易的跑出去了.
 
 我想这里多记录一些$R$-module的东西，如何把一个环弱化成一个模结构呢？首先我们需要一个abelian group $M$，定义“the left-action of a ring $R$ on $M$”为\[\func{\sigma}{R}{\textsf{End}_{Ab}(M)}\]是一个环同态. 可能这里有一个小疑问为什么$\textsf{End}_{Ab}(M)$是一个环结构？ 首先这个环里面的元素都是关于$M$的endomorphisms,乘法定义为endomorphisms之间的复合，加法定义为$(f+g)(a)=f(a)+g(a)$，其中$f,g \in \textsf{End}_{Ab}(M)$. 我们说$\sigma$把$M$变成了一个left-$R$-module，$\sigma$这个映射可以理解为left-$R$-module structure(算子)，\[\sigma(r)(m) \in _{R}M\]间接的定义了数量乘法，并且有一些有趣的性质:
 
@@ -180,7 +180,78 @@ $$
 \end{proposition}
 
 \begin{proof}
-首先你得证明span确实是一个subspace，然后所有其他的subspace都包含它.
+首先你得证明span确实是一个subspace，然后所有其他的subspace都包含它. span是一个subspace是clearly的. 假设$U$这样一个subspace，包含$v_1,v_2,\cdots,v_m$. 则$a_1v_1,a_2v_2,\cdots,a_mv_m$也是属于$U$的. 那么它们的和也应该是属于$U$的. 这就证明了span是含于$U$的. 
+\end{proof}
+
+
+{\color{red} 上面span是一个名词，那么下面span就是一个动词}.
+
+\begin{definition}
+\rm 如果$\text{span}(v_1,v_2,\cdots,v_m)$等于$V$，则称$v_1,v_2,\cdots,v_m$ \textbf{spans} $V$	
+\end{definition}
+
+{ \color{red} finite-dimensional vector space的严格定义}.
+
+\begin{definition}
+\rm 如果一个vector space可以被一些vector list spans, 则称这个vector sapce是finite-dimensional.
+\end{definition}
+
+这里没有用到basis的概念...
+
+\begin{definition}
+\rm $\mathcal{P}(F)$用来表示polynomials over $F$(所有系数属于$F$的多项式集合).
+\end{definition}
+
+%https://math.stackexchange.com/questions/2612814/zero-function-implies-zero-polynomial  p(x)都等于0，则所有系数都等于0
+
+
+\newpage
+\subsection{Linear Independence}
+
+\begin{definition}
+\rm 给定$V$上一个vector list $v_1,v_2,\cdots,v_m.$若要使得$a_1v_1+a_2v_2+\cdots+a_mv_m=0$，只能唯一取$a_1=a_2=\cdots=a_m.$则称$v_1,v_2,\cdots,v_m$ \textbf{linearly independent}. 从另一方面说就是在$\text{span}(v_1,v_2,\cdots,v_m)$里面的所有vector都有唯一表示形式.
+
+empty vector list同样被定义为linearly independent.
+\end{definition}
+
+
+{\color{red} 下面是关于linearly dependent的一个小性质}.
+
+\begin{lemma}
+\rm 给定$V$上一组linearly dependent的vector list $v_1,v_2,\cdots,v_m.$则存在一个$j \in \{1,2,\cdots,m\}$使得下面两个命题成立.
+\begin{enumerate}
+	\item $v_j \in \text{span}(v_1,v_2,\cdots,v_{j-1});$
+	\item 如果$j^{th}$ vector从$v_1,v_2,\cdots,v_m$中被去掉，则剩下的vectors构成的span依然等于$\text{span}(v_1,v_2,\cdots,v_m).$ 
+\end{enumerate}
+\end{lemma}
+
+{\color{blue} 这个lemma本质就是在linearly dependent vector list里面可以挑一个vector出来，它可以被其他的vectors表示}.
+
+\begin{proof}
+因为$v_1,v_2,\cdots,v_m$ linear independent，所以存在某个$a_k,k \in \{1,\cdots,m\}$不等于$0$，使得
+$$
+a_1v_1+a_2v_2+\cdot+a_mv_m=0.
+$$
+让$j$表示最大值形如$a_j \neq 0.$则我们有
+$$
+v_j = -\frac{a_1}{a_j}v_1-\frac{a_2}{a_j}v_2-\cdots--\frac{a_{j-1}}{a_j}v_{j-1}.
+$$ 
+\end{proof}
+
+还有一个比较直观的判定给定vector list是不是linearly independent的方法.
+
+\begin{proposition}
+\rm linearly independent vector list长度是小于等于spanning vector list(vector list spans $V$)的长度.
+\end{proposition}
+
+\begin{proof}
+给定$v_1,v_2,\cdots,v_m$ linearly independent 和 $u_1,u_2,\cdots,u_n$ spans $V$. 我们的目标是证明$m \leq n.$整个证明过程非常的有趣，会用$v_1,v_2,\cdots,v_m$替换部分$u_1,u_2,\cdots,u_n.$
+
+首先我们考虑$v_1, u_1,u_2,\cdots u_m$，现在这个vector list变成了linearly dependent，因为$v_1$现在至少可以有两种表示方法了. 使用前面关于linearly dependent的lemma我们可以去掉某个$u_k$，使得剩下的vector list还是spans $V$. 我们称这个新的vector list为$B$.
+
+然后by induction，我们可以把剩下的$v_2,\cdots,v_m$也都加到$B$里面，同时每次remove一个$u_k$. 我们必须考虑一下有没有足够多的$u_k$够我们remove？也就是说我们还剩下一些$v_i$放不进去$B$. 假设存在这种情况，也就是说现在$B$里面全是$v$，所以$B$里面的vector都是linearly independent，并且spans $V$，现在还剩下$v_i$还没放进去，矛盾就来了，$v_i$加上$B$里面的vector就变成linearly dependent了. 所以是不存在这种情况的. 也就是说$v_1,v_2,\cdots,v_m$是完全可以一一替换部分$u_1,u_2,\cdots,u_n$的.
+
+
 \end{proof}
 
 \end{document}
