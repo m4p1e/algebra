@@ -249,9 +249,36 @@ $$
 
 首先我们考虑$v_1, u_1,u_2,\cdots u_m$，现在这个vector list变成了linearly dependent，因为$v_1$现在至少可以有两种表示方法了. 使用前面关于linearly dependent的lemma我们可以去掉某个$u_k$，使得剩下的vector list还是spans $V$. 我们称这个新的vector list为$B$.
 
-然后by induction，我们可以把剩下的$v_2,\cdots,v_m$也都加到$B$里面，同时每次remove一个$u_k$. 我们必须考虑一下有没有足够多的$u_k$够我们remove？也就是说我们还剩下一些$v_i$放不进去$B$. 假设存在这种情况，也就是说现在$B$里面全是$v$，所以$B$里面的vector都是linearly independent，并且spans $V$，现在还剩下$v_i$还没放进去，矛盾就来了，$v_i$加上$B$里面的vector就变成linearly dependent了. 所以是不存在这种情况的. 也就是说$v_1,v_2,\cdots,v_m$是完全可以一一替换部分$u_1,u_2,\cdots,u_n$的.
-
-
+然后by induction，我们可以把剩下的$v_2,\cdots,v_m$也都加到$B$里面，同时每次remove一个$u_k$. 我们必须考虑一下有没有足够多的$u_k$够我们remove？也就是说我们还剩下一些$v_i$放不进去$B$. 假设存在这种情况，也就是说现在$B$里面全是$v$，所以$B$里面的vectors都是linearly independent，并且spans $V$，现在还剩下$v_i$还没放进去. 矛盾就来了，$v_i$加上$B$里面的vectors就变成linearly dependent了. 所以是不存在这种情况的. 也就是说$v_1,v_2,\cdots,v_m$是完全可以一一替换部分$u_1,u_2,\cdots,u_n$的. 最后结论就是$m \leq n.$
 \end{proof}
+
+
+\begin{proposition}
+\rm finite-dimensional vector space的subspace还是finite-dimensional.
+\end{proposition}
+
+\begin{proof}
+这里还是一个构造证明，用$U$表示$V$上的subspace. 如果$U = \{0\}$，clearly. 如果$U \neq \{0\}$，则我们从里面挑一个非零vector $v_1$出来.  如果$U = \text{span}(v_1)$，we are done. 反之我们接着取非零$v_2 \in U$，这里还有有一个条件就是$v_2 \notin \text{span}(v_1).$   
+
+一般地，如果$U = \text{span}(v_1,v_2,\cdots,v_{j-1})$，we are done. 反之我们接着取$v_j \in U$，且$v_j \notin \text{span}(v_1,v_2,\cdots,v_{j-1})$. 你可以观察到这样取出来的vector list都是linearly independent. 根据前面的lemma我们知道它的长度应该是小于任何的spanning list，$V$现在是finite-dimensional，根据定义它可以被一些vector list span. 所以最终我们这样的取法是会停下来的，因为长度被限制了，即$U$最终也会被一个vector lists span，$U$也是finite-dimensional. {\color{red} 其实感觉有点找basis的感觉了.} 
+\end{proof}
+
+\newpage
+\subsection{Bases}
+
+\begin{definition}
+若$V$上的一组list of vectors是linear independent且spans $V$，则称它是一个$V$上的一个basis(基).
+\end{definition}
+
+
+{\color{red} basis更常见的另一种描述方式如下}
+
+\begin{proposition}
+若$V$上的一组list $v_1,v_2,\cdots,v_m$ of vectors是一个basis当且仅当任意的$v \in V$都有唯一的表示(linear combination)
+$$
+v = a_1v_1 + a_2v2 + \cdots + a_mv_m.
+$$ 
+其中$a_1,a_2,\cdots,a_m \in F.$
+\end{proposition}
 
 \end{document}
