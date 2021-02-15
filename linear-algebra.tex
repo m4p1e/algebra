@@ -40,6 +40,7 @@
 
 \newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
 \newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+%\newcommand\dim[1]{\text{dim}(#1)}
 
 \begin{document}
 \title{Linear Algebra}
@@ -71,7 +72,7 @@
 \end{definition}
 
 
-vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication. 很明显addition包含了abelian group的所有性质，vector space是 $R$-module的特殊化，$R$-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法. 这样做的好处是可以让可以把环上一些看起来不那么好性质都变得好一点，例如ideal在一般情况下并不一定还是是一个环，商环类似. 不那么好是相对于群的一些性质来说的，例如正规子群. 在定义了module之后，你会发现ideal就是一个module了，我们的操作终于都在一个东西下面了，不会轻易的跑出去了.
+vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication. 很明显addition包含了abelian group的所有性质，vector space是 $R$-module的特殊化，$R$-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法. 这样做的好处是可以让可以把环上一些看起来不那么好性质都变得好一点，例如ideal在一般情况下并不一定还是一个环. 不那么好是相对于群的一些性质来说的，例如正规子群. 在定义了module之后，你会发现ideal就是一个module，我们的操作终于都在一个东西下面了，不会轻易的跑出去.
 
 我想这里多记录一些$R$-module的东西，如何把一个环弱化成一个模结构呢？首先我们需要一个abelian group $M$，定义“the left-action of a ring $R$ on $M$”为\[\func{\sigma}{R}{\textsf{End}_{Ab}(M)}\]是一个环同态. 可能这里有一个小疑问为什么$\textsf{End}_{Ab}(M)$是一个环结构？ 首先这个环里面的元素都是关于$M$的endomorphisms,乘法定义为endomorphisms之间的复合，加法定义为$(f+g)(a)=f(a)+g(a)$，其中$f,g \in \textsf{End}_{Ab}(M)$. 我们说$\sigma$把$M$变成了一个left-$R$-module，$\sigma$这个映射可以理解为left-$R$-module structure(算子)，\[\sigma(r)(m) \in _{R}M\]间接的定义了数量乘法，并且有一些有趣的性质:
 
@@ -267,18 +268,72 @@ $$
 \subsection{Bases}
 
 \begin{definition}
-若$V$上的一组list of vectors是linear independent且spans $V$，则称它是一个$V$上的一个basis(基).
+\rm 若$V$上的一组list of vectors是linearly independent且spans $V$，则称它是$V$上的一个basis(基).
 \end{definition}
 
 
 {\color{red} basis更常见的另一种描述方式如下}
 
 \begin{proposition}
-若$V$上的一组list $v_1,v_2,\cdots,v_m$ of vectors是一个basis当且仅当任意的$v \in V$都有唯一的表示(linear combination)
+\rm 若$V$上的一组list $v_1,v_2,\cdots,v_m$ of vectors是一个basis当且仅当任意的$v \in V$都有唯一的表示(linear combination)
 $$
 v = a_1v_1 + a_2v2 + \cdots + a_mv_m.
 $$ 
 其中$a_1,a_2,\cdots,a_m \in F.$
 \end{proposition}
+
+还有一个比较显然的性质，{\color{blue} 就是任何一个spanning list 都可以被reduced成一个basis}(同样一个linearly independent vector list也可以被extended成一个basis). {\color{red} 继而finite-dimensional vector space中一定会有一个basis}.
+
+
+\newpage
+\subsection{Dimension}
+
+\begin{definition}
+\rm finite-dimensional vector space $V$ 的dimension为 $V$上的一个basis的长度，用$\dim{V}$表示.
+\end{definition}
+
+{\color{red} 这个定义从侧面说明basis的长度取决于$V$，而不取决于它本身}.
+
+\begin{proposition}
+\rm 给定finite-dimensional $V$上subspace $U$. 则$\dim{U} \leq \dim{V}.$
+\end{proposition}
+
+\begin{proof}
+把$U$上的basis看做$V$中一个linearly independent list. 而$V$上的basis看做$V$中一个spanning list. 前面有lemma说明linearly independent list长度是小于spanning list.
+\end{proof}
+
+{\color{red} 快速根据长度来判断一个list是不是basis的方法}
+
+\begin{proposition}
+\rm 给定finite-dimensional $V$.
+\begin{enumerate} 
+	\item \rm linearly independent list with right length.
+	\item \rm spanning list with right length.
+\end{enumerate}
+\rm 其中right length表示$\dim{V}$.
+\end{proposition}
+
+\begin{proposition}
+\rm 给定finite-dimensional $V$上的subspace $U_1$和$U_2$. 
+$$
+	\dim(U_1+U_2) = \dim U_1 + \dim U_2 - \dim(U_1 \cap U_2).
+$$
+\end{proposition}
+
+\begin{proof}
+首先给定$U_1 \cap U_2$的basis为$u_1,u_2,\cdots,u_m$，即$\dim(U_1 \cap U_2)=m$. 在它的基础上分别extend到$U_1$和$U_2$的basis上. $U_1$的basis为$u_1,u_2,\cdots,u_m,v_1,v_2,\cdots,v_j$，$U_2$的basis为$u_1,u_2,\cdots,u_m,w_1,w_2,\cdots,w_k$. 很自然我们希望有下面等式
+$$
+\begin{aligned} 
+\dim(U_1 \cap U_2) &= m + j + k\\
+&= (m+j)+(m+k)-m\\
+&= \dim U_1+\dim U_2 + \dim(U_1\cap U_2).
+\end{aligned}
+$$
+这个等式成立的关键是要证明$u_1,u_2,\cdots,u_m,v_1,v_2,\cdots,v_j,w_1,w_2,\cdots,w_k$是$U_1 + U_2$的一个basis. 即proof
+$$
+a_1u_1+a_2u_2+\cdots+a_mu_m + b_1v_1+b_2v_2+\cdots+b_jv_j+c_1w_1+c_2w_2+\cdots+c_kw_k = 0.
+$$
+接下来就是把$w$移到一边，证明$c_1=c_2=\cdots=c_m=0$(remove v)，接着证明$a$和$c$都等于$0$(linearly independent).
+\end{proof}
 
 \end{document}
