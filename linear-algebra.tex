@@ -546,13 +546,13 @@ Tv_k = A_{1,k}w_1 +  \cdots + A_{m,k}w_m.
 $$
 \end{definition}
 
-这个定义的直觉是什么呢？当给定一个linear map $\func{T}{V}{W}$和$V$上一个basis $v_1,\cdots,v_n$. $Tv_1,\cdots,Tv_n$是$\range{T}$的一个basis，所以它们spans $\range{T}$. 这里的想法就是把$Tv_1,\cdots,Tv_n$和$W$上的basis联系起来了.
+这个定义的直觉是什么呢？当给定一个linear map $\func{T}{V}{W}$和$V$上一个basis $v_1,\cdots,v_n$. 那么$Tv_1,\cdots,Tv_n$是$\range{T}$的一个basis，所以它们spans $\range{T}$. 这里的想法就是把$Tv_1,\cdots,Tv_n$和$W$上的basis联系起来了.
 
 {\color{red} matrix的加法和数量乘法定义}.
 
 矩阵的乘法需要单独拿出来讲一下，在这里我们需要再额外定义$U$和它的一个basis $u_1,\cdots,u_p$. 给定两个linear maps $\func{T}{U}{V}$和$\func{S}{V}{W}$，它们的复合$ST$也是一个linear map. {\color{red} 那么现在有一个问题是$\mathcal{M}(ST)$是否等于$\mathcal{M}(S)\mathcal{M}(S)$}?
 
-但是在此之前，我们并没有定义矩阵乘法. 如果我们希望上面的问题有一个positive answer，定义$\mathcal{M}(S) = A$和$\mathcal{M}(S) = C$，取$1 \leq k \leq p $，那么
+但是在此之前，我们并没有定义矩阵乘法. 如果我们希望上面的问题有一个positive answer，定义$\mathcal{M}(S) = A$和$\mathcal{M}(T) = C$，取$1 \leq k \leq p $，那么
 $$
 \begin{aligned}
 (ST)u_k &= S(\sum\limits_{r=1}^{n}C_{r,k}v_r) \\
@@ -570,4 +570,82 @@ $$
 \end{definition}
 
 {\color{blue} 可以形象的记忆就是$A$的第$j$行的元素分别乘上$C$的第$k$列的元素}.
+$$
+(AC)_{j,k}=A_{j,\cdot}C_{\cdot,k}
+$$
+其中$A_{j,\cdot}$表示第$j$行$1 \times n$矩阵，$C_{\cdot,k}$表示第$k$列$n \times 1$矩阵. 还是刻画成了两个矩阵的乘法.
+
+\begin{proposition}
+特别地,
+$$
+(AC)_{\cdot,k}=AC_{\cdot,k}
+$$
+\end{proposition}
+表示$AC$的第$k$的列等于$A$乘上$C$的第$k$的列(fixed k).
+
+\begin{proposition}
+\rm 给定一个$m \times n$ matrix $A$和$n \times 1$ matrix $c = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}$. 那么
+$$
+Ac = c_1A_{\cdot,1} + \cdots + c_nA_{\cdot,n}.
+$$
+换句话说就是在刻画一个linear combination.
+\end{proposition}
+
+以上都是从不同的方向去思考矩阵乘法.
+
+\begin{example}
+\rm 先给出一个classic 矩阵乘法.
+$$
+\begin{pmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6 \\
+\end{pmatrix}
+\begin{pmatrix}
+6 & 5 & 4 & 3 \\
+2 & 1 & 0 & -1
+\end{pmatrix} = 
+\begin{pmatrix}
+10 & 7 & 4 & 1 \\
+26 & 19 & 12 & 5 \\
+42 & 31 & 20 & 9
+\end{pmatrix}
+$$
+那么其中结果的第2列可以表示为
+$$
+\begin{pmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6 \\
+\end{pmatrix}
+\begin{pmatrix}
+5 \\
+1 
+\end{pmatrix} = 
+\begin{pmatrix}
+7 \\
+19 \\
+31 
+\end{pmatrix}
+$$
+还可以用linear combination的眼观来看
+$$
+\begin{pmatrix}
+7 \\
+19 \\
+31 
+\end{pmatrix} =
+5\begin{pmatrix}
+1 \\
+3 \\
+5 
+\end{pmatrix} + 
+1 \begin{pmatrix}
+2 \\
+4 \\
+6
+\end{pmatrix}
+$$
+\end{example}
+
 \end{document}
