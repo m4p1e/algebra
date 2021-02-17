@@ -591,6 +591,41 @@ $$
 换句话说就是在刻画一个linear combination.
 \end{proposition}
 
+\begin{proof}
+$$
+\begin{aligned}
+Ac &=  
+\begin{pmatrix}
+\left(\sum\limits_{r=1}^{n}A_{1,r}C_{r,1}\right)  \\
+\vdots \\
+\left(\sum\limits_{r=1}^{n}A_{n,r}C_{r,1}\right)  
+\end{pmatrix} \\
+&= 
+\begin{pmatrix}
+A_{1,1}C_{1,1} \\
+\vdots \\
+A_{n,1}C_{1,1} 
+\end{pmatrix} + \cdots +
+\begin{pmatrix}
+A_{1,n}C_{n,1} \\
+\vdots \\
+A_{n,n}C_{n,1} 
+\end{pmatrix}\\ 
+&= 
+C_{1,1}\begin{pmatrix}
+A_{1,1} \\
+\vdots \\
+A_{n,1} 
+\end{pmatrix} + \cdots +
+C_{n,1}\begin{pmatrix}
+A_{1,n} \\
+\vdots \\
+A_{n,n} 
+\end{pmatrix}\\
+\end{aligned}
+$$
+\end{proof}
+
 以上都是从不同的方向去思考矩阵乘法.
 
 \begin{example}
