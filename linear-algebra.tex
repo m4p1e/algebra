@@ -482,6 +482,92 @@ $$
 由于$v_1,v_2,\cdots,v_n$是linearly independent，所以$c_1=c_2=\cdots=c_n =0$.
 \end{proof}
 
-{\color{red} 这个theorem说明了一个重要的性质就是不存在一个linear map使得一个finite-dimensional vector space 到一个更低维的vector space}. 
+{\color{red} 这个theorem说明了一个重要的性质就是不存在一个injective linear map使得一个finite-dimensional vector space 到一个更低维的vector space}. {\color{blue}反之map to 一个更高维的vector space不会是一个满射}. 
 
+\newpage
+\subsection{Homogeneous system of linear equations}
+
+\begin{proposition}
+齐次线性方程组未知数的个数大于等式的个数，则有非零解.
+\end{proposition}
+
+\begin{proof}
+首先得知道什么齐次线性方程组.
+$$
+\begin{aligned}
+\sum\limits_{k=1}^{n}A_{1,k}x_k&=0 \\
+&\vdots\\
+\sum\limits_{k=1}^{n}A_{m,k}x_k&=0.
+\end{aligned}
+$$
+显然$x_1=x_2=\cdots=x_n = 0$是这组方程组的解. 这是trivial的，我们要考虑的是有没有非零解的情况. 之前我们定义过一个linear map $\func{T}{F^n}{F^m}$.
+$$
+	T(x_1,\cdots,x_n)  = (\sum\limits_{k=1}^{n}A_{1,k}x_k,\cdots,\sum\limits_{k=1}^{n}A_{m,k}x_k).
+$$
+上面方程组可以用$T(x_1,\cdots,x_n)=0$来简洁的表示，注意这里的$0$是$F^m$中的加法单位元. 我们想要非零解，在这里只要保证$T$不是单射就行，即只要$\nul{T}$不是$\{0\}$. 由linear map基本定理推出性质，injective的一个充分条件是只要$n>m$就行. 这就是当前命题的最本质的刻画.
+\end{proof}
+
+{\color{red} 对于非齐次方程组也有类似的结论，但是有一些不一样}.
+
+\begin{proposition}
+对于非齐次方程组
+$$
+\begin{aligned}
+\sum\limits_{k=1}^{n}A_{1,k}x_k&=c_1 \\
+&\vdots\\
+\sum\limits_{k=1}^{n}A_{m,k}x_k&=c_m.
+\end{aligned}
+$$
+\end{proposition}
+当方程组的个数大于未知数的个数时，可以找到一些$c_1,\cdots,c_m$使得方程误解.
+
+\begin{proof}
+这里就变成了$T(x_1,\cdots,x_n) =  (c_1,\cdots,c_m)$. 要使得它没有解，我们可以让$\range{T}$只是$F^m$一个subspace，即$T$不是一个surjective. 所以$n<m$就可以有一个充分条件来满足这一点.
+\end{proof}
+
+\newpage
+\subsection{Matrices}
+
+\begin{definition}
+\rm 一个经典的$m \times n$ matrix.
+$$
+\begin{pmatrix}
+A_{1,1} & \cdots & A_{1,n} \\
+\vdots & & \vdots \\
+A_{m,1} & \cdots & A_{m,n}
+\end{pmatrix}
+$$
+\end{definition}
+
+\begin{definition}
+\rm 给定一个linear map $T \in \mathcal{L}(V,W)$，$V$上的一个basis $v_1,\cdots,v_n$和$W$上的一个basis $w_1,\cdots,w_m$. 用$\mathcal{M}(T)$表示$m \times n$ matrix of $T$. 其中$A_{j,k}$定义为
+$$
+Tv_k = A_{1,k}w_1 +  \cdots + A_{m,k}w_m.
+$$
+\end{definition}
+
+这个定义的直觉是什么呢？当给定一个linear map $\func{T}{V}{W}$和$V$上一个basis $v_1,\cdots,v_n$. $Tv_1,\cdots,Tv_n$是$\range{T}$的一个basis，所以它们spans $\range{T}$. 这里的想法就是把$Tv_1,\cdots,Tv_n$和$W$上的basis联系起来了.
+
+{\color{red} matrix的加法和数量乘法定义}.
+
+矩阵的乘法需要单独拿出来讲一下，在这里我们需要再额外定义$U$和它的一个basis $u_1,\cdots,u_p$. 给定两个linear maps $\func{T}{U}{V}$和$\func{S}{V}{W}$，它们的复合$ST$也是一个linear map. {\color{red} 那么现在有一个问题是$\mathcal{M}(ST)$是否等于$\mathcal{M}(S)\mathcal{M}(S)$}?
+
+但是在此之前，我们并没有定义矩阵乘法. 如果我们希望上面的问题有一个positive answer，定义$\mathcal{M}(S) = A$和$\mathcal{M}(S) = C$，取$1 \leq k \leq p $，那么
+$$
+\begin{aligned}
+(ST)u_k &= S(\sum\limits_{r=1}^{n}C_{r,k}v_r) \\
+		&= \sum\limits_{r=1}^{n}C_{r,k}\sum\limits_{j=1}^{m}A_{j,r}w_j\\
+		&= \sum\limits_{j=1}^{m}(\sum\limits_{r=1}^{n}A_{j,r}C_{r,k})w_j.
+\end{aligned}
+$$
+所以$ST$也是一个$m \times p$ matrix，这个结果是非常自然的，描述basis在linear map之间传递. 所以我们由此给出一个正式的矩阵乘法的定义.
+
+\begin{definition}
+\rm 给定$ m \times n$ matrix $A$和$n \times p$ matrix $C$. 则$m \times p$ product matrix $AC$的第j行和第$k$列定义为
+$$
+(AC)_{j,k} =  \sum\limits_{r=1}^{n}A_{j,r}C_{r,k} .
+$$
+\end{definition}
+
+{\color{blue} 可以形象的记忆就是$A$的第$j$行的元素分别乘上$C$的第$k$列的元素}.
 \end{document}
