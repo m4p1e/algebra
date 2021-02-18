@@ -710,9 +710,10 @@ $$
 
 \begin{proof}
 给定linear map $T \in \mathcal{L}(V,W)$. 
+
 ($\Leftarrow$)  若$T$是injective和surjective，则$T(v) = w$一一对应的且能取到所有的$w \in W$，那么$S$直接把对应的$T(v)$送到$v$即可.
 
-($\Rightarrow$) 若$T$可逆，那么存在$S \in \mathcal{L}(W,V)$使得$ST = I$和$TS = I$.
+($\Rightarrow$) 若$T$可逆，那么存在$S \in \mathcal{L}(W,V)$使得$ST = I$和$TS = I$. 从$TS = I$可以知道$T$一个surjective，注意这里的$I$是$W \rightarrow W$，表示$T(S(w))$可以取到任意的$w \in W$. 若存在$v_1,v_2$使得$T(v_1) = T(v_2)$，则$S(T(v_1)) = S(T(v2))$，由于$ST = I$，所以$v_1 = v_2$，即$T$是一个injective. 
 \end{proof}
 
 \end{document}
