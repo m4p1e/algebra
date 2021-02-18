@@ -683,4 +683,36 @@ $$
 $$
 \end{example}
 
+\newpage
+\subsection{Invertibility}
+
+\begin{definition}
+\rm 给定一个linear map $T \in \mathcal{L}(V,W)$. 若存在另外一个linear map $S \in \mathcal{L}(W,V)$，使得$ST$和$TS$都是identity map. 则称$T$是可逆的(invertible)，$S$是$T$的逆元.
+\end{definition}
+
+\begin{proposition}
+\rm 一个可逆的linear map有唯一的逆元.
+\end{proposition}
+
+\begin{proof}
+\rm 给定可逆linear map $T \in \mathcal{L}(V,W)$. 假设它有两个逆元$S_1$和$S_2$，那么
+$$
+S_1 = S_1I = S_1TS_2 = IS_2 =S_2.
+$$
+\end{proof}
+
+自然地，{\color{red} 我们需要思考一个linear map什么时候可逆}?
+
+\begin{proposition}
+\rm 一个linear map可逆当且仅当它是injective和surjective.
+\end{proposition}
+
+
+\begin{proof}
+给定linear map $T \in \mathcal{L}(V,W)$. 
+($\Leftarrow$)  若$T$是injective和surjective，则$T(v) = w$一一对应的且能取到所有的$w \in W$，那么$S$直接把对应的$T(v)$送到$v$即可.
+
+($\Rightarrow$) 若$T$可逆，那么存在$S \in \mathcal{L}(W,V)$使得$ST = I$和$TS = I$.
+\end{proof}
+
 \end{document}
