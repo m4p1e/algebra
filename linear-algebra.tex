@@ -395,10 +395,10 @@ Q.E.D.
 \subsection{Algebraic Operations On $\mathcal{L}(V,W)$}
 
 \begin{definition}
-\rm 给定两个linear map $S,T \in \mathcal{L}(V,W)$和$\lambda in F$. 其加法和数量乘法定义如下. 
+\rm 给定两个linear map $S,T \in \mathcal{L}(V,W)$和$\lambda \in F$. 其加法和数量乘法定义如下. 
 \begin{enumerate}
 	\item sum $S+T$: $(S+T)(v) = Sv+Tv.$
-	\item product $\lambda T$: $\lambda T(v) = \lambda(Tv).$
+	\item scalar product $\lambda T$: $\lambda T(v) = \lambda(Tv).$
 \end{enumerate}
 其中$v \in V.$
 \end{definition}
@@ -412,7 +412,7 @@ Q.E.D.
 {\color{red} 再引入一个vector space $U$，讨论两个linear maps的product变得有意义了}.
 
 \begin{definition}
-给定$T \in \mathcal{L}(U,V)$和$S \in \mathcal{L}(V,W)$，则存在product $ST \in \mathcal{L}(U,W)$使得
+\rm 给定$T \in \mathcal{L}(U,V)$和$S \in \mathcal{L}(V,W)$，则存在product $ST \in \mathcal{L}(U,W)$使得
 $$
 	(ST)(u) = S(T(u)).
 $$
@@ -479,7 +479,7 @@ $$
 $$
 T(c_1v_1+c_2v_2+\cdots+c_nv_n)=0.
 $$
-由于$v_1,v_2,\cdots,v_n$是linearly independent，所以$c_1=c_2=\cdots=c_n =0$.
+由于$v_1,v_2,\cdots,v_n$是linearly independent，且$c_1Tv_1+c_2Tv_2+\cdots+c_nTv_n \notin \nul{T}$. 所以$c_1=c_2=\cdots=c_n =0$.
 \end{proof}
 
 {\color{red} 这个theorem说明了一个重要的性质就是不存在一个injective linear map使得一个finite-dimensional vector space 到一个更低维的vector space}. {\color{blue}反之map to 一个更高维的vector space不会是一个满射}. 
@@ -548,7 +548,25 @@ $$
 
 这个定义的直觉是什么呢？当给定一个linear map $\func{T}{V}{W}$和$V$上一个basis $v_1,\cdots,v_n$. 那么$Tv_1,\cdots,Tv_n$是$\range{T}$的一个basis，所以它们spans $\range{T}$. 这里的想法就是把$Tv_1,\cdots,Tv_n$和$W$上的basis联系起来了.
 
-{\color{red} matrix的加法和数量乘法定义}.
+{\color{red} matrix的加法和数量乘法定义}. 直觉来源于下面两个命题.
+
+\begin{proposition}
+\rm 给定两个linear map $S,T \in \mathcal{L}(V,W)$，$\lambda \in F.$
+\begin{enumerate}
+	\item $\mathcal{M}(S+T) = \mathcal{M}(S) + \mathcal{M}(T).$
+	\item $\mathcal{M}(\lambda T) = \lambda \mathcal{M}(T).$
+\end{enumerate}
+\end{proposition}
+
+在思考上面的命题时候，我们脑子里面必须有了一些fixed base，例如$V$上一个basis $v_1,\cdots,v_n$，和$W$上一个basis $w_1,\cdots,w_m$. $S+T$还是一个$\mathcal{L}(V,W)$中的linear map，所以$w_1,\cdots,w_m$也是它的一个basis. 例如
+$$
+\begin{aligned}
+	(S+T)v_k &= Sv_k + Tv_k \\
+			 &= \sum\limits_{r=1}^{m}A_{r,k}w_r + \sum\limits_{r=1}^{m}C_{r,k}w_r \\
+			 &= \sum\limits_{r=1}^{m}(A_{r,k} + C_{r,k})w_r.  
+\end{aligned}	
+$$
+
 
 矩阵的乘法需要单独拿出来讲一下，在这里我们需要再额外定义$U$和它的一个basis $u_1,\cdots,u_p$. 给定两个linear maps $\func{T}{U}{V}$和$\func{S}{V}{W}$，它们的复合$ST$也是一个linear map. {\color{red} 那么现在有一个问题是$\mathcal{M}(ST)$是否等于$\mathcal{M}(S)\mathcal{M}(S)$}?
 
@@ -723,11 +741,54 @@ $$
 \rm 若两个vector spaces之间一个可逆的linear map，则称这两个vector space 是同构的(isomorphic)，这个可逆的linear map称为isomorphism.
 \end{definition}
 
-{\color{blue} The Greek word \textbf{isos} means equal; the Greak work \textbf{morph} means shape. Thus isomorphic literally means equal shape}.
+{\color{blue} The Greek word \textbf{isos} means equal; the Greek word \textbf{morph} means shape. Thus isomorphic literally means equal shape}.
 
 \begin{proposition}
 \rm 两个finite-dimensional vector spaces over $F$ 同构当且仅当它们有相同的维数(dimension).
 \end{proposition}
 
+\begin{proof}
+设两个vector spaces分别为$V$和$W$.
+
+($\Rightarrow$) 若$V$和$W$同构. 因此$V$和$W$之间有一个isomorphism. 前面我们知道可逆的linear map是injective和surjective的. 根据linear map的基本定理
+$$
+	\dim V = \dim\nul{V} + \dim\range{V}.
+$$
+这里有$\nul{V} =  0$，同时$\range{V} =  W$. 所以$\dim V  = \dim W$.
+
+($\Leftarrow$) 若$V$和$W$拥有相同的dimension. 分别挑$V$上的basis $v_1,\cdots,v_n$和$W$上的basis $w_1,\cdots,w_n$. 我们定义一个linear map $T$，使得
+$$
+	T(c_1v_1 + \cdots + c_nv_n) =  c_1w_1 + \cdots + c_nvw_n.
+$$
+我们需要说明$T$是well-defined. $\forall v \in V$，都可以被$v_1,\cdots,v_n$唯一表示，继而对应的$w \in W$也是被$w_1,\cdots,w_n$唯一表示的. 很显然这是一个linear map. 同时$\nul{T} = \{0\}$，所以$T$是一个injective. 并且$T$的函数值可以spans $W$，所以$T$是一个surjective. 最后$T$是一个isomorphism.
+\end{proof}
+
+{\color{red} 我们来思考一个有趣的isomophism}.
+
+\begin{proposition}
+\rm 给定$V$上basis $v_1,\cdots,c_n$和$W$上的basis $w_1,\cdots,w_m$. 任意一个$T \in \mathcal{L}(V,W)$，都能确定一个$\mathcal{M}(T) \in F^{m,n}$. 那么$\mathcal{L}(V,W)$和$F^{m,n}$同构，其中$\mathcal{M}$是isomorphism.
+\end{proposition}
+
+\begin{proof}
+前面我们在定义矩阵加法和数量乘法的时候，已经可以表明$\mathcal{M}$是一个linear map了. 我们需要证明它是可逆的，即它是injective和surjective.
+
+若$\mathcal{M}(T) = 0$，这里matrix等于0表示$F^{m,n}$中的零矩阵. 那么$Tv_k = 0,k = 1,\cdots,n$，则$T$是一个zero linear map. 所以$\mathcal{M}$是injective的. 对于$\forall A \in F^{m,n}$
+$$
+	Tv_k  = \sum\limits_{r=1}^{m}A_{r,k}w_j.
+$$ 
+显然$\mathcal{M}(T)=A$. 所以$\mathcal{M}$是surjective.（这里可以意味着$A_{j,k}$可以取遍所有$F$） 
+\end{proof}
+
+{\color{red} 如果能从它们的dimension去证明上面的命题就好了，但是$\mathcal{L}(V,W)$的dimension并没有那么显然}.
+
+\begin{proposition}
+\rm 给定$V$和$W$都是finite-dimensional. 则$\mathcal{L}(V,W)$也是finite-dimensional，其中
+$$
+\dim \mathcal{L}(V,W) = \dim V \dim W.
+$$
+\end{proposition}
+
+\newpage
+\subsection{Linear Maps Thought of as Matrix Multiplication}
 
 \end{document}
