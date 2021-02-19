@@ -838,4 +838,54 @@ $$
 \end{proof}
 
 这个命题到底有什么用呢？{\color{blue}每一个$m \times n$ matrix 都蕴含了一个$F^{n,1}$到$F^{m,1}$的linear map}.
+$$
+x \in F^{n,1} , Ax \in F^{m,1}.
+$$
+其中$A$和$x$被换成了$\mathcal{M}(T)$和$\mathcal{M}(v)$，这个换法是个isomorphism.
+
+\newpage
+\subsection{Operators}
+
+\begin{definition}
+\rm 一个vector sapce $V$到自身的linear map $V \rightarrow V$被称为operator，$V$上所有的operators构成的集合记为$\mathcal{L}(V)$，即$\mathcal{L}(V)=\mathcal{L}(V,V)$.
+\end{definition}
+
+\begin{example}
+两个operators的例子.
+\begin{enumerate}
+	\item multiplication by $x^2$: $T \in \mathcal{L}(\mathcal{P}(\mathbb{R}),\mathcal{P}(\mathbb{R}))$
+	$$
+		(Tp)(x) = x^2p(x).
+	$$
+	\item backward shift: $T \in \mathcal{L}(F^{\infty},F^{\infty})$
+	$$
+		T(x_1,x_2,x_3,\cdots) = (x_2,x_3,\cdots). 
+	$$
+\end{enumerate}
+\end{example}
+
+{\color{blue} operator其实就是endomorphism，可以把条件加强一点变成automorphism(自同构). 也就是说需要把operator变成一个isomorphism}.
+
+\begin{proposition}
+\rm 给定finite-dimensional $V$和 operator $T \in \mathcal{L}(V)$. 下面条件相互等价
+\begin{enumerate}
+	\item $T$ is invertible.
+	\item $T$ is injective.
+	\item $T$ is surjective.
+\end{enumerate}
+注意这里必须是{\color{red} finitie-dimensional}. 也就是说现在判定invertible不需要injective和surjective同时满足.
+\end{proposition}
+
+\begin{proof}
+我们再写一遍foundamental theorem
+$$
+\dim V  = \dim \nul{V}  + \dim \range{V}.
+$$
+
+($2 \Rightarrow 3$) 若$T$是injective，上面的式子就变成了$dim V = dim \range{T}$. $\range{T}$是$V$的一个subspace. 若要上述式子成立，则$\range{T} = V$，所以$T$是一个surjective.
+
+($3 \Rightarrow 2$) 若$T$是surjective，$\range{T} = V$上面的式子就变成了$0 = \dim\nul{T}$. 所以$T$是一个injective. 
+
+其他方向的推导都比较clearly.
+\end{proof}
 \end{document}
