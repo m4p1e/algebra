@@ -791,4 +791,51 @@ $$
 \newpage
 \subsection{Linear Maps Thought of as Matrix Multiplication}
 
+之前我们定义了matrix of a linear map，现在我们来定义matrix of a vector.
+
+\begin{definition}
+给定$V$上的basis $v_1,\cdots,v_n$和$v \in V$. 那么matrix of $v$表示为
+$$
+\mathcal{M}(v)=
+\begin{pmatrix}
+c_1 \\
+\vdots\\
+c_n
+\end{pmatrix},
+$$ 
+其中$c_1,\cdots,c_n$使得
+$$
+v = c_1v_1 + \cdots + c_2v_n.
+$$
+\end{definition} 
+
+{\color{red} 所以这里有一个很自然的式子把它们联系起来}.
+$$
+\mathcal{M}(T)_{\cdot,k}=\mathcal{M}(Tv_k).
+$$
+
+\begin{proposition}
+\rm 给定linear map $T \in \mathcal{L}(V,W)$和$v \in V$. 给定$V$上的basis $v_1,\cdots,v_,$和$W$上的basis $w_1,\cdots,w_m$. 那么
+$$
+\mathcal{M}(Tv) =  \mathcal{M}(T)\mathcal{M}(v).
+$$
+\end{proposition}
+
+\begin{proof}
+假定$v=c_1v_1 + \cdots + c_nv_n$，其中$c_1,\cdots,c_n \in F$. 那么
+$$
+Tv =  c_1Tv_1 + \cdots c_nTv_n.
+$$
+继而
+$$
+\begin{aligned}
+\mathcal{M}(Tv) &= c_1\mathcal{M}(Tv_1) + \cdots +c_n \mathcal{M}(Tv_n) \\
+				&= c_1\mathcal{M}(T)_{\cdot,1} + \cdots + c_n \mathcal{M}(T)_{\cdot,n} \\
+				&= \mathcal{M}(T)\mathcal{M}(v).
+\end{aligned} 
+$$
+注意这里用了很多的变换，第一个变换是矩阵的scalar multiplication，第二个是前面的式子，第三个矩阵乘法中的特殊的linear combination.
+\end{proof}
+
+这个命题到底有什么用呢？{\color{blue}每一个$m \times n$ matrix 都蕴含了一个$F^{n,1}$到$F^{m,1}$的linear map}.
 \end{document}
