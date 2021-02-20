@@ -8,7 +8,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-\usepackage{unicode-math}
+%\usepackage{unicode-math}
 
 
 \usepackage[textwidth=18cm]{geometry} % 设置页宽=18
@@ -150,9 +150,9 @@ vector spaces背后的直觉是什么？《linear algebra done right》上说来
 \end{proposition}
 
 \begin{proof}
-\Rightarrow 如果$U+W$是直和，任取$v \in U \cap W$,则$-v \in U \cap W$,而$0 = v + (-v)$,所以$v$只能是$0$.
+$\Rightarrow$ 如果$U+W$是直和，任取$v \in U \cap W$,则$-v \in U \cap W$,而$0 = v + (-v)$,所以$v$只能是$0$.
 
-\Leftarrow 如果$U \cap W = \{0\}$,我们假设还有$0 = v+w$，其中$v,w$不为0，则$w=(-v)$,则$v \in U \cap W$，与前提矛盾.所以$0$有唯一表示。
+$\Leftarrow$ 如果$U \cap W = \{0\}$,我们假设还有$0 = v+w$，其中$v,w$不为0，则$w=(-v)$,则$v \in U \cap W$，与前提矛盾.所以$0$有唯一表示。
 \end{proof}
 
 \newpage
@@ -888,4 +888,134 @@ $$
 
 其他方向的推导都比较clearly.
 \end{proof}
+
+\begin{example}
+对任意的多项式$q \in \mathcal{P}(\mathbb{R})$，存在$p \in \mathcal{P}(\mathbb{R})$使得$((x^2+5x+7)p)^{''}=q$.
+\end{example}
+
+\begin{proof}
+这个题实际做之前你需要想一下$q$和$p$的次数关系，你会发现它们的次数应该是一样的才对，因为$p$乘上了一个2次多项式，两次求导之后整个式子次数会减少2次，总体保持不变就是$p$的次数. 然后你设$p$和$q$的次数为$m$，再把它们换成对应的$p_m(x)=c_mx^m+\cdots+c_0$. 左边去掉求导符合，即展开，对比系数，得到关系式.
+
+这里也可以通过operator来做，前面说了任意时刻$p$和$q$的系数相等，我们设为$m$，我们再把眼光放到$\mathcal{P}_m(x)$上，构造一个operator $\func{T}{\mathcal{P}_m(\mathbb{R})}{\mathcal{P}_m(\mathbb{R})}$
+$$
+Tp = ((x^2+5x+7)p)''
+$$
+这里$q \in \mathcal{P}_m(x)$，所以我们只需要证明这个$T$是一个surjective即可，用上面的proposition，我们来证明它是一个injective. 若要使得$Tp = 0$，二次导之后为0的多项式只能是形如$ax+b$，很显然这里$p$只能等于$0$. 即$\nul{T} = \{0\}$，那么$T$是一个injective，即$T$是一个surjective.
+\end{proof}
+
+\newpage
+\subsection{Products of Vector Spaces}
+
+\begin{definition}
+\rm 给定一些vector spaces over $F$ $V_1,\cdots,V_m$.
+\begin{itemize}
+	\item The product $V_1 \times \cdots \times V_m$定义为
+	$$
+		V_1 \times \cdots \times V_m  = \Set{(v_1,\cdots,v_m)}{v_1 \in V_1, \cdots, v_m \in V_m}.
+	$$
+	\item Addition on $V_1 \times \cdots \times V_m$定义为
+	$$
+		(u_1,\cdots,u_m) + (v_1,\cdots,v_m) = (u_1+v_1,\cdots,u_m + v_m).
+	$$
+	\item Scalar multiplication on $V_1 \times \cdots \times V_m$定义为
+	$$
+		\lambda(v_1,\cdots,v_m) = (\lambda v_1,\cdots,\lambda v_m).
+	$$
+\end{itemize}
+\end{definition}
+
+\begin{example}
+$R^2 \times R^3$和$R^5$同构. $((x_1,x_2) ,(x_3,x_4,x_5)) \mapsto (x_1,x_2,x_3,x_4,x_5)$.
+\end{example}
+
+{\color{red} 那么product of vector space的dimension取决于什么呢}？
+
+\begin{proposition}
+\rm 给定一系列 finite-dimensional $V_1,\cdots,V_m$. 则$V_1 \times \cdots \times V_m$也是finite-dimensional，且
+$$
+	\dim(V_1 \times \cdots \times V_m)=\dim V_1 + \cdots + \dim V_m.
+$$
+\end{proposition}
+
+\begin{proof}
+最直观的理解就是，各自取basis. 例如先对$V_1$取basis $(v_{1_1},0,\cdots,0) , \cdots,(v_{1_n},0,\cdots,0)$. 再类似的对其他$V_k$做同样的操作，这样取出来的list都是linearly independent且spans $V_1 \times \cdots \times V_m$. 所以它是一个basis. 
+\end{proof}
+
+\newpage
+\subsection{Products and Direct Sums}
+
+Product和subset sum之间有一种天然的linear map.
+
+\begin{proposition}
+\rm 给定一些$V$上的subspaces $U_1,\cdots,U_m$. 定义linear map $\func{\Gamma}{U_1 \times \cdots U_m}{U_1 + \cdots + U_m}$
+$$
+ \Gamma(u_1,\cdots,u_m) = u_1 + \cdots + u_2. 
+$$
+若$\Gamma$是injective的，则$U_1 + \cdots + U_m$是一个direct sum.
+\end{proposition}
+
+\begin{proof}
+试想若$U_1 + \cdots + U_m$是一个direct sum. 则$u_1 + \cdots u_m = 0$，只能是$u_1 = \cdots = u_m$，这说明$\Gamma$是一个injective.
+\end{proof}
+
+\begin{corollary}
+\rm 给定一些$V$上的subspaces $U_1,\cdots,U_m$. 若$U_1 + \cdots + U_m$是一个direct sum 当且仅当
+$$
+	\dim(U_1 + \cdots + U_m) = \dim U_1 + \cdots + \dim U_m.
+$$
+\end{corollary}
+
+\begin{proof}
+上面的proposition和前一章的关于 dimension of product的proposition结合起来即可.
+\end{proof}
+
+\newpage
+\subsection{Quotients of Vector Spaces}
+
+
+vector和vector space的addition.
+
+\begin{definition}
+\rm 给定$V$上subspace $U$和vector $v \in V$. 集合
+$$
+\Set{v+u}{u \in U}
+$$
+记为$v+U$. 这个集合被称为affine subset(仿射子集)， affine subset 和 $U$ 是parallel.
+\end{definition}
+
+
+\begin{definition}
+\rm 给定$V$上一个subspace $V$. 集合
+$$
+\Set{v+U}{v \in V}
+$$
+表示$V$的一个quotient space，记为$V \setminus U$. 它是所有$V$上所有和$U$平行的affine subset.
+\end{definition}
+
+{\color{red} 下一步是把quotient space变成一个 vector space}. 如何区别两个和$U$平行的affine subset是相等的呢？
+
+\begin{proposition}
+给定$V$上一个subspace $U$和$v,w \in V$. 下面条件相互等价
+\begin{enumerate}
+	\item $v-w \in U.$
+	\item $v+U = w+U.$
+	\item $(v+U) \cap (w+U) \neq \emptyset.$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+($1 \Rightarrow 2$)若$v-w \in U$，取$u \in U$. 那么
+$$
+v + u  = w+(v-w+u) \in w+U.
+$$
+所以$v+U \subset w+U$. 反过来$w+u$类似，有$w+U \subset v+U$. 最后$v+U = w+U.$
+
+($2 \Rightarrow 1$)若$v+U = w+u$，取$u_1,u_2 \in U$，使得$v+u_1 = w + u_2$. 那么
+$$
+v-w =u_2-u_1 \in U.
+$$
+
+($3 \Rightarrow 1$) same with above.
+\end{proof}
+
 \end{document}
