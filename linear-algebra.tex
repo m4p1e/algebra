@@ -995,7 +995,7 @@ $$
 {\color{red} 下一步是把quotient space变成一个 vector space}. 如何区别两个和$U$平行的affine subset是相等的呢？
 
 \begin{proposition}
-给定$V$上一个subspace $U$和$v,w \in V$. 下面条件相互等价
+\rm 给定$V$上一个subspace $U$和$v,w \in V$. 下面条件相互等价
 \begin{enumerate}
 	\item $v-w \in U.$
 	\item $v+U = w+U.$
@@ -1016,6 +1016,190 @@ v-w =u_2-u_1 \in U.
 $$
 
 ($3 \Rightarrow 1$) same with above.
+\end{proof}
+
+\begin{definition}
+\rm 给定$V$上subspace $U$. $V \setminus U$上的两种运算定义如下:
+\begin{enumerate}
+	\item Addition: $(v+U) + (u +W) = (v+w) + U.$
+	\item Scalar multiplication: $\lambda(v+U)=(\lambda v)+U.$ 
+\end{enumerate}
+其中$v,u \in V$，$\lambda \in F$.
+\end{definition}
+
+
+{\color{blue} 我们必须得说明quotient sapce是一个vector space，才能引入重要的quotient map}.
+\begin{proposition}
+\rm Quotient space是一个vector space.
+\end{proposition}
+
+\begin{proof}
+%这件事为什么要描述的这么复杂呢？？？ quotient space就是一个等价类. 之前在做的事就是告诉你quotient space定义出来的集合里面有很多相同的元素. 这里我们知道了什么时候两个元素是相同的，相同元素可以用一个特殊的代表元素来表示. 同时这个代表元遵循上述的addition和scalar multiplication. quotient space就是一个vector space.
+
+如果我们要证明quotient space是一个vector space我们需要让上述的addition和scalar multiplication满足vector space axioms.
+
+在此之前我们需要让上面的addition和scalar multiplication make sense. 就addition而言，如果有$v+U = \widehat{v} + U$，那么$(v+w)+U = (\widehat{v}+w)+U$. 如何证明呢？根据前面的proposition我们有
+$$
+(v-\widehat{v}) \in U , (w-w) \in U.
+$$
+$U$是一个subspace在addition下封闭. 那么
+$$
+(v+w)-(\widehat{v}+w) \in U.
+$$
+再用一下前面的proposition就有$(v+w)+U = (\widehat{v}+w)+U$. 相似的，要使得scalar multiplication make sense，那么$(\lambda v) + U = (\lambda \widehat{v}) + U$. 根据前面的proposition.
+$$
+v-\widehat{v} \in U.
+$$ 
+$U$在scalar multiplication下封闭. 那么
+$$
+\lambda(v-\widehat{v}) \in U,
+$$
+即$(\lambda v) - (\lambda \widehat{v}) \in U$. 用一下前面的proposition最后就有$(\lambda v) + U = (\lambda \widehat{v}) + U$.
+
+$V\setminus U$的加法单位元是$0 + U$. 
+\end{proof}
+
+{\color{red} 下面要引入最重要的quotient map}.
+
+\begin{definition}
+\rm 给定$V$上的subspace $U$. 存在一个linear map $\func{\pi}{V}{V\setminus U}$定义为
+$$
+\pi(v) = v+U.
+$$
+称这个linear map是一个quotient map.
+\end{definition}
+
+{\color{red} 有了具体的quotient map之后我们来尝试计算quotient space的dimension}.
+
+\begin{proposition}
+$\dim V\setminus U = \dim V - \dim U.$
+\end{proposition}
+
+\begin{proof}
+The fundamental theorem linear map
+$$
+\dim V  = \dim\nul{T} + \dim\range{T}.
+$$
+我们考虑$\nul{T}$，即$\pi(v) =  0 + U$. 那么$v \in U$，则$\pi(v) = 0 +U$. 所以$\nul{T} = U$. $T$的值域就是整个quotient space，所以$\range{T} = V\setminus U$. 两个小结论合起来就是$\dim V\setminus U = \dim V - \dim U$. 
+\end{proof}
+
+{\color{red} quotient map必不可少的是universal property}.
+
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRQAmclVqMWbAOrdeIDNjwEiARlKrx9Zq0QgAOvoBOAWwAE7Q3Bg4TWMEzhmHDBgAoAKgEpu4mFABzeCJQADMjCBMkMhAcCCR1CR02DzkwiKjEGLikURAGOgAjGAYABX5lIRAjLACACxwQam0pPUM0LDSQcMjc6hzERILisorBNhr6xubJXQN9PAZYYA8uXy4gA
+\begin{tikzcd}
+V \arrow[rr, "T"] \arrow[rd, "\pi"'] &                                                 & W \\
+                                     & \rm V\setminus null(T) \arrow[ru, "\tilde{T}"'] &  
+\end{tikzcd}
+\end{center}
+
+\begin{proposition}
+\rm 上图的$\tilde{T}$是一个unique linear map，使得
+$$
+\tilde{T}(\pi(v)) = Tv 
+$$
+\end{proposition}
+
+\begin{proof}
+首先我们让这个linear map make sense. 若$v+\nul{V} = u+\nul{V}$，则$v - u \in \nul{V}$. 进一步有$T(v-u)=0$，即$T(v)=T(u)$. 这就是说一个等价类里面的元素，经过$T$之后的函数值都是相等的，这也是$\tilde{T}$的定义.
+\end{proof}
+
+\begin{proposition}
+\rm 这里面还有一些性质.
+\begin{enumerate}
+	\item $\tilde{T}$ is injective.
+	\item $\range{\tilde{T}} = \range{T}.$
+	\item $V\setminus \nul{T}$和$\range{T}$同构.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) 前面已经证明了.
+(2) 交换图 clearly.
+(3) injective and surjective! then iosmophic.
+\end{proof}
+
+\newpage
+\subsection{The Dual Space and the Dual Map}
+
+\begin{definition}
+\rm 从$V$到$F$的linear map被称为linear functional(线性泛函).
+\end{definition}
+
+\begin{example}
+linear functional的例子
+\begin{enumerate}
+	\item fix $c_1,\cdots,c_n$，定义$\func{\varphi}{F^n}{F}$
+	$$
+		\varphi(x_1,\cdots,x_n) = c_1x_1+\cdots+c_nx_n.
+	$$ 
+\end{enumerate}
+\end{example}
+
+{\color{red} 对偶空间的定义}.
+
+\begin{definition}
+\rm $V$上所有的linear functional构成的集合是一个vector space，其被称为\textbf{dual space}，记为$V'$. 换句话说就是$V' = \mathcal{L}(V,F)$.
+\end{definition}
+
+\begin{proposition}	
+$\dim V' = \dim V$.
+\end{proposition}
+
+\begin{proof}
+from $\dim(V,W)=\dim V \dim W$.
+\end{proof}
+
+\begin{definition}
+\rm 给定$V$上的basis $v_1,\cdots,v_n$，定义$V'$上的list $\varphi_1,\cdots,\varphi_n$如下
+$$
+\varphi_j(v_k)= \left\{ \begin{array}{cc}
+1 & k=j, \\
+0 & k\neq j.
+\end{array} \right.
+$$
+称其为$v_1,\cdots,v_n$的\textbf{dual basis}.
+\end{definition}
+
+\begin{proposition}
+\rm dual basis是$V'$上的basis.
+\end{proposition}
+
+\begin{proof}
+这里我们只需要证明$\varphi_1,\cdots,\varphi_n$是linearly independent，配合the right length. 假设$a_1,\cdots,a_n$使得
+$$
+a_1\varphi_1 + \cdots + a_n\varphi_n=0.
+$$
+这里的$0$表示一个zero map. 已知$(a_1\varphi_1 + \cdots + a_n\varphi_n)(v_j) = a_j$ for $j = 1,\cdots,n$. 所以这里只能$a_1 = \cdots = a_n =0$，$\varphi_1,\cdots,\varphi_n$是linearly independent. 
+\end{proof}
+
+\begin{definition}
+\rm 给定linear map $T \in \mathcal{L}(V,W)$. 它的\textbf{dual map} $T' \in \mathcal{L}(W',V')$定义为
+$$
+T'(\varphi) = \varphi \circ T,
+$$
+其中$\varphi \in W'$.
+\end{definition}
+
+{\color{blue} 为什么它$T'$是一个linear map呢？因为两个linear map的复合还是一个linear map}. 
+
+{\color{red} dual map上的一些代数性质}.
+\begin{proposition}
+给定$S,T \in \mathcal{L}(V,W),G \in \mathcal{L}(U,V)$和$\lambda \in F$.
+\begin{itemize}
+	\item $(S+T)' = S' + T'.$
+	\item $(\lambda T)' = \lambda T'.$
+	\item $(SG)' = G'T'.$
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(1),(2) clearly
+
+(3)设$\varphi \in W'$
+$$
+(SG)'(\varphi) = \varphi \circ (SG) = (\varphi \circ S) \circ G = G'(\varphi \circ S) = G'S'(\varphi).
+$$
 \end{proof}
 
 \end{document}
