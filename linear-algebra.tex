@@ -1231,20 +1231,21 @@ clearly $0 \in U^0$.
 {\color{red} 那么我们现在就可以问annihilator的dimension是多少}？ 
 
 \begin{proposition}
-给定finite-dimensional $V$ 和它的subspace $U$. 则
+\rm 给定finite-dimensional $V$ 和它的subspace $U$. 则
 $$
 \dim U + \dim U^0 = \dim V.
 $$
 \end{proposition}
 
 \begin{proof}
-RHS可以换成$\dim V'$. 如果我们想用fundamental theorem of linear map. 要把$U$弄进来，必须要linear map的一端是$U$. 所以这里引入inclusion map $i \in \mathcal{U,V}$，定义为
+RHS可以换成$\dim V'$. 如果我们想用fundamental theorem of linear map. 要把$U$弄进来，必须要linear map的一端是$U$. 所以这里引入inclusion map $i \in \mathcal(L)(U,V)$，定义为
 $$
 i(u) = u.
 $$ 
-那么它的dual map $\func{i'}{V'}{U'}$. 我们把fundamental theorem用在dual map上有
+那么它的dual map $\func{i'}{V'}{U'}$(这样就有$\dim V'$). 我们把fundamental theorem用在dual map上有
 $$
 \dim V' = \dim\nul{i'} + \dim\range{i'}. 
 $$
+这里$\nul{i'} = U^0$. 为什么呢? $0 = \varphi i$其中$\varphi \in V'$. 这就是innihilator的定义$U \rightarrow F = 0$(zero map). 那么下一步就确定了，我们只需要说明$\dim \range{i'} = \dim U$. 把RHS的$\dim U$再换成$\dim U'$，这就是在说$i'$值域是整个$U'$，那么我们只要证明$i'$是一个surjective即可. 取任意的$\varphi_U \in U'$，存在$\varphi_V \in V, \varphi_V = i\varphi_U$，这是显然的. 综上整个命题成立.
 \end{proof}
 \end{document}
