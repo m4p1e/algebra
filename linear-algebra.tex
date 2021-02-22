@@ -1230,6 +1230,23 @@ clearly $0 \in U^0$.
 
 {\color{red} 那么我们现在就可以问annihilator的dimension是多少}？ 
 
+\begin{lemma}
+\rm 给定finite-dimensional $V$和其上一个subspace $U$. 若$S \in \mathcal{U,V}$，则存在$T \in \mathcal{V,U}$使得对任意的$u \in U$有$Tu = Su$.
+\end{lemma}
+
+\begin{proof}
+直接尝试构造即可. 设$U$上一组basis $u_1,\cdots,u_m$. 它可以extend到$V$上一组basis $u_1,\cdots,u_m,v_1,\cdots,v_n$. 使得$T(w_k) = w_k$对$1 \leq k \leq m$和$T(v_j) = 0$对$1 \leq j \leq n$. $T$是符合上述条件一个linear map.
+
+之前我想这样的构造
+$$
+T(v)= \left\{ \begin{array}{cc}
+Sv & v \in U, \\
+0 & v \notin U.
+\end{array} \right.
+$$
+这是有问题的，addition axiom是不满足的. 从而造就了前面的构造.
+\end{proof}
+
 \begin{proposition}
 \rm 给定finite-dimensional $V$ 和它的subspace $U$. 则
 $$
@@ -1246,6 +1263,42 @@ $$
 $$
 \dim V' = \dim\nul{i'} + \dim\range{i'}. 
 $$
-这里$\nul{i'} = U^0$. 为什么呢? $0 = \varphi i$其中$\varphi \in V'$. 这就是innihilator的定义$U \rightarrow F = 0$(zero map). 那么下一步就确定了，我们只需要说明$\dim \range{i'} = \dim U$. 把RHS的$\dim U$再换成$\dim U'$，这就是在说$i'$值域是整个$U'$，那么我们只要证明$i'$是一个surjective即可. 取任意的$\varphi_U \in U'$，存在$\varphi_V \in V, \varphi_V = i\varphi_U$，这是显然的. 综上整个命题成立.
+这里$\nul{i'} = U^0$. 为什么呢? 根据dual map的定义$0 = \varphi i$其中$\varphi \in V'$. 这就是innihilator的定义$U \rightarrow F = 0$(zero map). 那么下一步就确定了，我们只需要说明$\dim \range{i'} = \dim U$. 把RHS的$\dim U$再换成$\dim U'$，这就是在说$i'$值域是整个$U'$，那么我们只要证明$i'$是一个surjective即可. 即取任意的$\varphi_U \in U'$，存在$\varphi_V \in V, \varphi_U = \varphi_V i$. 我们需要想办法把RHS的$i$消掉，根据前面的lemma我们是可以找到这样的一个$i^{-1}$使得$i^{-1}(u) = i(u),u \in U$，这里又因为inclusion是一个injective map, 有$ii^{-1} = 1$. 所以$i'$是一个surjective. 综上整个命题得证. 
 \end{proof}
+
+{\color{red} $T'$的null space}.
+
+\begin{proposition}
+\rm 给定两个finite-dimensional vector space $V,W$和linear map $T \in \mathcal{L}(V,W)$.则
+\begin{enumerate}
+	\item $\nul(T') = (\range T)^0$.
+	\item $\dim \nul{T'} = \dim \nul T + \dim W - \dim V$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $T'$表示$W' \rightarrow V'$，那么$0 = \varphi T$其中$0$是zero map，$\varphi  \in W'$. 即$\varphi T(v) = 0$对任意的$v \in V$. 换句话就是$\range T$的annihilator.
+\end{proof}
+
+{\color{red} $T$和$T'$两者injective和surjective的关系}.
+
+\begin{proposition}
+\rm 给定两个finite-dimensional vector space $V,W$和linear map $T \in \mathcal{L}(V,W)$.
+
+\begin{enumerate}
+	\item $T$是surjective当且仅当$T'$是injective.
+	\item $T$是injective当且仅当$T'$是surjective.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+$T'$的definition为$T'(\varphi) = \varphi T,\varphi \in W'$. 若$T$是surjective，取$\varphi_1,\varphi_2 \in W'$，那么当$T'(\varphi_1) = T'(\varphi_2)$，意味着取遍了所有$w \in W$，都有$\varphi_1(w)=\varphi_2(w)$. 所以$\varphi_1 = \varphi_2$，即$T$是一个injective.
+
+若$T$是一个injective，取任意的$\phi \in V'$. 是否存在$\varphi \in W'$使得$\phi = \varphi T$呢？跟前面一样需要消掉RHS的$T$，因为T是injective的，我们可以构造$S$
+$$
+Sw= T^{-1}(w).
+$$
+其中$T^{-1}$表示取preimage. 这样$TS = 1$，单位映射。 所以$T'$是surjective的.
+\end{proof}
+
 \end{document}
