@@ -1202,4 +1202,49 @@ $$
 $$
 \end{proof}
 
+\newpage
+\subsection{annihilator}
+
+\begin{definition}
+\rm 给定集合$U \subset V$. 集合
+$$
+\Set{\varphi \in V'}{\forall u \in U,\phi(u) =  0}
+$$
+表示the \textbf{annihilator} of $U$(零化子)，记为$U^0$.
+\end{definition}
+
+{\color{red} 很自然地可能想问annihilator是不是一个subspace}.
+\begin{proposition}
+\rm 给定集合$U \subset V$. 则$U^0$是$V'$的一个subspace.
+\end{proposition}
+
+\begin{proof}
+按三部走.
+
+clearly $0 \in U^0$.
+
+设$v,w \in U^0$. 我们考虑$(v+w)(u) = v(u)+w(u)$其中$u \in U$. clearly $v(u)+w(u) \in U^0$.
+
+相似的，取$\lambda \in F$. 考虑$(\lambda v)(u)=\lambda v(u)$. clearly $\lambda v(u) \in U^0.$
+\end{proof}
+
+{\color{red} 那么我们现在就可以问annihilator的dimension是多少}？ 
+
+\begin{proposition}
+给定finite-dimensional $V$ 和它的subspace $U$. 则
+$$
+\dim U + \dim U^0 = \dim V.
+$$
+\end{proposition}
+
+\begin{proof}
+RHS可以换成$\dim V'$. 如果我们想用fundamental theorem of linear map. 要把$U$弄进来，必须要linear map的一端是$U$. 所以这里引入inclusion map $i \in \mathcal{U,V}$，定义为
+$$
+i(u) = u.
+$$ 
+那么它的dual map $\func{i'}{V'}{U'}$. 我们把fundamental theorem用在dual map上有
+$$
+\dim V' = \dim\nul{i'} + \dim\range{i'}. 
+$$
+\end{proof}
 \end{document}
