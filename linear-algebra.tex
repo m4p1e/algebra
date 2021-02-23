@@ -1301,4 +1301,81 @@ $$
 其中$T^{-1}$表示取preimage. 这样$TS = 1$，单位映射。 所以$T'$是surjective的.
 \end{proof}
 
+
+\newpage
+\subsection{The Matrix of the Dual of a Linear Map}
+\begin{definition}
+\rm 给定一个$m \times n$ matrix $A$. 它的transpose记为$A^{t}$，定义为
+$$
+(A^t)_{k,j} = A_{j,k}.
+$$
+\end{definition}
+
+{\color{red} 同样它有一些简单的代数性质}.
+\begin{enumerate}
+	\item $(A+C)^t = A^t + C^t.$
+	\item $(\lambda A)^t = \lambda A^t.$ 
+\end{enumerate}
+
+\begin{proposition}
+\rm 给定$m\times n$ matrix $A$ 和 $n \times p$ matrix $C$. 则
+$$
+	(AC)^t = C^tA^t.
+$$
+\end{proposition}
+
+\begin{proof}
+直觉上$C^t$是$p\times n$，$A^t$是$n \times m$，$C^tA^t$乘起来是一个$p \times m$ matrix 才有意义.
+$$
+\begin{aligned}
+(C^tA^t)_{j,k} &= \sum\limits_{r=1}^p {C^t}_{j,r}{A^t}_{r,k} \\
+			&= \sum\limits_{r=1}^n {C}_{r,j}{A}_{k,r} \\
+			&= \sum\limits_{r=1}^n {A}_{k,r}{C}_{r,j} \\
+			&= AC_{k,j} \\
+			&= (AC)^t_{j,k}.
+\end{aligned}
+$$
+\end{proof}
+
+{\color{red} $T'$对应matrix是$T$对应matrix的转置}
+
+\begin{proposition}
+给定$T \in \mathcal{L}(V,W)$.则
+$$
+	\mathcal{M}(T') = (\mathcal{M}(T))^t.
+$$
+\end{proposition}
+
+\begin{proof}
+给定$V$上的basis $v_1,\cdots,v_n)$和其dual space $V'$上的basis $\varphi_1,\cdots,\varphi_n$，同时给定$W$上的basis $w_1,\cdots,w_m$和其dual space $W'$上的basis $\psi_1,\cdots,\psi_m$. 这里的$\mathcal{M}(T)$就是在前面定义的basis上构造出来的. 为了方便我们定义$A = \mathcal{M}(T)$和$C = \mathcal{M}(T')$.
+
+$T'$的definition告诉我们$T'(\psi_k)= \psi_k T$. 直接看$\mathcal{M}(T')$definition.
+$$
+T'(\psi_k) = C_{1,k}\varphi_k + \cdots + C_{n,k}\varphi_n.
+$$
+LHS换成$\psi_kT$，同时applying $v_j$.
+\begin{equation}
+\begin{aligned}
+(\psi_k \circ T)(v_j) &= (C_{1,k}\varphi_k)(v_j) + \cdots + (C_{n,k} \varphi_n)(v_j). \\
+&= C_{j,k}.
+\end{aligned}
+\end{equation}
+注意这里为什么直接等于$C_{j,k}$了呢？这是dual basis，只有$\phi_jv_j = 1$，其余项均为零.
+
+$\mathcal{M}(T)$definition.
+$$
+Tv_j = A_{1,j}w_1 + \cdots + A_{m,j}w_m . 
+$$
+把$A$换成$A^t$有
+$$
+Tv_j  = A^t_{j,1}w_1 + \cdot + A^t_{j,m}w_m.
+$$
+代入(1)式中LHS.
+$$
+\begin{aligned}
+(\psi_k \circ T)(v_j) &= A^t_{j,1}\psi_kw_1 + \cdots A^t_{j,m}\psi_kw_m
+&= A^t_{j,k}.
+\end{aligned}
+$$
+\end{proof}
 \end{document}
