@@ -183,7 +183,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-首先你得证明span确实是一个subspace，然后所有其他的subspace都包含它. span是一个subspace是clearly的. 假设$U$这样一个subspace，包含$v_1,v_2,\cdots,v_m$. 则$a_1v_1,a_2v_2,\cdots,a_mv_m$也是属于$U$的. 那么它们的和也应该是属于$U$的. 这就证明了span是含于$U$的. 
+\rm 首先你得证明span确实是一个subspace，然后所有其他的subspace都包含它. span是一个subspace是clearly的. 假设$U$这样一个subspace，包含$v_1,v_2,\cdots,v_m$. 则$a_1v_1,a_2v_2,\cdots,a_mv_m$也是属于$U$的. 那么它们的和也应该是属于$U$的. 这就证明了span是含于$U$的. 
 \end{proof}
 
 
@@ -700,6 +700,10 @@ $$
 \end{pmatrix}
 $$
 \end{example}
+
+\begin{definition}
+对于任意的正整数$m,n$，所有$m \times n$ matrix构成的集合记为$F^{m,n}$.
+\end{definition}
 
 \newpage
 \subsection{Invertibility}
@@ -1377,5 +1381,50 @@ $$
 &= A^t_{j,k}.
 \end{aligned}
 $$
+\end{proof}
+
+\newpage
+\subsection{The Rank of a Matrix}
+
+\begin{definition}
+\rm 给定$m \times n$ matrix $A$，其中元素均属于$F$.
+\begin{itemize}
+	\item $A$的row rank(行秩): the dimension of the span of the rows of $A$ in $F^{1,n}$.
+	\item $A$的column rank(列秩): the dimension of the span of the columns of $A$ in $F^{m,1}$.
+\end{itemize}
+通俗的来讲，就是把每行$1 \times n$的matrix拿出来构造一个span,然后得到的这个span的dimension就是row rank，column rank同理.
+\end{definition}
+
+\begin{example}
+\rm 给定matrix $A=\begin{pmatrix} 4&7&1&8 \\ 3&5&2&8 \end{pmatrix}.$
+
+它的row rank是
+$$
+\text{span}((4\ 7\ 1\ 8),(3\ 5\ 2\ 9))
+$$
+的dimension. 观察到这个两个vector都不是另一个的scalar multiple，所以它们是linearly independent的，这个span的dimension也是2.
+
+它的column rank是
+$$
+\text{span}\left(\begin{pmatrix}4\\3\end{pmatrix},\begin{pmatrix}7\\5\end{pmatrix},\begin{pmatrix}1\\2\end{pmatrix},\begin{pmatrix}8\\9\end{pmatrix}\right).
+$$
+的dimension. 观察到最前面两个vectors是linearly independent. 所以span的dimension最少是2，但是这个span是$F^{2,1}$的subspace，所以最多也是2. 最终column rank是2.
+\end{example}
+
+{\color{red} $\mathcal{M}(T)$的column rank}.
+
+\begin{proposition}
+\rm 给定两个finite-dimensional vector space $V,W$和linear map $T \in \mathcal{L}(V,W)$. 则$\range{T}$的dimension等于$\mathcal{M}(T)$的column rank.
+\end{proposition}
+
+这是很显然的，$\mathcal{M}$的每一列对应$Tv_1,\cdots,Tv_n$是可以确定$\range{T}$上任意一个vector的.
+
+{\color{red} row rank和column rank的关系}.
+\begin{proposition}
+\rm 给定$A \in F^{m,n}$. 则$A$的row rank和column rank是相等的.
+\end{proposition}
+
+\begin{proof}
+
 \end{proof}
 \end{document}
