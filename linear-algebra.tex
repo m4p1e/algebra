@@ -599,7 +599,7 @@ $$
 (AC)_{\cdot,k}=AC_{\cdot,k}
 $$
 \end{proposition}
-表示$AC$的第$k$的列等于$A$乘上$C$的第$k$的列(fixed k).
+表示$AC$的第$k$的列等于$A$乘上$C$的第$k$的列(fixed k). {\color{red} 直觉上$u_k$相关的只有$C_{\cdot,k}$，所以可以直接把它取出来直接乘}.
 
 \begin{proposition}
 \rm 给定一个$m \times n$ matrix $A$和$n \times 1$ matrix $c = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}$. 那么
@@ -608,6 +608,8 @@ Ac = c_1A_{\cdot,1} + \cdots + c_nA_{\cdot,n}.
 $$
 换句话说就是在刻画一个linear combination.
 \end{proposition}
+
+把3.20个3.21两个proposition结合起来就是说{\color{red} $AC$的第$k$列等于$A$中所有列以$C$第$k$列为系数的linear combination}. {\color{blue}同理$AC$的第$j$行等于$C$中所有行以$A$中第$j$行为系数的linear combination}.
 
 \begin{proof}
 $$
@@ -845,7 +847,25 @@ $$
 $$
 x \in F^{n,1} , Ax \in F^{m,1}.
 $$
-其中$A$和$x$被换成了$\mathcal{M}(T)$和$\mathcal{M}(v)$，这个换法是个isomorphism.
+
+深入记录一下，实际上这里有一个交换图.
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRQAmclVqMWbAOrdeIDNjwEiZYePrNWiEADEAesDCkAjFzl8lgoqPXVNUnQeABbU+a7iYUAObwioABmAE4QLkhkIDgQSCb2ktogACoWICFhsdTRSADM8VpsADqFLnQ4ABYAxozAALJcAPrAxcAA7g1YxVwe8unhiKJRMYh5IAx0AEYwDAAK-MpCIMFYPuU4IPmOyQDkqX0RWcODDonFpRXVDHWNzYXANB1d5tTjU7Pz1jrLq+ueXEA
+\begin{tikzcd}
+V \arrow[rr, "T"] \arrow[dd, "\mathcal{M}_{\{v_i\}}"'] &  & W \arrow[dd, "\mathcal{M}_{\{w_i\}}"] \\
+                                                       &  &                                       \\
+{F^{n,1}} \arrow[rr, "T'"']                            &  & {F^{m,1}}                            
+\end{tikzcd}
+\end{center}
+注意$T'$不是dual map，$\mathcal{M}_{\{v_i\}}$和$\mathcal{M}_{\{w_i\}}$分别表示一个matrix operator，$\{v_i\}$和$\{w_i\}$都是fix basis. $\mathcal{M}_{\{v_i\}}$和$\mathcal{M}_{\{w_i\}}$都是一个可逆的linear map，这是很显然的. 如果有上面的交换图，则$T'$是唯一确定的.
+$$
+T' = TM_{\{w_i\}}M^{-1}_{\{v_i\}}.
+$$
+前面我们证明了$\mathcal{M}(Tv) = \mathcal{M}(T)\mathcal{M}(v)$，实际上是证明了
+$$
+\mathcal{M}T = T'\mathcal{M}.
+$$
+所以我们已经把$T'$求出来了，$T'v= \mathcal{M}(T)x$. 把其中的$\mathcal{M}(T)$用$A$表示. 我们把这个特殊的linear map称为matrix multiplication map. 当然了你也可以想象每一个从$V$到$W$(finite-dimensional)的linear map，都可以唯一确定上述的matrix multiplication map.
 
 \newpage
 \subsection{Operators}
@@ -1425,6 +1445,26 @@ $$
 \end{proposition}
 
 \begin{proof}
+这个问题拿到手的时候，似乎单纯从定义我们无法下手. 不用说肯定是要用前面的proposition. 至少我们这里需要构造一个linear map出来. 这里用一个之前我们提到的matrix multiplication map $\func{T}{F^{n,1}}{F^{m,1}}$
+$$
+Tx=Ax, x \in F^{n,1}.
+$$
+要是把$A$可以换成$\mathcal{M}(T)$那就太好了. 只要我们fix的basis都是standard basis($\begin{pmatrix} 1\\0 \\ \vdots \\ 0 \end{pmatrix},\begin{pmatrix} 0\\1 \\ \vdots \\ 0 \end{pmatrix},\cdots$就行，可以简单的验算一下.
 
+那么
+$$
+\begin{aligned}
+\text{column rank of } A &= \text{column rank of } \mathcal{M}(T) \\
+						 &= \dim \range{T} \\
+						 &= \dim \range{T'} \\
+						 &= \text{column rank of } \mathcal{M}(T')\\
+						 &= \text{column rank of } A^{t} \\
+						 &= \text{row rank of } A 	
+\end{aligned}
+$$
+淦！
+%https://math.stackexchange.com/questions/332908/looking-for-an-intuitive-explanation-why-the-row-rank-is-equal-to-the-column-ran 里面有一种novel的proof
 \end{proof}
+
+{\color{blue} 所以以后column rank和row rank统称为rank}！
 \end{document}
