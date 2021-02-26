@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%\usepackage{unicode-math}
+
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+
+
+\begin{document}
+\title{Lattice}
+\author{枫聆}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Ordered Sets}
+
+\begin{definition}
+\rm {\color{red} Partially ordered set} is a system $\mathcal{P} = (P,\leq)$ where $P$ is a nonempty set and $\leq$ is a binary relation on $P$ satisfying，for all $x,y,z \in P,$
+\begin{enumerate}
+	\item \rm {\makebox[8cm][l]{$x \leq x,$} (reflexivity) }
+	\item \rm {\makebox[8cm][l]{if $x \leq y$ and $y \leq x$,then $x=y,$} (antisymmetry)}
+	\item \rm {\makebox[8cm][l]{if $x \leq y$ and $y \leq z$,then $x \leq z.$} (transitivity)} 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\rm $\mathcal{C}$ is a {\color{red} chain} if for every $x,y \in \mathcal{C}$，either $x \leq y$ or $y \leq x.$
+\end{definition}
+
+{\color{blue} chain上的元素都可以相互比较}.
+
+\begin{definition}
+\rm We say that $x$ is {\color{red} covered} by $y$ in $\mathcal{P}$，written $x \prec y$，if $x \leq y$ and there is no $z \in P$ with $x \leq z \leq y$.
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} Hasse diagram} for a finite partially order set $\mathcal{P}$: the elements of $P$ are represented by points in the plane, and a line is drawn from $a$ up to $b$ precisely when $a \prec b$.
+\end{definition}
+
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAKM7gShAF9S6TLnyEUAJlLFqdJq3ZdpFPoOHY8BIuWmyGLNok47eAoSAwaxRbnvmHOZE6vOXRWlDol2Dinc7N1d3ESUgBmHwUjDn8VQIsRTRCpbxp9KMcKOLUEqw9Q1LlfaJNs2RgoAHN4IlAAMwAnCABbJB0QHAgkKRAACxh6KHZIMDYcxpa2mk6kMJp+weGCMfMJ1sR2mcQyPoGhoxGV+qb1na2ANnm9pdH4taQAdmmuxABWK8WD5buTpAAWZ5Id67T7gb7jX6IS4dF7Ahb7MG3CGTRBzGH-D4Iw4-FFoi6Ym5HED3RA9LZPEFY8GrSFnF4U+GEnHrMkvAGUpn8Sj8IA
+\begin{tikzcd}
+                                                 & {(1,1,1)} \arrow[ld, no head] \arrow[d, no head] \arrow[rd, no head] &                                                  \\
+{(0,1,1)} \arrow[rd, no head] \arrow[d, no head] & {(1,0,1)} \arrow[ld, no head] \arrow[rd, no head]                    & {(1,1,0)} \arrow[d, no head] \arrow[ld, no head] \\
+{(0,0,1)} \arrow[rd, no head]                    & {(0,1,0)} \arrow[d, no head]                                         & {(1,0,0)} \arrow[ld, no head]                    \\
+                                                 & {(0,0,0)}                                                            &                                                 
+\end{tikzcd}
+\end{center}
+
+\begin{definition}
+\rm Given a partially order set， $f$ is a {\color{red} order preserving map} satisfying the condition $x \leq y$ implies $f(x) \leq f(y)$.
+\end{definition}
+
+
+
+\end{document}
