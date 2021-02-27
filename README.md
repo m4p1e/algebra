@@ -1,1 +1,5 @@
-# algebra
+- abstract algebra
+- linear algebra
+- lattice theory
+- universe algebra
+- todo
