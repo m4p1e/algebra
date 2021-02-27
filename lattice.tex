@@ -88,6 +88,57 @@
 \rm Given a partially order set， $f$ is a {\color{red} order preserving map} satisfying the condition $x \leq y$ implies $f(x) \leq f(y)$.
 \end{definition}
 
+\begin{definition}
+\rm Given two posets $(P,\leq_S)$ and $(Q,\leq_Q)$，an {\color{red} order isomorphism} from $(P,\leq_S)$ to $(Q,\leq_Q)$ is a bijective order preserving map.
+\end{definition}
 
+\begin{definition}
+\rm An {\color{red} ideal} $I$ of a partially ordered set $\mathcal{P}$ is a subset of the elements of $P$ which satisfy the property that if $x \in \mathcal{P}$ and exists $y \in I$ with $x \leq y$，then $x \in I$.
+\end{definition}
 
+{ \color{blue} 衍生自the ideal of ring，后面我们将会看见 the ideal of lattice}.
+
+\begin{definition}
+\rm Given an ordered set $\mathcal{P}=(P,\leq)$. The {\color{red} dual of $P$} is another poset $\mathcal{P}^d=(P,\leq^d)$ with the order relation defined by $x \leq^d y \iff y \leq x$. 
+\end{definition}
+
+\begin{definition}
+\rm The dual notion of an ideal is called a {\color{red} filter} that $F$ is a subset of $P$ such $x \geq y \in F$ implies $x \in F$  
+\end{definition}
+
+{\color{blue} 类似的还有principle ideal和principle filter. 就是通过一个元素生成的}.
+
+\begin{definition}
+\rm The poset $\mathcal{P}$ has a {\color{red} maximum}(element) if there exists $x \in P$ such that $y \leq x$ for all $x \in P$.
+
+An element $x \in P$ is {\color{red} maximal}	if there is no element $y \in  P$ with $x \leq y$ and $x \neq y$. 
+\end{definition}
+
+{\color{blue} maximum是一个名词表示最大值(greatest)，maximal是一个形容词表示极大的意思. 在poset中可能不只有一个maximal element}.
+
+\begin{lemma}
+\rm The following are equivalent for an poset $\mathcal{P}$.
+
+\begin{enumerate}
+	\item Every nonempty subset $S \subseteq P$ contains an element minimal in $S$.
+	\item $\mathcal{P}$ contains no infinite descending chain \[a_0 > a_1 > a_2 > \cdots.\]{\color{blue} 这里去掉等号是指$a_0 \neq a_1 \neq a_2 \neq \cdots$} 
+	\item If \[a_0 \geq a_1 \geq a_2 \geq \cdots\] in $\mathcal{P}$，then there exists $k$ such that $a_n = a_k$ for all $n \geq k$.
+\end{enumerate}
+\end{lemma}
+
+{\color{red} 这个lemma被称为descending chain condition. 对偶地也有ascending chain condition. original 'a partially ordered set $\mathcal{P}$ requires that all decreasing sequences in $\mathcal{P}$ become eventually constant'}.
+
+\begin{proof}
+(2) $\Rightarrow$ (3) 前提只存在finite descending chain. 假设(3)不成立，且$a_0 \geq a_1 \geq a_2 \geq \cdots$是infinite chain. 则对于任意的$k$，都能找到$n \geq k$使得$a_n \neq a_k$且$a_k \geq a_n$，那么$a_k > a_n$. 这样从$k=0,1,2,\cdots$开始我们每次都可以找到$a_{n_0} > a_{n_1} > \cdots$. 这样我们实际构造了一个infinite descending chain，这是和前提矛盾的. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是一个finite chain，它的最后一个元素显然是满足(3)，这和假设是矛盾的. 
+
+(3) $\Rightarrow$ (2) 也是分infinite chain和finite chain来讨论，finite是显然的，infinite的时候可以把它变成finite.
+
+(1) $\Rightarrow$ (2) (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
+
+(2) $\Rightarrow$ (1) (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \subseteq S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
+(1) $\Rightarrow$ (2) $\Rightarrow$ (3)
+(3) $\Rightarrow$ (2) $\Rightarrow$ (1)
+
+{\color{blue} done well}!
+\end{proof}
 \end{document}
