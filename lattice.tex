@@ -42,6 +42,10 @@
 \newcommand\SET[2]{\Set{#1}{\text{#2}}} %
 
 
+\newcommand\slattice{\mathcal{S}}
+\newcommand\lattice{\mathcal{L}}
+
+
 \begin{document}
 \title{Lattice}
 \author{枫聆}
@@ -64,7 +68,7 @@
 \rm $\mathcal{C}$ is a {\color{red} chain} if for every $x,y \in \mathcal{C}$，either $x \leq y$ or $y \leq x.$
 \end{definition}
 
-{\color{blue} chain上的元素都可以相互比较}.
+{\color{blue} chain上的元素都可以相互比较，所以它是totally ordered}.
 
 \begin{definition}
 \rm We say that $x$ is {\color{red} covered} by $y$ in $\mathcal{P}$，written $x \prec y$，if $x \leq y$ and there is no $z \in P$ with $x \leq z \leq y$.
@@ -91,6 +95,12 @@
 \begin{definition}
 \rm Given two posets $(P,\leq_S)$ and $(Q,\leq_Q)$，an {\color{red} order isomorphism} from $(P,\leq_S)$ to $(Q,\leq_Q)$ is a bijective order preserving map.
 \end{definition}
+
+\begin{definition}
+\rm Given two posets $(P,\leq_S)$ and $(Q,\leq_Q)$，an {\color{red} order embedding} from $(P,\leq_S)$ to $(Q,\leq_Q)$ is a both order-preserving and order-reflecting map that $x \leq y \iff f(x) \leq f(y)$.
+\end{definition}
+
+{\color{blue}相比order isomorphism而言稍微弱一点，不需要是一个surjective}.
 
 \begin{definition}
 \rm An {\color{red} ideal} $I$ of a partially ordered set $\mathcal{P}$ is a subset of the elements of $P$ which satisfy the property that if $x \in \mathcal{P}$ and exists $y \in I$ with $x \leq y$，then $x \in I$.
@@ -126,7 +136,7 @@ An element $x \in P$ is {\color{red} maximal}	if there is no element $y \in  P$ 
 \end{enumerate}
 \end{lemma}
 
-{\color{red} 这个lemma被称为descending chain condition. 对偶地也有ascending chain condition. original 'a partially ordered set $\mathcal{P}$ requires that all decreasing sequences in $\mathcal{P}$ become eventually constant'}.
+{\color{red} 这个lemma被称为descending chain condition(DCC). 对偶地也有ascending chain condition(ACC). original 'a partially ordered set $\mathcal{P}$ requires that all decreasing sequences in $\mathcal{P}$ become eventually constant'}.
 
 \begin{proof}
 (2) $\Rightarrow$ (3) 前提只存在finite descending chain. 假设(3)不成立，且$a_0 \geq a_1 \geq a_2 \geq \cdots$是infinite chain. 则对于任意的$k$，都能找到$n \geq k$使得$a_n \neq a_k$且$a_k \geq a_n$，那么$a_k > a_n$. 这样从$k=0,1,2,\cdots$开始我们每次都可以找到$a_{n_0} > a_{n_1} > \cdots$. 这样我们实际构造了一个infinite descending chain，这是和前提矛盾的. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是一个finite chain，它的最后一个元素显然是满足(3)，这和假设是矛盾的. 
@@ -136,9 +146,135 @@ An element $x \in P$ is {\color{red} maximal}	if there is no element $y \in  P$ 
 (1) $\Rightarrow$ (2) (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
 
 (2) $\Rightarrow$ (1) (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \subseteq S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
+
 (1) $\Rightarrow$ (2) $\Rightarrow$ (3)
+
 (3) $\Rightarrow$ (2) $\Rightarrow$ (1)
 
 {\color{blue} done well}!
 \end{proof}
+
+\begin{lemma}
+\rm Let $\mathcal{P}$ be an poset satisfyint the DCC. If $\varphi(x)$ is statement such that
+\begin{enumerate}
+	\item $\varphi(x)$ holds for all minimal elements of $P$，and
+	\item whenever $\varphi(y)$ holds for all $y < x$，then $\varphi(x)$ holds，
+\end{enumerate}
+then $\varphi(x)$ is true for every element of $P$.
+\end{lemma}
+
+{\color{blue} 这个lemma有点意思，如果对$P$上所有的minimal element $m$都有命题$\varphi(m)$成立， 且$\mathcal{P}$满足DCC. 那么再加上一个条件: 只要对任意元素$x \in P$，满足$y < x$都有$\varphi(y)$成立. 则对任意元素$x \in P$都有$\varphi(x)$成立}.
+
+\begin{proof}
+其实(1)是(2)的一个special case. 在(1)(2)hold的情况下，我们试想一下$\varphi(x)$没有被hold住的是哪些元素呢？ 即对于某个$x$，存在$y < x$使得$\varphi(y)$没有被hold. 递归地，我们再去考虑这个$y$. 那么这里就存在一条descending chain在这里，由于$\mathcal{P}$是满足$DCC$，所以这个descending chain是infinite的. 这条chain的结尾显然是一个minimal element，但是它是满足$\varphi(x)$. 所以实际上是不存在这里的$x$不满足$\varphi(x)$. 
+\end{proof}
+
+\begin{definition}
+\rm Let $\mathcal{P}$ be poset. Two elements $a$ and $b$ of $\mathcal{P}$ are called {\color{red} comparable} if $a \leq b$ or $a \geq b$. Otherwise, they are called {\color{red}incomparable}.
+\end{definition}
+
+{\color{blue} 可比性}.
+
+\begin{definition}
+\rm An {\color{red} antichain} in $\mathcal{P}$ is a subset $A$ of $\mathcal{P}$ in which each pair of different element are incomparable.
+\end{definition}
+
+\begin{definition}
+\rm Define the {\color{red} width} of an poset $\mathcal{P}$ by
+$$
+	w(\mathcal{P}) = \sup\Set{|A|}{\text{A is an antichain in $\mathcal{P}$}}
+$$
+where $|A|$ denotes the cardinality(集合的势) of $A$. 
+\end{definition}
+
+
+\begin{definition}
+\rm We define the {\color{red} chain-covering-number} CCN $c(\mathcal{P})$ to be the least cardinal number k, such that $P$ is a union of $k$ chains(finite) of $P$, means $P = \bigcup C_i$
+\end{definition}
+
+{\color{blue} 另一种covering number，有趣}.
+
+\begin{lemma}
+Suppose $P = \bigcup C_i$ where $i \in I$，then $ w(\mathcal{P}) \leq |I|$.
+\end{lemma}
+
+\begin{proof}
+因为$ |A \cap C_i| \leq 1 $ for $i \in I$. 也就是说你把$A$里面的元素分开塞到$C_i$上，每次都只能塞一个. 那么最多你可以每个$C_i$上都塞一个. 
+\end{proof}
+
+\begin{theorem}
+\rm (Dilworth ,1950) Let $\mathcal{P}$ be a finite poset. $w(\mathcal{P})$ is width. Then $\mathcal{P}$ is a union of $w(\mathcal{P})$-chains.
+\end{theorem}
+
+\begin{proof}
+TODO.
+\end{proof}
+
+\newpage
+\section{Semilattices, Lattices and Complete Lattices}
+
+\begin{definition}
+\rm A {\color{red} semilattice} is an algebra $\mathcal{S} = (S,*)$ satisfying， for all $x,y,z \in \slattice$，
+\begin{enumerate}
+	\item $x * x = x,$
+	\item $x * y = y *x,$
+	\item $x*(y*z) = x*(y*z).$
+\end{enumerate}
+where $*$ is binary operator.
+{\color{red} 换句话说semilattice就是一个idempotent commutative semigroup(幂等交换半群)}. 
+\end{definition}
+
+\begin{theorem}
+\rm In a semilattice $\slattice$，define $x \leq y$ if $x * y = x$. Then $(S,\leq)$ is a poset in which every pair of elements has a greater lower bound.
+
+Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).$ Then $(P,*)$ is a semilattice.
+\end{theorem}
+
+{\color{blue} semilattice上弄了一个特殊的poset出来, 它最好的性质就是任意两个元素都有一个下确界}. 把$*$换成$\cap$,然后把$\leq$换成$\subseteq$，可能就很熟悉了, 所以它还有一个名字就是{\color{red} meet semilattice}.
+\begin{proof}
+先证明这个是一个poset. 
+\begin{enumerate}
+	\item $x * x = x$ implies $x \ leq x,$
+	\item if $x \leq y$ and $x \geq y$, then $x = x*y  = y*x = y,$
+	\item if $x \leq y$ and $ y \leq z$. then $x *z = (x * y)*z = x *(y *z) = x * y = x$, so $x \leq z$.
+	
+这个greater lower bound就是$x * y$. 首先证明它是一个lower bound，$x *(x*y)=x*y$ and $y*(x*y) = x*y$，所以$x*y$是一个lower bound. 再来证明所有的lower bound都比它小，假设$z \leq x$和$z \leq x$，即$z$是$\{x,y\}$的一个bound. 那么$z * (x * y) = z * y = z$，所以$z \leq (x*y)$. 最后$x*y$的一个greater lower bound. 
+\end{enumerate}
+\end{proof}
+
+
+对偶地，使得$x \geq y \iff x * y = x$，则称$\slattice$为是一个{\color{red} join semilattice}.
+
+\begin{definition}\rm A {\color{red} homomorphism} between two semilattice is a map $\func{f}{\slattice}{\mathcal{T}}$ with the property that $f(x*y) = f(x) * f(y)$. An {\color{red} isomorphism} is a homomorphism that injective and surjective.
+\end{definition}
+
+{\color{blue} nothing new}...
+
+\begin{theorem}
+\rm Let $\slattice$ be a meet semilattice. Define $\func{\phi}{S}{\mathcal{O}(S)}$ by
+$$
+\phi(x) = \Set{y \in S}{y \leq x}
+$$
+where $\mathcal{O}(S)$ is collection of all order ideals of $\slattice$. Then $\slattice$ is isomophic $(\mathcal{O}(S),\cap)$(注意这里是$\slattice$的image).
+\end{theorem}
+
+{\color{blue} 怎么感觉这些ideal都是principle ideal}.
+
+\begin{proof}
+$\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是比obvious. 所以$\phi$是一个order embedding of $\slattice$ into $\mathcal{O}(\slattice)$. Moreover $\phi(x \wedge y) = \phi(x) \cap \phi(y)$ because $x \wedge y$ is the greate lower bound of $\{x,y\}$，so that $z \leq x \wedge v$ if and only if $z \leq x$ and $z \leq y$. 
+\end{proof}
+
+\begin{definition}
+\rm A {\color{red} lattice} is an algebra $\lattice = (L,\wedge,\vee)$ satisfying，for all $x,y,z \in L,$
+\begin{enumerate}
+	\item $x \wedge x = x$ and $x \vee x = x,$
+	\item $x \wedge y = y \wedge x$ and $x \vee y = y \vee x,$
+	\item $x \wedge (y \wedge z) = (x \wedge y) \wedge z$ and $x \vee (y \vee z) = (x \vee y) \vee z,$
+	\item $x \wedge (x \vee y) = x$ and $x \vee (x \wedge y) = x.$ 
+\end{enumerate}
+\end{definition}
+
+{\color{blue} 就第四个在我们眼里似乎没有那么自然，它叫absorption laws(吸收律)，它在这里保证了$\wedge$和$\vee$定义了相同的partial order(虽然是dual). 前几个我们知道lattice是一个 meet and join semilattice}. 
+
+
 \end{document}
