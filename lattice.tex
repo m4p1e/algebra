@@ -230,7 +230,7 @@ where $*$ is binary operator.
 Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).$ Then $(P,*)$ is a semilattice.
 \end{theorem}
 
-{\color{blue} semilattice上弄了一个特殊的poset出来, 它最好的性质就是任意两个元素都有一个下确界}. 把$*$换成$\cap$,然后把$\leq$换成$\subseteq$，可能就很熟悉了, 所以它还有一个名字就是{\color{red} meet semilattice}.
+{\color{blue} semilattice上弄了一个特殊的poset出来, 它最好的性质就是任意两个元素都有一个下确界}. 把$*$换成$\cap$,然后把$\leq$换成$\subseteq$，可能就很熟悉了. A semilattice with the above ordering is usually called {\color{red} meet semilattice}.
 \begin{proof}
 先证明这个是一个poset. 
 \begin{enumerate}
@@ -274,7 +274,26 @@ $\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是�
 \end{enumerate}
 \end{definition}
 
-{\color{blue} 就第四个在我们眼里似乎没有那么自然，它叫absorption laws(吸收律)，它在这里保证了$\wedge$和$\vee$定义了相同的partial order(虽然是dual). 前几个我们知道lattice是一个 meet and join semilattice}. 
+{\color{blue} 就第四个在我们眼里似乎没有那么自然，它叫absorption laws(吸收律)，它在这里可以保证后面$\wedge$和$\vee$定义了相同的partial order(虽然是dual). 前三个我们知道lattice同时在两种binary operator都是semilattice，所以我们只要在lattoce上定义前面合适的partial order，它就是both meet and join semilattice}. 
+
+\begin{theorem}
+\rm In a lattice $\lattice$，define $x \leq y$ if and only if $x \wedge y = x$. Then $(L,\leq)$ is a poset in which every pair of elements has a greatest lower bound and a least upper bound.  
+\end{theorem}
+
+\begin{proof}
+给定一个pair $(x,y)$. 前面已经证明了$x \wedge y$是它的一个greater lower bound. 再根据lattice definition的第四条的第一个式子，$x \vee y$是它的一个upper bound，第二式子说明当$x \geq y$时，有$x \vee y = x$，对偶地$x \vee y$是least upper bound. 
+
+这里若$x \wedge y = x$，则$x \vee y = (x \wedge y) \vee y = y$.  类似地$x \vee y = y$，则$x \wedge y = x \wedge (x \vee y) = x$.  所以有一个很重要的结论就是{\color{blue} $x \wedge y = x \iff x \vee y = y$}.
+\end{proof}
+
+{\color{red} 类似的我们可以通过一个poset构造lattice}.
+
+\begin{theorem}
+\rm Given an poset $\mathcal{P}$ with that above property，define $x \wedge y = \sup\{x,y\}$ and $x \vee y = \inf\{x,y\}$. Then $(P,\wedge,\vee)$ is a lattice.
+\end{theorem}
+
+
+
 
 
 \end{document}
