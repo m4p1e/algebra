@@ -338,6 +338,14 @@ $$
 接下来就是把$w$移到一边，证明$c_1=c_2=\cdots=c_m=0$(remove v)，接着证明$a$和$c$都等于$0$(linearly independent).
 \end{proof}
 
+{\color{red} 一般形式有}
+$$
+\begin{aligned}
+\dim \left( \sum_{i = 1}^k V_i \right) &= \dim\left( \sum\limits_{i=1}^{k-1} V_i \right) + \dim(V_k) + \dim\left( \left(\sum\limits_{i=1}^{k-1} V_i\right) \cap V_k \right) \\
+	&= \sum_{i = 1}^k \dim(V_i) - \sum_{i = 1}^{k-1} \dim \left( \left( \sum_{j = 1}^i V_j \right) \cap V_{i+1} \right).
+\end{aligned}	
+$$
+
 
 \newpage
 \section{Linear Maps}
