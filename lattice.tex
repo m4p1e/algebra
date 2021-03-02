@@ -293,7 +293,56 @@ $\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是�
 \end{theorem}
 
 
+{\color{blue} 所以实际上lattice可以有两种定义第一种是前面的代数定义，第二种就是在poset上定义join和meet操作，这一点要清楚}.
 
 
+{\color{red} the definitions of sublattice，homomorphism and isomorphism )}.
+
+
+\begin{definition}
+\rm For a subset $A$ of a poset $P$，let $A^u$ denote the set of all upper bounds of $A$，
+$$
+\begin{aligned}
+A^u &= \Set{x \in P}{x \geq a\ \text{for all}\ a \in A} \\
+	&= \bigcap\limits_{a \in A} \uparrow a
+\end{aligned}
+$$
+where $\uparrow a = \Set{x \in P}{x \geq a}$. Dually，$A^l$ is the set of all lower bounds of $A$，
+$$
+\begin{aligned}
+A^l &= \Set{x \in P}{x \leq a\ \text{for all}\ a \in A} \\
+	&= \bigcap\limits_{a \in A} \downarrow a
+\end{aligned}	
+$$
+where $\uparrow a = \Set{x \in P}{x \leq a}$.
+\end{definition}
+
+思考一个问题{\color{red} poset $P$的一个subset $A$什么时候least upper bound}? 很显然$A^u$ 一定不是空的，更确切地说$A^u$有一个greatest lower upper $z$，而且$z \in A^u$，根据$z$的definition它是$A$的least upper bound. 这种情况下我们就说{\color{red} the join of $A$ exists，and write $z = \bigvee A$}. 对偶地，{\color{red} 考虑$A$的greatest lower bound}，则$A^l$一定不为空，那么$A^u$里面是有一个lower upper bound的$w$，根据$w$的definition它是$A$的greatest lower bound. 这种情况下我们就说{\color{red} the meet of $A$ exists，and write $w = \bigwedge A$}.
+
+{\color{blue} 这样我们define两个特殊的meet和join作用在一个集合上}.
+
+\begin{theorem}
+\rm Let $\slattice$ be a finite meet semilattice with greatest element 1. Then $\slattice$ is a lattice with join operation defined by 
+$$
+x \vee y = \bigwedge \{x,y\} ^u = \bigwedge (\uparrow x \cap \uparrow y).
+$$
+\end{theorem}
+
+\begin{proof}
+$\slattice$有greatest element，则$A^u$肯定不是空了，至少这个greatest element里面. $\bigwedge A^u$就是要找$A^u$的lower upper bound，很显然这个greatest element就是的，因为你任取$a,b \in x \cap \uparrow y $，都有$a \leq 1$和$b \leq 1$，同时$1$也在$A^u$里面. 怎么感觉这个结论那个trivial呢(
+
+还得proof一下这个是一个lattice，上面只是证明了这个东西是well behaved. Lattcie definition中前三条还是比较明显的.
+$$
+x \wedge (x \vee y) = x
+$$
+这也很显然，因为$x \vee y \in \{x,y\}^u$.
+$$
+x \vee (x \wedge y) = x
+$$
+因为$x \wedge y$是$\{x,y\}$的一个greatest lower bound，有$x \geq x \wedge y$，那么$\inf(x,x \wedge y) = x$.
+\end{proof}
+
+这个theorem告诉我们: {\color{red} if a finite poset $P$ has a greatest element and every pair of elements has a meet,
+then $P$ is a lattice}.
 
 \end{document}
