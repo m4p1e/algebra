@@ -213,6 +213,7 @@ TODO.
 \newpage
 \section{Semilattices, Lattices and Complete Lattices}
 
+\subsection{Semilattice}
 \begin{definition}
 \rm A {\color{red} semilattice} is an algebra $\mathcal{S} = (S,*)$ satisfying， for all $x,y,z \in \slattice$，
 \begin{enumerate}
@@ -238,12 +239,12 @@ Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).
 	\item if $x \leq y$ and $x \geq y$, then $x = x*y  = y*x = y,$
 	\item if $x \leq y$ and $ y \leq z$. then $x *z = (x * y)*z = x *(y *z) = x * y = x$, so $x \leq z$.
 	
-这个greater lower bound就是$x * y$. 首先证明它是一个lower bound，$x *(x*y)=x*y$ and $y*(x*y) = x*y$，所以$x*y$是一个lower bound. 再来证明所有的lower bound都比它小，假设$z \leq x$和$z \leq x$，即$z$是$\{x,y\}$的一个bound. 那么$z * (x * y) = z * y = z$，所以$z \leq (x*y)$. 最后$x*y$的一个greater lower bound. 
+这个greater lower bound就是$x * y$. 首先证明它是一个lower bound，$x *(x*y)=x*y$ and $y*(x*y) = x*y$，所以$x*y$是一个lower bound. 再来证明所有的lower bound都比它小，假设$z \leq x$和$z \leq y$，即$z$是$\{x,y\}$的一个lower bound. 那么$z * (x * y) = z * y = z$，所以$z \leq (x*y)$. 最后$x*y$的一个greater lower bound. 
 \end{enumerate}
 \end{proof}
 
 
-对偶地，使得$x \geq y \iff x * y = x$，则称$\slattice$为是一个{\color{red} join semilattice}.
+对偶地，使得$x \geq y \iff x * y = x$，则称$\slattice$为是一个{\color{red} join semilattice}. 自然地在$(S,\leq)$下任意的pair都有一个least upper bound $x \vee y$.
 
 \begin{definition}\rm A {\color{red} homomorphism} between two semilattice is a map $\func{f}{\slattice}{\mathcal{T}}$ with the property that $f(x*y) = f(x) * f(y)$. An {\color{red} isomorphism} is a homomorphism that injective and surjective.
 \end{definition}
@@ -261,9 +262,12 @@ where $\mathcal{O}(S)$ is collection of all order ideals of $\slattice$. Then $\
 {\color{blue} 怎么感觉这些ideal都是principle ideal}.
 
 \begin{proof}
-$\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是比obvious. 所以$\phi$是一个order embedding of $\slattice$ into $\mathcal{O}(\slattice)$. Moreover $\phi(x \wedge y) = \phi(x) \cap \phi(y)$ because $x \wedge y$ is the greate lower bound of $\{x,y\}$，so that $z \leq x \wedge v$ if and only if $z \leq x$ and $z \leq y$. 
+$\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是比较obvious. 所以$\phi$是一个order embedding of $\slattice$ into $\mathcal{O}(\slattice)$. Moreover $\phi(x \wedge y) = \phi(x) \cap \phi(y)$ because $x \wedge y$ is the greate lower bound of $\{x,y\}$，so that $z \leq x \wedge v$ if and only if $z \leq x$ and $z \leq y$. 
 \end{proof}
 
+
+\newpage
+\subsection{Lattice}
 \begin{definition}
 \rm A {\color{red} lattice} is an algebra $\lattice = (L,\wedge,\vee)$ satisfying，for all $x,y,z \in L,$
 \begin{enumerate}
@@ -298,7 +302,8 @@ $\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是�
 
 {\color{red} the definitions of sublattice，homomorphism and isomorphism )}.
 
-
+\newpage
+\subsection{Complete Lattice}
 \begin{definition}
 \rm For a subset $A$ of a poset $P$，let $A^u$ denote the set of all upper bounds of $A$，
 $$
@@ -329,9 +334,9 @@ $$
 \end{theorem}
 
 \begin{proof}
-$\slattice$有greatest element，则$A^u$肯定不是空了，至少这个greatest element里面. $\bigwedge A^u$就是要找$A^u$的lower upper bound，很显然这个greatest element就是的，因为你任取$a,b \in x \cap \uparrow y $，都有$a \leq 1$和$b \leq 1$，同时$1$也在$A^u$里面. 怎么感觉这个结论那个trivial呢(
+$\slattice$有greatest element，则$A^u$肯定不是空了，至少这个greatest element里面. $\bigwedge A^u$就是要找$A^u$的lower upper bound. 由于$\slattice$是一个finite lattice，所以$A^u$也是finite.$A^u$里面的元素做有限次meet操作得到就是一个lower upper bound，但是你还得说明它在$A^u$里面. 这是很显然的，$x \wedge z_1 \wedge \cdots \wedge z_k = x$其中$z_i \in A^u$，所以$\bigwedge A^u$是它的一个upper bound.
 
-还得proof一下这个是一个lattice，上面只是证明了这个东西是well behaved. Lattcie definition中前三条还是比较明显的.
+还得proof一下它是一个lattice，上面只是证明了这个东西是well behaved. Lattcie definition中前三条还是比较明显的.
 $$
 x \wedge (x \vee y) = x
 $$
@@ -344,5 +349,70 @@ $$
 
 这个theorem告诉我们: {\color{red} if a finite poset $P$ has a greatest element and every pair of elements has a meet,
 then $P$ is a lattice}.
+
+\begin{theorem}
+\rm Every finite subset of a lattice has a greatest lower bound and a leaset upper bound.
+\end{theorem}
+
+\begin{proof}
+$\lattice$是finite，则它的subset也是finite. 前面我们知道lattice中任意一个pair都有greatest lower bound和least upper bound，这是meet和join定义下的partial order所带来的性质. 在finite subset里面先挑两个出来做meet或者join可以得到inf和sup它们也是属于$L$的，再从剩下的subset里面再挑一个出来做同样的操作，这个操作只会做有限多次，所以最终我可以得到这个subset的greatest lower bound和least upper bound.
+\end{proof}
+
+{\color{red} 这个性质在infinite lattice下可能就无法成立}. 例如infinite subset上述操作可能根本就停不下. 由此我们定义另外一个概念.
+
+\begin{definition}
+\rm Given poset $\lattice$. If every subset $A$ of $\lattice$ has a greatest lower bound $\bigwedge A$ and a least upper bound $\bigvee A$，then $\lattice$ is called {\color{red} complete lattice}. 
+\end{definition}
+
+{\color{blue} subset其中就包含了pair，所以它是一个lattice还是比较明显的}. 此外，{\color{red} finite lattice是complete的，并且所有complete lattice都包含greatest element和least element}.
+
+\begin{definition}
+\rm a {\color{red} complete meet semilattice} is an poset $\slattice$ with greatest element and the property that every nonempty subset $A$ of $S$ has a greatest lower bound $\bigwedge A$.
+\end{definition}
+
+{\color{red} 下面这个theorem让我们抛弃了更强的finite，只需要complete就可以在meet semilattice上构造一个lattice出来}.
+
+\begin{theorem}
+\rm If $\lattice$ is a complete meet semilattice，then $\lattice$ is a complete lattice with the join operation defined by
+$$
+\bigvee A = \bigwedge A^u = \bigwedge (\bigcap\limits_{a \in A} \uparrow a).
+$$
+\end{theorem}
+
+\begin{proof}
+和前面在finite meet semilattice上构造lattice类似，这里finite换成了complete. 这里我们直接就可以知道$\bigwedge A^u$是有意义的，前面也证明了它还是一个$A$的upper bound. 那么$\bigwedge A$的definition是满足$A$的least upper bound.
+\end{proof}
+
+\newpage
+\subsection{Closure System}
+
+\begin{definition}
+\rm A {\color{red} closure system} on a set $X$ is a collection $\mathcal{C}$ of subsets of $X$ thats is closed under arbitrary intersections(任意的交). The sets in $\mathcal{C}$ are called closed set. 
+\end{definition}
+
+\begin{example}
+有一些closure system的例子
+\begin{enumerate}
+	\item closed subsets of topological space,
+	\item subgroups of group,
+	\item subspace of vector space.
+	\item convex subsets of euclidean space $\mathbb{R}^n$,
+	\item order ideals of an poset.
+\end{enumerate}
+\end{example}
+
+{\color{red} By convention，把$\bigcap \emptyset = X$的话，closure system就是一个complete lattice}.
+
+
+\begin{definition}
+\rm A {\color{red} closure} operator on a set $X$ is a map $\func{\Gamma}{\mathfrak{P}(X)}{\mathfrak{P}(X)}$ satifying, for all $A,B \subseteq X$,
+\begin{enumerate}
+	\item $A \subseteq \Gamma(A),$
+	\item $A \subseteq B$ implies $\Gamma(A) \subseteq \Gamma(B),$
+	\item $\Gamma(\Gamma(A)) = \Gamma(A).$
+\end{enumerate}
+\end{definition}
+
+{\color{blue} closure的general definition有点意思}.
 
 \end{document}
