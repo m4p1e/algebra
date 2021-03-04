@@ -334,7 +334,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-$\slattice$有greatest element，则$A^u$肯定不是空了，至少这个greatest element里面. $\bigwedge A^u$就是要找$A^u$的lower upper bound. 由于$\slattice$是一个finite lattice，所以$A^u$也是finite.$A^u$里面的元素做有限次meet操作得到就是一个lower upper bound，但是你还得说明它在$A^u$里面. 这是很显然的，$x \wedge z_1 \wedge \cdots \wedge z_k = x$其中$z_i \in A^u$，所以$\bigwedge A^u$是它的一个upper bound.
+$\slattice$有greatest element，则$A^u$肯定不是空了，至少这个greatest element里面. $\bigwedge A^u$就是要找$A^u$的lower upper bound. 由于$\slattice$是一个finite lattice，所以$A^u$也是finite. $A^u$里面的元素做有限次meet操作得到就是一个lower upper bound，但是你还得说明它在$A^u$里面. 这是很显然的，$x \wedge z_1 \wedge \cdots \wedge z_k = x$其中$z_i \in A^u$，所以$\bigwedge A^u$是它的一个upper bound.
 
 还得proof一下它是一个lattice，上面只是证明了这个东西是well behaved. Lattcie definition中前三条还是比较明显的.
 $$
@@ -413,6 +413,49 @@ $$
 \end{enumerate}
 \end{definition}
 
-{\color{blue} closure的general definition有点意思}.
+{\color{blue} closure的general definition有点意思}. 简单地来说，就是(1)集合的闭包包含集合本身；(2)如果两个集合有包含关系，则它们的闭包也有相同的包含关系；(3)闭包的闭包是其本身.
+
+\begin{theorem}
+\rm If $\mathcal{C}$ is a closure system on a set $X$，then the map $\func{\Gamma_{\mathcal{C}}}{\mathfrak{B}(X)}{\mathfrak{B}(X)}$ defined by 
+$$
+\Gamma_{\mathcal{C}}(A) = \bigcap \Set{D \in \mathcal{C}}{A \subseteq D}
+$$
+is a closure operator. Moreover $\Gamma_{\mathcal{C}}(A)=A$ if and only if $A \in \mathcal{C}$
+\end{theorem}
+
+{\color{red} 所有包含这个集合的closed set的交是这个集合的closure}. {\color{blue} 在topology里面closure是包含这个集合最小的closed set}. 
+
+\begin{definition}
+\rm A set of {\color{red} closure rules} on a set $X$ is a collection $\sum$ of properties $\varphi(S)$ of subsets of $X$. where each $\varphi(S)$ has one of the forms
+$$
+x \in S
+$$
+or 
+$$ 
+Y \subseteq S \Rightarrow z \in S
+$$ 
+with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed with respect to these rules if $\varphi(D)$ is true for each $\varphi \in \sum$.
+\end{definition}
+
+{\color{blue} 你看到这里一定会感觉非常的困惑，closure rules到底是个啥东西}？
+
+\begin{example}
+\rm 对应前面列举到的closure system.
+\begin{enumerate}
+	\item In topological space, all rules $Y \subseteq S \Rightarrow z \in S$ where $z$ is an accumulation point of $Y$.  
+	\item In subgroup, the rule $1 \in S$ and all rules
+	$$
+		\begin{aligned}
+			x \in S &\Rightarrow x^{-1} \in S
+			\{x,y\} \in S &\Rightarrow xy \in S
+		\end{aligned}
+	$$
+	\item In vector space，$0 \in S$ and all rules $\{x,y\} \subseteq S \Rightarrow ax + by \in S$ with $a,b$ scalars. 
+\end{enumerate}
+
+
+
+\end{example}
+
 
 \end{document}
