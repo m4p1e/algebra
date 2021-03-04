@@ -391,7 +391,7 @@ $$
 \end{definition}
 
 \begin{example}
-有一些closure system的例子
+\rm 有一些closure system的例子
 \begin{enumerate}
 	\item closed subsets of topological space,
 	\item subgroups of group,
@@ -401,7 +401,7 @@ $$
 \end{enumerate}
 \end{example}
 
-{\color{red} By convention，把$\bigcap \emptyset = X$的话，closure system就是一个complete lattice}.
+{\color{red} By convention，把$\bigcap \emptyset = X$的话，closure system配合集合操作就是一个complete lattice}.
 
 
 \begin{definition}
@@ -414,6 +414,8 @@ $$
 \end{definition}
 
 {\color{blue} closure的general definition有点意思}. 简单地来说，就是(1)集合的闭包包含集合本身；(2)如果两个集合有包含关系，则它们的闭包也有相同的包含关系；(3)闭包的闭包是其本身.
+
+{\color{red} 如何在一个在$X$上利用已知的closure system构造一个closure operator，即让$X$上的任意一个子集对应一个closure}?
 
 \begin{theorem}
 \rm If $\mathcal{C}$ is a closure system on a set $X$，then the map $\func{\Gamma_{\mathcal{C}}}{\mathfrak{B}(X)}{\mathfrak{B}(X)}$ defined by 
@@ -452,10 +454,28 @@ with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed w
 	$$
 	\item In vector space，$0 \in S$ and all rules $\{x,y\} \subseteq S \Rightarrow ax + by \in S$ with $a,b$ scalars. 
 \end{enumerate}
-
-
-
 \end{example}
+
+{\color{red} closure rules就是一系列判断closed set的命题}.
+
+\begin{theorem}
+\rm If $\Gamma$ is a closure operator on a set $X$，$\sum_{\Gamma}$ be the set of (1)all rules where $c \in \Gamma(\emptyset)$，and (2)all rules
+$$
+Y \subseteq  S \Rightarrow z \in S
+$$
+with $z \in \Gamma(Y)$. Then a set $D \subseteq X$ satisfies all the rules of $\sum_\Gamma$ if and only if $\Gamma(D) = D$.
+\end{theorem}
+
+\begin{proof}
+(1)是在说$\emptyset$的image非空？(2)是在说取$S$上任意子集$Y$，都有$\Gamma(Y) \subseteq S$. 直觉上就说这群规则是一个closure rule，满足它的只有closed set，自然地在closure operator上也是一个closed set. 可这条件都TM都abstract nosense了！！！
+
+我尝试用closure operator的definition来推一下，$Y \subset S$，结合前面那么有
+$$
+Y \subseteq \Gamma(Y) \subseteq S.
+$$
+特殊点，把$Y$换成$S$，有$S \subseteq \Gamma(S) \subseteq S$，所以$\Gamma(S) = S$. 但是(1)在这里有啥用啊？保证$S$非空？
+\end{proof}
+
 
 
 \end{document}
