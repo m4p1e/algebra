@@ -474,8 +474,20 @@ $$
 Y \subseteq \Gamma(Y) \subseteq S.
 $$
 特殊点，把$Y$换成$S$，有$S \subseteq \Gamma(S) \subseteq S$，所以$\Gamma(S) = S$. 但是(1)在这里有啥用啊？保证$S$非空？
+
+反过来若$\Gamma(D) = D$. 自然地，当$Y \subseteq D$，则有$Y \subseteq \Gamma(Y) \subseteq \Gamma(D) =  D$.
 \end{proof}
 
+{\color{blue} 说实话上面这个命题有点abstract，当有一个closure operator之后，我们知道closed set在它的作用下是它本身，但是能不能找到一个closure rule来和它对应呢}?
 
+\begin{theorem}
+\rm If $\sum$ is a set of closure rules on set $X$，let $\mathcal{C}_{\sum}$ be the collection all subsets of $X$ that satisfy all the rules of $\sum$. Then a set $\mathcal{C}_{\sum}$ is a closure system. 
+\end{theorem}
+
+\begin{proof}
+这个定理可以更形象地去理解closure rule到底是什么？ 假设$A,B$是满足$\sum$里面所有rules的两个集合. 我们看它们的交，对于第一类规则$x \in S$，很显然在交下是保持的，因为$x \in A$和$x \in B$，则$x \in A \cap B$. 对于第二类的规则，若$C \subseteq A \cap B$，且它是某个规则里面对应的$Y$，那么$C \subseteq A$和$C \subseteq B$，对应地有某个$z \in A$和$z \in B$，所以$z \in A\cap B$. 综上$A \cap B$也是属于$\mathcal{C}_{\sum}$.
+\end{proof}
+
+{\color{blue} 在这里我们才终于认识到这样closure rules这样抽象的东西，它确实可以刻画一堆closed set组成了一个closure system}.
 
 \end{document}
