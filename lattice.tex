@@ -143,7 +143,7 @@ An element $x \in P$ is {\color{red} maximal}	if there is no element $y \in  P$ 
 
 (3) $\Rightarrow$ (2) 也是分infinite chain和finite chain来讨论，finite是显然的，infinite的时候可以把它变成finite.
 
-(1) $\Rightarrow$ (2) (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
+(1) $\Rightarrow$ (2) (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的所有元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
 
 (2) $\Rightarrow$ (1) (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \subseteq S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
 
@@ -302,6 +302,40 @@ $\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是�
 
 {\color{red} the definitions of sublattice，homomorphism and isomorphism )}.
 
+\begin{definition}
+\rm Two lattice $\lattice_1$ and $\lattice_2$ are {\color{red} isomorphic} if there is {\color{red} bijective} $\alpha$ from $\lattice_1$ to $\lattice_2$ such that for every $a,b$ in $\lattice_1$ the following two equations hold: $\alpha(a \wedge b) = \alpha(a) \wedge \alpha(b)$ and $\alpha(a \vee b) = \alpha(a) \vee \alpha(b)$. Such an $\alpha$ is called by an {\color{red} isomorphism}.  
+\end{definition}
+
+{\color{red} 在用poset基础上定义的lattice之间的isomorphism也可以用下述定理来描述}.
+
+\begin{theorem}
+\rm Two lattices $\lattice_1$ and $\lattice_2$ are isomorphic iff there is a bijection $\alpha$ from $\lattice_1$ to
+$\lattice_2$ such that both $\alpha$ and $\alpha^{-1}$ are {\color{red} order-preserving}. 
+\end{theorem}
+
+\begin{proof}
+如果$\alpha$是$\lattice_1$到$\lattice_2$的一个isomorphism和$a \leq b$ hold in $\lattice_1$. $a \leq b$ hold means $a = a \wedge b$，那么$\alpha(a) = \alpha(a \wedge b) = \alpha(a) \wedge \alpha(b)$，所以$\alpha(a) \leq \alpha(b)$. 反过来$\alpha^{-1}$也是一个isomorphism，所以$\alpha^{-1}$也是order-preserving的.
+
+反过来如果$\alpha$是bijective的且$\alpha$和$\alpha^{-1}$都是order-preserving的. 给定$a,b \in \lattice_1$，有$a \leq a \vee b$，那么$\alpha(a) \leq \alpha(a \vee b )$. 同理对$b$也有$\alpha(b) \leq \alpha(a \vee b)$，那么$\alpha(a) \vee \alpha(b) \leq \alpha(a \vee b)$. 我们要把这个小于等于换成等于，就是要证明$\alpha(a \vee b)$确实是一个greatest upper bound，那么对应任意的upper $u$，即$\alpha(a) \vee \alpha(b) \leq u$，分别有$\alpha(a) \leq u$和$\alpha(b) \leq u$. 由于$\alpha^{-1}$也是order-preserving，所以有$a \leq \alpha^{-1}(u)$和$b \leq \alpha^{-1}(u)$，那么$a \vee b \leq \alpha^{-1}(u)$，在用$\alpha$作用一遍$\alpha(a \vee b) \leq u$. 到这里证明了$\alpha(a \vee b)$确实是一个greatest upper bound，即$\alpha(a) \vee \alpha(b) = \alpha(a \vee b)$. 同理也可以证$\alpha(b) \wedge \alpha(b) = \alpha(a \wedge b)$.
+\end{proof}
+
+\begin{example}
+\rm 记录一个$\alpha$是bijective但只有$\alpha$ order-preserving，这样的$\alpha$可能不是一个isomorphism. Hasse图可能画的不标准!
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkR6QBfU9TXfIRTlSxanSat2AI268QGbHgJEATKVXiGLNohABjOXyWCiZAMxbJukFCML+yocgCsFKzvacexgSpRuYjTaUnqyPg4m-q4aHqEG9op+zm6WwdbsdlziMFAA5vBEoABmAE4QALZIIiA4EEgALDQAFjD0dohgzIyMNDj0WIzsFfRocHX2ZZVIZLX1iG4gre1IXT19A0N6I2MTEVNViOpzSABsLW0da721m8Oj4-X75YfmffMA7Bcrnd03-YN7rsnvIDtV3jNvh1wAQ2M9pogahMjlD2JAwHDQS9ISdEG8lpc0bDJtiUbj8ctoejMSVSU1cYtKUSMSSEYtkecCT8YSz4YdOcivlyqcTslwgA
+\begin{tikzcd}
+                                              & a \arrow[rrrr, maps to] \arrow[ld, no head] \arrow[rdd, no head] &                                            &  &  & a \arrow[d, no head] \\
+b \arrow[rrrrr, maps to] \arrow[rdd, no head] &                                                                  &                                            &  &  & b \arrow[d, no head] \\
+                                              &                                                                  & c \arrow[rrr, maps to] \arrow[ld, no head] &  &  & c \arrow[d, no head] \\
+                                              & d \arrow[rrrr, maps to]                                          &                                            &  &  & d                   
+\end{tikzcd}
+\end{center}
+\end{example}
+
+\begin{definition}
+\rm If $\lattice$ is lattice and $L' \neq \emptyset$ is a subset of $L$ such that for every pair of elements $a,b in L'$ both $a \wedge b$ and $a \vee b$ are in $L'$，where $\wedge$ and $\vee$ are the lattice operations of $\lattice$，then we say $L'$ with the same operations of $\lattice$ is a {\color{red} sublattice} of $\lattice$. 
+\end{definition}
+
 \newpage
 \subsection{Complete Lattice}
 \begin{definition}
@@ -319,7 +353,7 @@ A^l &= \Set{x \in P}{x \leq a\ \text{for all}\ a \in A} \\
 	&= \bigcap\limits_{a \in A} \downarrow a
 \end{aligned}	
 $$
-where $\uparrow a = \Set{x \in P}{x \leq a}$.
+where $\downarrow a = \Set{x \in P}{x \leq a}$.
 \end{definition}
 
 思考一个问题{\color{red} poset $P$的一个subset $A$什么时候least upper bound}? 很显然$A^u$ 一定不是空的，更确切地说$A^u$有一个greatest lower upper $z$，而且$z \in A^u$，根据$z$的definition它是$A$的least upper bound. 这种情况下我们就说{\color{red} the join of $A$ exists，and write $z = \bigvee A$}. 对偶地，{\color{red} 考虑$A$的greatest lower bound}，则$A^l$一定不为空，那么$A^u$里面是有一个lower upper bound的$w$，根据$w$的definition它是$A$的greatest lower bound. 这种情况下我们就说{\color{red} the meet of $A$ exists，and write $w = \bigwedge A$}.
@@ -386,6 +420,15 @@ $$
 \newpage
 \subsection{Closure System}
 
+{\color{blue} 这一章我们的主旋律.
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAdDnGADx2ABjRpmYAnGAAI4ATzg8AtgF8QS0uky58hFACZSxanSat2XHvyEi44qRDQwx9HBDEq1G7HgJFyBowwsbIic3HwCwqISkmLMjPDuRjBQAObwRKAAZmIQCkh+IC5IxB4g2blI+oUQ+aXleYhk1ZU0ABYw9FBIYHGMNDj0WIzskGBsSpRKQA
+\begin{tikzcd}
+                                & \text{closure system} \arrow[rd] &                                    \\
+\text{closure rules} \arrow[ru] &                                  & \text{closure operator} \arrow[ll]
+\end{tikzcd}
+\end{center}
+}
 \begin{definition}
 \rm A {\color{red} closure system} on a set $X$ is a collection $\mathcal{C}$ of subsets of $X$ thats is closed under arbitrary intersections(任意的交). The sets in $\mathcal{C}$ are called closed set. 
 \end{definition}
@@ -401,7 +444,7 @@ $$
 \end{enumerate}
 \end{example}
 
-{\color{red} By convention，把$\bigcap \emptyset = X$的话，closure system配合集合操作就是一个complete lattice}.
+{\color{red} By convention，把$\bigcap \emptyset = X$的话，closure system配合集合操作(union and intersection)就是一个complete lattice}.
 
 
 \begin{definition}
@@ -439,7 +482,7 @@ $$
 with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed with respect to these rules if $\varphi(D)$ is true for each $\varphi \in \sum$.
 \end{definition}
 
-{\color{blue} 你看到这里一定会感觉非常的困惑，closure rules到底是个啥东西}？
+{\color{blue} 你看到这里一定会感觉非常的困惑，closure rules到底是个啥东西？不急接着往下看你终会明白的}.
 
 \begin{example}
 \rm 对应前面列举到的closure system.
@@ -459,7 +502,7 @@ with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed w
 {\color{red} closure rules就是一系列判断closed set的命题}.
 
 \begin{theorem}
-\rm If $\Gamma$ is a closure operator on a set $X$，$\sum_{\Gamma}$ be the set of (1)all rules where $c \in \Gamma(\emptyset)$，and (2)all rules
+\rm {\color{red} If $\Gamma$ is a closure operator on a set $X$}，$\sum_{\Gamma}$ be the set of (1)all rules where $c \in \Gamma(\emptyset)$，and (2)all rules
 $$
 Y \subseteq  S \Rightarrow z \in S
 $$
@@ -478,10 +521,10 @@ $$
 反过来若$\Gamma(D) = D$. 自然地，当$Y \subseteq D$，则有$Y \subseteq \Gamma(Y) \subseteq \Gamma(D) =  D$.
 \end{proof}
 
-{\color{blue} 说实话上面这个命题有点abstract，当有一个closure operator之后，我们知道closed set在它的作用下是它本身，但是能不能找到一个closure rule来和它对应呢}?
+{\color{blue} 当有一个closure operator之后，最重要是我们知道了closed set在它的作用下是它本身}.
 
 \begin{theorem}
-\rm If $\sum$ is a set of closure rules on set $X$，let $\mathcal{C}_{\sum}$ be the collection all subsets of $X$ that satisfy all the rules of $\sum$. Then a set $\mathcal{C}_{\sum}$ is a closure system. 
+\rm {\color{red} If $\sum$ is a set of closure rules on set $X$}，let $\mathcal{C}_{\sum}$ be the collection all subsets of $X$ that satisfy all the rules of $\sum$. Then a set $\mathcal{C}_{\sum}$ is a closure system. 
 \end{theorem}
 
 \begin{proof}
@@ -489,5 +532,68 @@ $$
 \end{proof}
 
 {\color{blue} 在这里我们才终于认识到这样closure rules这样抽象的东西，它确实可以刻画一堆closed set组成了一个closure system}.
+
+{\color{red} 总结一下前面的所有东西，前面提到过一个closure system其实是一个complete lattice，现在我们多了另外两个概念closure operator和closure rules. 我们前面3个定理就是在说明它们之前是可以相互转换的，例如给定一个closure operator，它$\Gamma(D) = D$可以对应上closure rules，然后我们用closure rules刻画的sets收集起来，这些sets在交运算下也能保持封闭，所以这些sets是一个closure system，最终也得到了complete lattice}. {\color{blue} 后面我们用$\mathcal{C}_\Gamma$ 表示由closure operator $\Gamma$ 生成的closed sets($\Gamma(D)=D$) with set inclusion 构成poset}. 很自然地有下面的定理.
+
+\begin{theorem}
+\rm If $\Gamma$ is a closure operator on a set $X$，and {\color{red} the operations on $\mathcal{C}_\Gamma$} are given by 
+$$
+\begin{aligned}
+\bigwedge\limits_{i \in I} D_i &= \bigcap\limits_{i \in I} D_i \\
+\bigvee\limits_{i \in I} D_i &= \Gamma(\bigcup\limits_{i \in I} D_i).
+\end{aligned}
+$$
+in where $D_i \in \mathcal{C}_{\Gamma}$. Then $\mathcal{C}_\Gamma$ is complete lattice.
+\end{theorem}
+
+\begin{proof}
+由Theorem 2.24和Theorem 2.25可以知道$\mathcal{C}_{\Gamma}$是一个closure system. 自然地我们要用集合上union和interestion. 先考虑interestion $\bigcap\limits_{i \in I} D_i$，它确实是greatest lower bound，且在closure system interestion下有
+$$
+\Gamma(\bigcap\limits_{i \in I} D_i) = \bigcap\limits_{i \in I} D_i.
+$$
+所以$\bigcap\limits_{i \in I} D_i \in \mathcal{C}_{\Gamma}$. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed set，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \in \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$. 
+\end{proof}
+
+略{\color{red} algebra一般定义和subalgebra上的closure operator}.
+
+下面是一个{\color{red} representation theorem，刚才是closure operator 到 complete lattice，现在是complete lattice到 closuse}.
+
+\begin{theorem}
+\rm If $\lattice$ is a complete lattice，define a closure operator $\Delta$ on $L$ by
+$$
+\Delta(A) = \Set{x \in L}{x \leq \bigvee A}.
+$$
+Then {\color{red} $\lattice$ is isomorphic to $\mathcal{C}_{\Delta}$}. The isomorphism $\func{\varphi}{\lattice}{\mathcal{C}_{\Delta}}$ is just given by $\varphi(x) = \downarrow x$.
+\end{theorem}
+
+\begin{proof}
+$\Delta$是一个closure operator还是比较obvious. 我们来回顾一下$\downarrow x$的definition $\downarrow x = \Set{y \in L}{ y \leq x}$. 所以$\Delta(\downarrow x) = \downarrow x \in \mathcal{C}_{\Delta}$.
+
+先证bijective，若对于$x,y \in L$有$\varphi(x) = \varphi(y)$，那么$y \in \varphi(x)$和$x \in \varphi(y)$，就有$y \leq x$和$x \leq y$，所以$x = y$，即$\varphi$是injective. 任意一个$C \in \mathcal{C}_{\Delta}$，那么都有least upper bound $u \in C$. 自然地$\varphi(u) = C$，即$\varphi$是surjective.
+
+给定任意地$x,y \in L$，那么
+$$
+\varphi(x \wedge y) = \uparrow (x \wedge y) = \uparrow x \cap \uparrow y = \varphi(x) \wedge \varphi(y).
+$$
+同理
+$$
+\varphi(x \vee y) = \uparrow (x \vee y) = \uparrow x \cap \uparrow y = \varphi(x) \vee \varphi(y).
+$$
+综上$\varphi$是一个isomorphism.
+\end{proof}
+
+\begin{definition}
+\rm An element $q$ of lattice $\lattice$ is called {\color{red} join irreducible} if $q = \bigvee F$ for a finite set $F$ implies $q \in F$. The set of all join irreducible elements in $\lattice$ is denoted by $J(\lattice)$.
+\end{definition}
+
+{\color{blue} 换句话说就是$q$如果是join irreducible，则它不可能是其他某些元素的一个join}. {\color{red} 如果$\lattice$有一个最小元素0，那么0其实不是join irreducible的，因为$0 = \bigvee \emptyset$. 如果想要把0含进来，特殊地$J_0(\lattice) =J(\lattice) \cap \{0\}$. 当然还有一种定义如果$q$是join irreducible，那么当$q = r \vee s$，则$q = r$或者$q =s$，在这种定义下$q$已经是针对非空的集合来说的}. 
+
+\begin{lemma}
+\rm If a lattice $\lattice$ satisfies the DCC，then every element of $\lattice$ is a join of finitely many join irreducible elements.
+\end{lemma}
+
+\begin{proof}
+用反证法来证明: 假设存在$\lattice$上一些元素，使得找不到join irreducible elements的join正好是它们. 我们把这些元素记为集合$S$，根据DCC $S$里面有一个最小值，我们设为$x$. 那么$x$肯定也不是join irreducible的，如果它是的话，它就是它自己的一个join，那么$x \notin S$. 既然$x$不是一个join irreducible，那么有$x = \bigvee F$其中$F$是一个finite set且里面的元素都是严格小于$x$的，由于$x$是最小元素这个概念，所以比它小的元素都是the join of finitely many join irreducible elements.
+\end{proof}
 
 \end{document}
