@@ -593,7 +593,11 @@ $$
 \end{lemma}
 
 \begin{proof}
-用反证法来证明: 假设存在$\lattice$上一些元素，使得找不到join irreducible elements的join正好是它们. 我们把这些元素记为集合$S$，根据DCC $S$里面有一个最小值，我们设为$x$. 那么$x$肯定也不是join irreducible的，如果它是的话，它就是它自己的一个join，那么$x \notin S$. 既然$x$不是一个join irreducible，那么有$x = \bigvee F$其中$F$是一个finite set且里面的元素都是严格小于$x$的，由于$x$是最小元素这个概念，所以比它小的元素都是the join of finitely many join irreducible elements.
+用反证法来证明: 假设存在$\lattice$上一些元素，使得找不到join irreducible elements的join正好是它们. 我们把这些元素记为集合$S$，根据DCC $S$里面有一个最小值，我们设为$x$. 那么$x$肯定也不是join irreducible的，如果它是的话，它就是它自己的一个join，那么$x \notin S$. 既然$x$不是一个join irreducible，那么有$x = \bigvee F$其中$F$是一个finite set且里面的元素都是严格小于$x$的，由于$x$是最小元素这个概念，所以比它小的元素都是the join of finitely many join irreducible elements. 那么对于$F$而言，任意的$f \in F$都有一个$G_f \subseteq J(\lattice)$的join是$f$. 所以
+$$
+x = \bigvee\limits_{f \in F}\bigvee G_f.
+$$
+这里$f = \bigvee G_f$，所以$x$可以表示称有个多个join irreducible elements的join，这就矛盾了. 这里应该还要考虑一下$x = 0$，但是讨论0确实没什么意义，0可以定义为join irreducible也可以不是，这里还是避免这种情况吧...
 \end{proof}
 
 \end{document}
