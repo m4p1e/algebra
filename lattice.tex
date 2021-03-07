@@ -68,7 +68,7 @@
 \rm $\mathcal{C}$ is a {\color{red} chain} if for every $x,y \in \mathcal{C}$，either $x \leq y$ or $y \leq x.$
 \end{definition}
 
-{\color{blue} chain上的元素都可以相互比较，所以它是totally ordered}.
+{\color{blue} chain上的元素都可以相互比较，所以它是totally ordered 或者 linearly ordered}.
 
 \begin{definition}
 \rm We say that $x$ is {\color{red} covered} by $y$ in $\mathcal{P}$，written $x \prec y$，if $x \leq y$ and there is no $z \in P$ with $x \leq z \leq y$.
@@ -139,17 +139,17 @@ An element $x \in P$ is {\color{red} maximal}	if there is no element $y \in  P$ 
 {\color{red} 这个lemma被称为descending chain condition(DCC). 对偶地也有ascending chain condition(ACC). original 'a partially ordered set $\mathcal{P}$ requires that all decreasing sequences in $\mathcal{P}$ become eventually constant'}.
 
 \begin{proof}
-(2) $\Rightarrow$ (3) 前提只存在finite descending chain. 假设(3)不成立，且$a_0 \geq a_1 \geq a_2 \geq \cdots$是infinite chain. 则对于任意的$k$，都能找到$n \geq k$使得$a_n \neq a_k$且$a_k \geq a_n$，那么$a_k > a_n$. 这样从$k=0,1,2,\cdots$开始我们每次都可以找到$a_{n_0} > a_{n_1} > \cdots$. 这样我们实际构造了一个infinite descending chain，这是和前提矛盾的. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是一个finite chain，它的最后一个元素显然是满足(3)，这和假设是矛盾的. 
+(2) $\Rightarrow$ (3). 前提只存在finite descending chain. 假设(3)不成立，且$a_0 \geq a_1 \geq a_2 \geq \cdots$是infinite chain. 则对于任意的$k$，都能找到$n \geq k$使得$a_n \neq a_k$且$a_k \geq a_n$，那么$a_k > a_n$. 这样从$k=0,1,2,\cdots$开始我们每次都可以找到$a_{n_0} > a_{n_1} > \cdots$. 这样我们实际构造了一个infinite descending chain，这是和前提矛盾的. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是一个finite chain，它的最后一个元素显然是满足(3)，这和假设是矛盾的. 
 
-(3) $\Rightarrow$ (2) 也是分infinite chain和finite chain来讨论，finite是显然的，infinite的时候可以把它变成finite.
+(3) $\Rightarrow$ (2). 也是分infinite chain和finite chain来讨论，finite是显然的，infinite的时候可以把它变成finite.
 
-(1) $\Rightarrow$ (2) (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的所有元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
+(1) $\Rightarrow$ (2). (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的所有元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
 
-(2) $\Rightarrow$ (1) (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \subseteq S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
+(2) $\Rightarrow$ (1). (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \subseteq S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
 
-(1) $\Rightarrow$ (2) $\Rightarrow$ (3)
+(1) $\Rightarrow$ (2) $\Rightarrow$ (3).
 
-(3) $\Rightarrow$ (2) $\Rightarrow$ (1)
+(3) $\Rightarrow$ (2) $\Rightarrow$ (1).
 
 {\color{blue} done well}!
 \end{proof}
@@ -173,7 +173,7 @@ then $\varphi(x)$ is true for every element of $P$.
 \rm Let $\mathcal{P}$ be poset. Two elements $a$ and $b$ of $\mathcal{P}$ are called {\color{red} comparable} if $a \leq b$ or $a \geq b$. Otherwise, they are called {\color{red}incomparable}.
 \end{definition}
 
-{\color{blue} 可比性}.
+{\color{blue} 元素的可比性}.
 
 \begin{definition}
 \rm An {\color{red} antichain} in $\mathcal{P}$ is a subset $A$ of $\mathcal{P}$ in which each pair of different element are incomparable.
@@ -382,7 +382,7 @@ $$
 \end{proof}
 
 这个theorem告诉我们: {\color{red} if a finite poset $P$ has a greatest element and every pair of elements has a meet,
-then $P$ is a lattice}.
+then $P$ is a lattice}. 这就是lattice非代数形式的definition.
 
 \begin{theorem}
 \rm Every finite subset of a lattice has a greatest lower bound and a leaset upper bound.
@@ -404,7 +404,7 @@ $\lattice$是finite，则它的subset也是finite. 前面我们知道lattice中�
 \rm a {\color{red} complete meet semilattice} is an poset $\slattice$ with greatest element and the property that every nonempty subset $A$ of $S$ has a greatest lower bound $\bigwedge A$.
 \end{definition}
 
-{\color{red} 下面这个theorem让我们抛弃了更强的finite，只需要complete就可以在meet semilattice上构造一个lattice出来}.
+{\color{red} 下面这个theorem让我们抛弃了更强的finite，如何在complete meet semilattice上构造一个complete lattice出来}.
 
 \begin{theorem}
 \rm If $\lattice$ is a complete meet semilattice，then $\lattice$ is a complete lattice with the join operation defined by
@@ -414,7 +414,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-和前面在finite meet semilattice上构造lattice类似，这里finite换成了complete. 这里我们直接就可以知道$\bigwedge A^u$是有意义的，前面也证明了它还是一个$A$的upper bound. 那么$\bigwedge A$的definition是满足$A$的least upper bound.
+和前面在finite meet semilattice上构造lattice类似，这里finite换成了complete. 这里我们直接就可以知道$\bigwedge A^u$是有意义的，前面也证明了$\bigwedge A^u \in A^u$. 那么$\bigwedge A$的definition是满足$A$的least upper bound.
 \end{proof}
 
 \newpage
@@ -598,6 +598,79 @@ $$
 x = \bigvee\limits_{f \in F}\bigvee G_f.
 $$
 这里$f = \bigvee G_f$，所以$x$可以表示称有个多个join irreducible elements的join，这就矛盾了. 这里应该还要考虑一下$x = 0$，但是讨论0确实没什么意义，0可以定义为join irreducible也可以不是，这里还是避免这种情况吧...
+\end{proof}
+
+\begin{definition}
+\rm An element $q$ of a complete lattice $\lattice$ is said to be {\color{red} completely join irreducible} if $q = \bigvee X$ implies $q \in X$ for arbitrary (possibly infinite) subsets $X \subseteq L$. Let $J^*(\lattice)$ denote the set of all completely join irreducible elements of $\lattice$. 
+\end{definition}
+
+\begin{proposition}
+\rm In general，$J^{*}(L) \subseteq J(L)$，but for lattices satisfying the ACC，equality holds.
+\end{proposition}
+
+\begin{proof}
+每个completely join irreducible element肯定是 join irreducible   element. 这是很自然地，它是任意多个元素的join，那肯定可以挑出来有限多个元素的join还是它. ACC有了之后，$\lattice$上任意非空的子集都有一个最大元素，那么我们现在假设一个join irreducible element $x$它不是complete的，即可以找到某个集合$S$，有$x = \bigvee S$且$x \notin S$. 矛盾就来了，ACC下least upper bound应该是在$S$里面，所以现在又有每个join irreducible element是completely join irreducible.
+\end{proof}
+
+
+
+\begin{theorem}
+\rm Let $\lattice$ be a lattice satisfying the ACC and DCC. Let $\sum$ be the set of all closure rules on $J(L)$ of the form
+$$
+F \subseteq S \Rightarrow q \in S
+$$
+where $q$ is join irreducible，$F$ is a finite subset of $J(L)$，and $q \leq \bigvee F$. (Include the degenerate cases $p \in S \Rightarrow q \in S$ for $q \leq p$ in $J(\lattice)$.) Then $\lattice$ is isomorphic to the lattice of $\mathcal{C}_{\sum}$ of $\sum$-closed sets.
+\end{theorem}
+
+\begin{proof}
+这里同构证明用isomorphism definition下面那个定律，即bijective加两个order-preserving. 那么先给出两个order-preserving的map $\func{f}{\lattice}{\mathcal{C}_{\sum}}$和$\func{g}{\mathcal{C}_{\sum}}{\lattice}$
+$$
+\begin{aligned}
+f(x) &= \downarrow x \cap J(\lattice)\\
+g(S) &= \bigvee S.
+\end{aligned}
+$$
+需要证明它们两个互为逆映射（感觉好突兀啊，虽然原文中说straightforwrad233333). 那么对于$gf(x) = x$，前面那个lemma应该告诉我们了，在DCC下$\lattice$每一个元素都是a join of finitely many join irreducible elements对应是$f(x)$的操作. 
+
+那么对于$fg(S) = S$，在ACC下$\bigvee S \in S$，也就是我们可以找到一些finite set $F \subseteq S$使得$\bigvee F = \bigvee S$，按照closure rules，所有join irreducible $q \leq \bigvee F$都是属于$S$的，$f(\bigvee F)$就是在做这件事. 但是这样得到是不是全部的$S$呢？ 考虑其他finite set $F'$， 那么$\bigvee F' \leq \bigvee S = \bigvee F$，$f$是order-preserving的，所以有$f(\bigvee F') \subseteq f(\bigvee F)$，所以$f(\bigvee F)$涵盖了整个$S$.
+\end{proof}
+
+\begin{definition}
+\rm A subset $Q$ of a complete lattice $\lattice$ is join dense if for every $x \in L,$
+$$
+x = \bigvee\Set{q \in Q}{q \leq x}.
+$$
+\end{definition}
+
+
+\begin{theorem}
+\rm A lattice $\lattice$ is complete of if and only if every order-preserving map $\func{f}{\lattice}{\lattice}$ has a fixed point.
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) 如果给定一个 complete lattice $\lattice$和一个order-preserving map $\func{f}{\lattice}{\lattice}$. 定义集合$A = \Set{x \in L}{f(x) \geq x}$. 注意到$0 \in A$ (0表示minimal element of $L$). 再让$a = \bigvee A$，那么对于任意的$x \in A$都有$a \geq x$，结合$f$是order-preserving我们有
+$$
+f(a) \geq \bigvee\limits_{x \in A} f(x)  \geq \bigvee\limits_{x \in A} x = a.
+$$
+所以$a \in A$，即$f(a) \geq a$，两边再作用一下$f$有$f^2(a) \geq f(a)$，这说明$f(a) \in A$. $a$可是整个$A$的join，那么有$a \geq f(a)$. 综上$f(a) = a$，$a$就是这个fixed point.
+
+($\Leftarrow$) 这个方向的证明略微有些复杂，{\color{blue} 故事主线是在every order-preserving map has a fixed point的前提下，假设$\lattice$不是complete，然后构造出来出来一个order-preserving map没有fixed point造成矛盾}.
+
+假设$\lattice$不是complete，那么先给出第一个claim.
+
+\textbf{Claim 1}: $\lattice$没有最大元素1或者存在一个chain $C \subseteq L$满足ACC且没有meet(supermum).
+
+证这个claim，我们还是用反证法，{\color{blue} 假设$\lattice$有最大元素1和所有满足ACC的chain $C \subseteq L$都有meet}. 我们仔细考虑一下这个假设，先回顾一下我们前面关于complete meet semilattice的definition，是要有一个poset满足有greatest element并且所有非空的子集都有meet，然后我们可以通过这个complete meet semilattice构造出来一个complete lattice，我们的证明大体上也是这个思路，但是使用其对偶的形式(因为你可以观察到我们假设的第二个条件有些不一样)，即在complete join semilattice来构造，从而制造了一个contradiction.
+
+考虑某个子集$S$的所有upper bound $S^u$. {\color{blue} 注意到$1 \in S^u$}，所以$S^u$不是emptyset. 我们再来定义一个poset $\mathcal{P}$，它是$S^u$上所有满足ACC的chains的一个collections. $\mathcal{P}$上的partial-order定义为若$C_1 \leq C_2$则$C_1$是$C_2$的一个filter(我们回顾一下filter的定义，它是ideal的对偶形式，即首先有$C_1 \subseteq C_2$，若$x \geq y \in C_1$则$x \in C_1$其中$x \in C_2$).
+
+我们再来考虑这个特殊的poset $\mathcal{P}$上的chain (chain of chains)，任取$\mathcal{P}$上的一个chain $\{C_i\}_{i \in I}$，那么$\bigcup\limits_{i \in I} C_i \in \mathcal{P}$，根据上面定义的partial order这是显然的，而且$\bigcup\limits_{i \in I} C_i$它是这个chain的一个upper bound. 根据Zorn's lemma，$\mathcal{P}$上有一个maximal element $C_m$. {\color{blue} 根据我们的假设$C_m$是有meet的}，这个meet我们用$a$来表示，即$\bigwedge C_m = a$. 很明显$a$在是$S$的一个upper bound，所以$a \in S^u$. {\color{blue} 我们现在来证明$a = \bigwedge S^u$}(至于为什么后面你就知道了)，还是用反证法(23333)，假设$a$不是$S^u$的greatest lower bound，那么存在$t \in S^u$，使得$a \nleq t$. 则有$a \wedge t \in S^u$，为什么呢？因为任取$s \in S$，都有$s \wedge (a \wedge t) = s$. 自然地$a > a \wedge t$(严格大于没有等号)，那么chain $C_m \cup {a \wedge t}$也是满足ACC，且要大于$C_m$，这就矛盾了，所以$a = \bigwedge S^u = \bigvee S$. 
+
+所以我们证明了对于任意的$S \subseteq L$都有join，那么马上我们有
+$$
+\bigwedge S = \bigvee S^l.
+$$
+所以$S$的meet也有意义了，但是这里$S^l$我们不知道是不是非空的啊?
 \end{proof}
 
 \end{document}
