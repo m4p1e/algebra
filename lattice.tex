@@ -670,7 +670,53 @@ $$
 $$
 \bigwedge S = \bigvee S^l.
 $$
-所以$S$的meet也有意义了，但是这里$S^l$我们不知道是不是非空的啊? 注意最前面我们用0加上complete join semilattice来构造complete lattice，但是我们这里不需要构造因为lattice是给定了，那么对于任意非空的$S$，$\bigwedge S \in S^l$的，所以$S^l$也是非空的，这里没有问题. 综上$\lattice$是一个complete lattice与前提矛盾.
+所以$S$的meet也有意义了，但是这里$S^l$我们不知道是不是非空的啊? 注意最前面我们用0加上complete join semilattice来构造complete lattice，但是我们这里不需要构造因为lattice是给定了，那么对于任意非空的$S$，$\bigwedge S \in S^l$的，所以$S^l$也是非空的，这里没有问题. 综上$\lattice$是一个complete lattice与前提矛盾. \textbf{Claim 1}证闭.
+
+原谅我这个证明写不去了，原文省略太多的东西了...
 \end{proof}
+
+{\color{red} 来另一个1955年给出的第一个证明}.
+
+\begin{lemma}
+如果$\lattice$是incomplete，那么存在两个chain $C$和$D$满足下面条件,
+\begin{enumerate}
+	\item $C$是一个strictly ascending chain(严格大于)，$D$是一个strictly descending chain(严格小于).
+	\item $D$中的每个元素都严格大于$C$中的每个元素.
+	\item 不存在$a \in L$使得它同时是$C$的upper bound和$D$的lower bound. 
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of above lemma.
+\end{proof}
+
+\begin{proof}
+这里我们还是证if every preserving map $\func{f}{\lattice}{\lattice}$ has a fixed point then $\lattice$ is complete. 还是假设$\lattice$是incomplete，然后我们构造一个preserving map没有fixed point.
+
+假设$C,D$是满足前面lemma的两个chains. 然后我们来定义这个特殊的preserving map $f$，对于任意的$x \in \lattice$，我们可以分两种情况来看，$x$是$D$的lower upper或者不是. 
+
+第一种情况若$x$是$D$的lower upper，反过来那么它肯定不是$C$的upper bound，那么肯定存在某些$c \in C$满足$c \nleq x$. 我们把这些$c$记为
+$$
+C(x) = \Set{c \in C}{c \nleq x}.
+$$
+这种情况下我们取$f(x) = \min C(x)$，即$C(x)$中的最小值.
+
+第二种情况$x$不是$D$的lower upper，那么肯定存在某些$d \ D$满足$c \ngeq x$. 我们把这些$d$记为
+$$
+D(x) = \Set{d \in D}{d \ngeq x}.
+$$
+这种情况下我们取$f(x) = \max D(x)$，即$D(x)$中的最大值.
+
+这种情况定义出来的$f(x)$都会满足$f(x) \ngeq x$或者$f(x) \nleq x$，所以是不存在$f(x) = x$，即没有fixed point的.
+
+接下来我们证明$f$是一个preserving map，取$x \leq y$. 我们分下面几种情况来分别说明:
+\begin{enumerate}
+	\item $x$是$D$的lower bound，$y$是$D$的lower bound. 那么$f(x) = \min C(x)$和$f(y) = \min C(y)$. 若$y \ngeq c$，则$ x \ngeq c$ (else $y \geq x \geq c$)，所以$C(y) \subseteq C(x)$.
+\end{enumerate}
+\end{proof}
+
+
+
+
 
 \end{document}
