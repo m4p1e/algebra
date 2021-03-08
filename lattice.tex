@@ -664,13 +664,13 @@ $$
 
 考虑某个子集$S$的所有upper bound $S^u$. {\color{blue} 注意到$1 \in S^u$}，所以$S^u$不是emptyset. 我们再来定义一个poset $\mathcal{P}$，它是$S^u$上所有满足ACC的chains的一个collections. $\mathcal{P}$上的partial-order定义为若$C_1 \leq C_2$则$C_1$是$C_2$的一个filter(我们回顾一下filter的定义，它是ideal的对偶形式，即首先有$C_1 \subseteq C_2$，若$x \geq y \in C_1$则$x \in C_1$其中$x \in C_2$).
 
-我们再来考虑这个特殊的poset $\mathcal{P}$上的chain (chain of chains)，任取$\mathcal{P}$上的一个chain $\{C_i\}_{i \in I}$，那么$\bigcup\limits_{i \in I} C_i \in \mathcal{P}$，根据上面定义的partial order这是显然的，而且$\bigcup\limits_{i \in I} C_i$它是这个chain的一个upper bound. 根据Zorn's lemma，$\mathcal{P}$上有一个maximal element $C_m$. {\color{blue} 根据我们的假设$C_m$是有meet的}，这个meet我们用$a$来表示，即$\bigwedge C_m = a$. 很明显$a$在是$S$的一个upper bound，所以$a \in S^u$. {\color{blue} 我们现在来证明$a = \bigwedge S^u$}(至于为什么后面你就知道了)，还是用反证法(23333)，假设$a$不是$S^u$的greatest lower bound，那么存在$t \in S^u$，使得$a \nleq t$. 则有$a \wedge t \in S^u$，为什么呢？因为任取$s \in S$，都有$s \wedge (a \wedge t) = s$. 自然地$a > a \wedge t$(严格大于没有等号)，那么chain $C_m \cup {a \wedge t}$也是满足ACC，且要大于$C_m$，这就矛盾了，所以$a = \bigwedge S^u = \bigvee S$. 
+我们再来考虑这个特殊的poset $\mathcal{P}$上的chain (chain of chains)，任取$\mathcal{P}$上的一个chain $\{C_i\}_{i \in I}$，那么$\bigcup\limits_{i \in I} C_i \in \mathcal{P}$，根据上面定义的partial order这是显然的，而且$\bigcup\limits_{i \in I} C_i$它是这个chain的一个upper bound. 根据Zorn's lemma，$\mathcal{P}$上有一个maximal element $C_m$. {\color{blue} 根据我们的假设$C_m$满足ACC是有meet的}，这个meet我们用$a$来表示，即$\bigwedge C_m = a$. 很明显$a$在是$S$的一个upper bound，所以$a \in S^u$. {\color{blue} 我们现在来证明$a = \bigwedge S^u$}(至于为什么后面你就知道了)，还是用反证法(23333)，假设$a$不是$S^u$的greatest lower bound，那么存在$t \in S^u$，使得$a \nleq t$. 则有$a \wedge t \in S^u$，为什么呢？因为任取$s \in S$，都有$s \wedge (a \wedge t) = s$. 自然地$a > a \wedge t$(严格大于没有等号)，那么chain $C_m \cup \{a \wedge t\}$也是满足ACC，且大于$C_m$，这就矛盾了，所以$a = \bigwedge S^u = \bigvee S$. 
 
 所以我们证明了对于任意的$S \subseteq L$都有join，那么马上我们有
 $$
 \bigwedge S = \bigvee S^l.
 $$
-所以$S$的meet也有意义了，但是这里$S^l$我们不知道是不是非空的啊?
+所以$S$的meet也有意义了，但是这里$S^l$我们不知道是不是非空的啊? 注意最前面我们用0加上complete join semilattice来构造complete lattice，但是我们这里不需要构造因为lattice是给定了，那么对于任意非空的$S$，$\bigwedge S \in S^l$的，所以$S^l$也是非空的，这里没有问题. 综上$\lattice$是一个complete lattice与前提矛盾.
 \end{proof}
 
 \end{document}
