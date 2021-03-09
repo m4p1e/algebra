@@ -736,7 +736,7 @@ $$
 	$C$是一个升链，那么$C(x)$可以想象成这条链上一堆点，那么$C(x)$还是一个升链，$C(y)$是它的一个子集必然满足$\min C(x) \leq \min C(y)$，则$f(x) \leq f(y)$.
 	\item $x$是$D$的lower bound，$y$不是$D$的lower bound. 那么$f(x) = \min C(x)$和$f(y) = \max D(y)$，显然$f(x) \leq f(y)$.
 	\item $x$不是$D$的lower bound，$y$是$D$的lower bound. 这是不可能的，因为$x \leq y$，那么当$y$是$D$的lower bound的时候，$x$也是$D$的lower bound.
-	\item $x$不是$D$的lower bound，$y$不是$D$lower bound. 那么$f(x) = \max D(x)$和$f(y) = \max D(y)$. 若$x \nleq d$，则$y \nleq d$ (else $x \leq \leq d$). 所以$D(x) \subseteq D(y)$. 由于$D(y)$是一个降链上点的集合，这个集合还是一个降链，你在降链上找子集$D(x)$，肯定有$\max D(x) \leq \max D(y)$，则$f(x) \leq f(y)$.
+	\item $x$不是$D$的lower bound，$y$不是$D$的lower bound. 那么$f(x) = \max D(x)$和$f(y) = \max D(y)$. 若$x \nleq d$，则$y \nleq d$ (else $x \leq y \leq d$). 所以$D(x) \subseteq D(y)$. 由于$D(y)$是一个降链上点的集合，这个集合还是一个降链，你在降链上找子集$D(x)$，肯定有$\max D(x) \leq \max D(y)$，则$f(x) \leq f(y)$.
 \end{enumerate}
 综上$f(x) \leq f(y)$总是成立，所以$f$确实是一个preserving map.
 \end{proof}
