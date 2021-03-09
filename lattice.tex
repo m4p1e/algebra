@@ -693,7 +693,7 @@ Proof of above lemma.
 \begin{proof}
 这里我们还是证if every preserving map $\func{f}{\lattice}{\lattice}$ has a fixed point then $\lattice$ is complete. 还是假设$\lattice$是incomplete，然后我们构造一个preserving map没有fixed point.
 
-假设$C,D$是满足前面lemma的两个chains. 然后我们来定义这个特殊的preserving map $f$，对于任意的$x \in \lattice$，我们可以分两种情况来看，$x$是$D$的lower upper或者不是. 
+假设$C,D$是满足前面lemma的两个chains. 然后我们来定义这个特殊的preserving map $f$，对于任意的$x \in \lattice$，我们可以分两种情况来看，{\color{blue} $x$是$D$的lower upper或者不是}. 
 
 第一种情况若$x$是$D$的lower upper，反过来那么它肯定不是$C$的upper bound，那么肯定存在某些$c \in C$满足$c \nleq x$. 我们把这些$c$记为
 $$
@@ -712,7 +712,33 @@ $$
 接下来我们证明$f$是一个preserving map，取$x \leq y$. 我们分下面几种情况来分别说明:
 \begin{enumerate}
 	\item $x$是$D$的lower bound，$y$是$D$的lower bound. 那么$f(x) = \min C(x)$和$f(y) = \min C(y)$. 若$y \ngeq c$，则$ x \ngeq c$ (else $y \geq x \geq c$)，所以$C(y) \subseteq C(x)$.
+	\begin{center}
+	\begin{tikzpicture}
+    \fill (0,0) circle (2pt) node[above left](a) {};
+	\fill (0,-1) circle (2pt) node[above left](b) {};
+	\fill (0,-2) circle (2pt) node[above left] {};
+	\fill (0,-3) circle (2pt) node[above left] {};
+	\fill (0,-4) circle (2pt) node[above left] {};
+	\fill (0,-5) circle (2pt) node[above left] {};
+	\fill (0,-6) circle (2pt) node[above left] {};
+	\fill (1,-3) circle (2pt) node[above left] {x};
+	\fill (1,-2) circle (2pt) node[above left] {y};
+	\draw[->,thick] (0,-6+0.1) to [bend right] (0,-5-0.1);
+	\draw[->,thick] (0,-5+0.1) to [bend right] (0,-4-0.1);
+	\draw[->,thick] (0,-4+0.1) to [bend right] (0,-3-0.1);
+	\draw[->,thick] (0,-3+0.1) to [bend right] (0,-2-0.1);
+	\draw[->,thick] (0,-2+0.1) to [bend right] (0,-1-0.1);
+	\draw[->,thick] (0,-0.9) to [bend right] (0,-0.1);
+	\draw[thick] (1,-3) -- (1,-2);
+	\draw[dashed] (1,-3) -- (0,-4);
+	\end{tikzpicture}
+	\end{center}
+	$C$是一个升链，那么$C(x)$可以想象成这条链上一堆点，那么$C(x)$还是一个升链，$C(y)$是它的一个子集必然满足$\min C(x) \leq \min C(y)$，则$f(x) \leq f(y)$.
+	\item $x$是$D$的lower bound，$y$不是$D$的lower bound. 那么$f(x) = \min C(x)$和$f(y) = \max D(y)$，显然$f(x) \leq f(y)$.
+	\item $x$不是$D$的lower bound，$y$是$D$的lower bound. 这是不可能的，因为$x \leq y$，那么当$y$是$D$的lower bound的时候，$x$也是$D$的lower bound.
+	\item $x$不是$D$的lower bound，$y$不是$D$lower bound. 那么$f(x) = \max D(x)$和$f(y) = \max D(y)$. 若$x \nleq d$，则$y \nleq d$ (else $x \leq \leq d$). 所以$D(x) \subseteq D(y)$. 由于$D(y)$是一个降链上点的集合，这个集合还是一个降链，你在降链上找子集$D(x)$，肯定有$\max D(x) \leq \max D(y)$，则$f(x) \leq f(y)$.
 \end{enumerate}
+综上$f(x) \leq f(y)$总是成立，所以$f$确实是一个preserving map.
 \end{proof}
 
 
