@@ -49,11 +49,45 @@
 \author{枫聆}
 \maketitle
 \tableofcontents
-
+\newpage
 \section{The Elements of Universal Algebra}
 
 {\color{red}
 One of the aims of universal algebra is to extract, whenever possible, the common elements
 of several seemingly different types of algebraic structures}.
 
+\begin{definition}
+\rm For $A$ a nonempty set and $n$ a nonnegative integer we define $A^{0} = \{\emptyset\}$，and，for $n > 0$，$A^n$ is the set of n-tuples of elements from $A$. An {\color{red} n-ary operation} (or function) on $A$ is any function $f$ from $A^n$ to $A$; n is the {\color{red} arity} (or rank) of $f$. A {\color{red} finitary operation} is an n-ary operation，for some n. The image of $\left< a_1, \cdots , a_n \right>$ under an n-ary operation $f$ is denoted by $f(a_1,\cdots,a_n)$. An operation $f$ on $A$ is called a {\color{red} nullary operation} (or constant) if its arity is zero; it is completely determinded by the image $f(\emptyset)$ in $A$ of the only element $\emptyset$ in $A^0$, and as such it is convenient to identify it with the element $f(\emptyset)$. Thus a nullary operation is thought of as an element of $A$. An operation $f$ on $A$ is {\color{red} unary, binary, or ternay} if its arity is 1,2, or 3, respectively.
+\end{definition}
+
+
+\begin{definition}
+\rm A {\color{red} language} (or type) of algebras is a set $\mathcal{F}$ of function symbols such a nonnegative integer $n$ is assgined to each member $f$ of $\mathcal{F}$. This integer is called the arity (or rank) of $f$, and $f$ is said to be an n-ary function symbol. The subset of n-ary function symbols in $\mathcal{F}$ is denoted by $\mathcal{F}_n$.
+\end{definition}
+
+\begin{definition}
+\rm If $\mathcal{F}$ is a language of algebras then an {\color{red} algebra} $\mathbf{A}$ of type $\mathcal{F}$ is an ordered pair $\left<A,F\right>$ where $A$ is a nonempty set and $F$ is a family of finitary operations on A indexed by the language $\mathcal{F}$ such that corresponding to each n-ary function symbol $f$ in $\mathcal{F}$ there is an n-ary operation $f^\mathbf{A}$ on $A$. The set $A$ is called the {\color{red} universe} ({\color{blue} 全域}) (or underlying set) of $\mathbf{A} =\left<A,F\right>$, and the $f^\mathbf{A}$ ’s are called the {\color{red} fundamental operations} ({\color{blue}基本运算}) of $\mathbf{A}$. (In practice we prefer to write just $f$ for $f ^\mathbf{A}$ —this convention creates an ambiguity which seldom causes a problem. However, in this chapter we will be unusually careful.) If $\mathcal{F}$ is finite, say $\mathcal{F} = \{f_1,\cdots,f_k\}$, we often write $\left<A, f_1,\cdots,f_k\right>$ for $\left<A,F\right>$, usually adopting the convention:
+$$
+arity f_1 \geq \cdots \geq arity f_k.
+$$
+An algebra $\mathbf{A}$ is {\color{red} unary} if all of its operations are unary, and it is mono-unary if it has just on unary operation.
+\end{definition}
+
+{\color{blue} 抽象来说一个algebra就是一个集合和一堆operations构成的,在目前已经学到的代数中operation的arity大多数不会超过2(够modern).}
+
+\begin{example}
+\rm $\mathbf{A}$ is a {\color{red} groupoid} if it has just one binary operation; this operation is usually denoted by $+$ or $\cdot$, and we write $a+b$ or $a \cdot b$ for the image of $\left<a,b\right>$ under this operation, and call it the sum or product of $a$ and $b$, respectively.
+\end{example}
+
+\begin{definition}
+\rm An alegebra $\mathbf{A}$ is {\color{red} finite} if $|\mathbf{A}|$ is finite, and trivial if $|\mathbf{A}|=1$. 
+\end{definition}
+
+\begin{example}
+\rm Some well-known algebras
+\begin{itemize}
+	\item Group
+	\item Semigroup (半群) and Monoid (幺半群)
+\end{itemize}
+\end{example}
 \end{document}
