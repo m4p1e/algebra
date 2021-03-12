@@ -414,7 +414,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-和前面在finite meet semilattice上构造lattice类似，这里finite换成了complete. 这里我们直接就可以知道$\bigwedge A^u$是有意义的，前面也证明了$\bigwedge A^u \in A^u$. 那么$\bigwedge A$的definition是满足$A$的least upper bound.
+和前面在finite meet semilattice上构造lattice类似，这里finite换成了complete. 这里我们直接就可以知道在$A^u$非空时，$\bigwedge A^u$是有意义的，并且这里有$1 \in A^u$. 那么$\bigwedge A$的definition是满足$A$的least upper bound.
 \end{proof}
 
 \newpage
@@ -558,6 +558,8 @@ $$
 
 下面是一个{\color{red} representation theorem，刚才是closure operator 到 complete lattice，现在是complete lattice到 closuse}.
 
+{\color{blue} 下面的定理在说如果有一个complete lattice和closure operator之后可以得到一个新的同构的lattice}.
+
 \begin{theorem}
 \rm If $\lattice$ is a complete lattice，define a closure operator $\Delta$ on $L$ by
 $$
@@ -582,11 +584,14 @@ $$
 综上$\varphi$是一个isomorphism.
 \end{proof}
 
+
+{\color{blue} 换句话说就是$q$如果是join irreducible，则它不可能是其他某些元素的一个join}. 
+
 \begin{definition}
-\rm An element $q$ of lattice $\lattice$ is called {\color{red} join irreducible} if $q = \bigvee F$ for a finite set $F$ implies $q \in F$. The set of all join irreducible elements in $\lattice$ is denoted by $J(\lattice)$.
+\rm An element $q$ of lattice $\lattice$ is called {\color{red} join irreducible} if $q = \bigvee F$ for a {\color{red} finite set} $F$ implies $q \in F$. The set of all join irreducible elements in $\lattice$ is denoted by $J(\lattice)$.
 \end{definition}
 
-{\color{blue} 换句话说就是$q$如果是join irreducible，则它不可能是其他某些元素的一个join}. {\color{red} 如果$\lattice$有一个最小元素0，那么0其实不是join irreducible的，因为$0 = \bigvee \emptyset$. 如果想要把0含进来，特殊地$J_0(\lattice) =J(\lattice) \cap \{0\}$. 当然还有一种定义如果$q$是join irreducible，那么当$q = r \vee s$，则$q = r$或者$q =s$，在这种定义下$q$已经是针对非空的集合来说的}. 
+{\color{red} 如果$\lattice$有一个最小元素0，那么0其实不是join irreducible的，因为$0 = \bigvee \emptyset$. 如果想要把0含进来，特殊地$J_0(\lattice) =J(\lattice) \cap \{0\}$. 当然还有一种定义如果$q$是join irreducible，那么当$q = r \vee s$，则$q = r$或者$q =s$，在这种定义下$q$已经是针对非空的集合来说的}. 
 
 \begin{lemma}
 \rm If a lattice $\lattice$ satisfies the DCC，then every element of $\lattice$ is a join of finitely many join irreducible elements.
@@ -601,7 +606,7 @@ $$
 \end{proof}
 
 \begin{definition}
-\rm An element $q$ of a complete lattice $\lattice$ is said to be {\color{red} completely join irreducible} if $q = \bigvee X$ implies $q \in X$ for arbitrary (possibly infinite) subsets $X \subseteq L$. Let $J^*(\lattice)$ denote the set of all completely join irreducible elements of $\lattice$. 
+\rm An element $q$ of a complete lattice $\lattice$ is said to be {\color{red} completely join irreducible} if $q = \bigvee X$ implies $q \in X$ for {\color{red} arbitrary (possibly infinite) subsets} $X \subseteq L$. Let $J^*(\lattice)$ denote the set of all completely join irreducible elements of $\lattice$. 
 \end{definition}
 
 \begin{proposition}
@@ -609,10 +614,11 @@ $$
 \end{proposition}
 
 \begin{proof}
-每个completely join irreducible element肯定是 join irreducible   element. 这是很自然地，它是任意多个元素的join，那肯定可以挑出来有限多个元素的join还是它. ACC有了之后，$\lattice$上任意非空的子集都有一个最大元素，那么我们现在假设一个join irreducible element $x$它不是complete的，即可以找到某个集合$S$，有$x = \bigvee S$且$x \notin S$. 矛盾就来了，ACC下least upper bound应该是在$S$里面，所以现在又有每个join irreducible element是completely join irreducible.
+每个completely join irreducible element肯定是 join irreducible   element. 这是很自然地，它是任意多个元素的join，那肯定可以挑出来有限多个元素 with $q$的join还是$q$. ACC有了之后，$\lattice$上任意非空的子集都有一个最大元素，那么我们现在假设一个join irreducible element $x$它不是complete的，即可以找到某个集合$S$，有$x = \bigvee S$且$x \notin S$. 矛盾就来了，ACC下least upper bound应该是在$S$里面，所以现在又有每个join irreducible element是completely join irreducible.
 \end{proof}
 
 
+{\color{blue} 满足ACC和DCC的lattice一个表示方法}.
 
 \begin{theorem}
 \rm Let $\lattice$ be a lattice satisfying the ACC and DCC. Let $\sum$ be the set of all closure rules on $J(L)$ of the form
@@ -635,13 +641,16 @@ $$
 那么对于$fg(S) = S$，在ACC下$\bigvee S \in S$，也就是我们可以找到一些finite set $F \subseteq S$使得$\bigvee F = \bigvee S$，按照closure rules，所有join irreducible $q \leq \bigvee F$都是属于$S$的，$f(\bigvee F)$就是在做这件事. 但是这样得到是不是全部的$S$呢？ 考虑其他finite set $F'$， 那么$\bigvee F' \leq \bigvee S = \bigvee F$，$f$是order-preserving的，所以有$f(\bigvee F') \subseteq f(\bigvee F)$，所以$f(\bigvee F)$涵盖了整个$S$.
 \end{proof}
 
+{\color{blue} 按照下面定义$x$明显是一个upper bound，但是条件更强它还要是一个least upper bound，dense 稠密在这里还是很形象，$x$就是一个划分}.
+
 \begin{definition}
-\rm A subset $Q$ of a complete lattice $\lattice$ is join dense if for every $x \in L,$
+\rm A subset $Q$ of a complete lattice $\lattice$ is {\color{red} join dense} if for every $x \in L,$
 $$
 x = \bigvee\Set{q \in Q}{q \leq x}.
 $$
 \end{definition}
 
+{\color{blue} fixed point来表征complete lattice}.
 
 \begin{theorem}
 \rm A lattice $\lattice$ is complete of if and only if every order-preserving map $\func{f}{\lattice}{\lattice}$ has a fixed point.
@@ -742,6 +751,23 @@ $$
 \end{proof}
 
 
+\newpage
+\section{Alegbraic Lattices}
+
+\subsection{Algebraic Closure Operators}
+\begin{definition}
+\rm Let $\lattice$ be a complete lattice. An element $x \in L$ is {\color{red} compact} if whenever $x \leq \bigvee A$, then there exists a finite subset $F \subseteq A$ such that $x \leq \bigvee F$. The set of all compact elements of $\lattice$ is denoted by $\lattice^c$
+\end{definition}
+
+{\color{blue} 这里的compact就是在说如果$x$小于$A$，则$x$小于$A$中的部分元素. 这个定义看起来还是比较自然的}.
+
+\begin{proposition}
+\rm $\lattice^c$ is closed under finite joins and contains 0，so it is a join semilattice with a least element.
+\end{proposition}
+
+\begin{proof}
+假设$x$和$y$是两个compact元素，集合$A$表示such $x \vee y \leq A$. 那么自然地有$x \leq x \vee y \leq A $和$y \leq x \vee y \leq A$，所以各自都可以找到$x \leq F_x \subseteq A$和$y \leq F_y \subseteq F_y A$. 从$F_x$和$F_y$各挑一个元素出来$a$和$b$出来，那么$x\vee y \leq a\vee b$. 0属于$\lattice^c$这是很自然的，它比任何一个元素都小.
+\end{proof}
 
 
 
