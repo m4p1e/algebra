@@ -183,7 +183,7 @@ $$
 $$
 思路是(1)$\Sg(X) \subseteq X \cup E(X) \cup E^2(X) \cup \cdots$和(2)$X \cup E(X) \cup E^2(X) \cup \cdots \subseteq \Sg(X)$. 
 
-(1) 
+(1) 我们从$X \cup E(X) \cup E^2(X) \cup \cdots$这种构造出发，实际上这种构造得到的就是包含$X$的最小subuniverse. 考虑它的bound，可能存在某个最小的$k$使得$E^{k+1}(E^k(X)) = E^k(X)$，那么当$i > k$时都有$E^i(X) = E^k(X)$，无疑问现在$E^k(X)$是一个subuniverse并且包含$X$，这其实就说明了$\Sg(X) \subseteq E^k(X)$. 如果你不能找到这样的$k$，那么会有若$i>k$，那么$E^k(X) \subset E^i(X)$，但是它是bound by $A$，且$\Sg(A) = A$，这是显然地.
 
 (2) 任取$x \in \Sg(X)$, 我们用$\{Z_i\}_{i \in I}$表示所有such that $X \subseteq Z$且$Z$是$\mathbf{A}$的一个subuniverse. 那么对任意的$i$，有$x \in Z_i$. 那么我们更有
 $$
@@ -195,8 +195,15 @@ E^n(X) \subseteq E^n(Z_1) \cap E^n(Z_2) \cap \cdots.
 $$
 这是因为每一项都有$E^n(X) \subseteq E^n(Z_i)$. 那么我们把$n$取遍，就可以得到
 $$
-X \cup E(X) \cup E^2(X) \cup \cdots \subseteq \Sg(X)
+X \cup E(X) \cup E^2(X) \cup \cdots \subseteq \Sg(X).
 $$
+综上$\Sg(X) = X \cup E(X) \cup E^2(X) \cup \cdots.$
+
+那么对于任意的$a \in \Sg(X)$，都有$a \in E^n(X)$其中$n < \omega$ (omega 表示无穷远它比任何的自然数都大). 那么存在finite $Y \subseteq X$，使得$a \in E^n(X)$. 这个过程就是把生成$a$的哪些元素在$E^{n-1}(X)$里面挑出来，然后循环往复，$n$是finite的，所以$Y$也是有限的. 这就说明了$\Sg(X) = \bigcap \Sg(Y_i)$，因为每一个$a$都可以找到一个finite $Y$.
 \end{proof}
+
+\begin{corollary}
+If $\mathbf{A}$ is an algebra then $\mathcal{L}_{Sg}$, the lattice of subuniverses of $\mathbf{A}$, is an algebraic lattice.
+\end{corollary}
 
 \end{document}
