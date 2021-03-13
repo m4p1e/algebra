@@ -769,6 +769,9 @@ $$
 假设$x$和$y$是两个compact元素，集合$A$表示such $x \vee y \leq A$. 那么自然地有$x \leq x \vee y \leq A $和$y \leq x \vee y \leq A$，所以各自都可以找到$x \leq F_x \subseteq A$和$y \leq F_y \subseteq F_y A$. 从$F_x$和$F_y$各挑一个元素出来$a$和$b$出来，那么$x\vee y \leq a\vee b$. 0属于$\lattice^c$这是很自然的，它比任何一个元素都小.
 \end{proof}
 
+\begin{definition}
+\rm A lattice $\lattice$ is said to be algebraic, or compactly generated, if it is complete and $\lattice^c$ is join dense in $\lattice$, i.e., $x = \bigvee (\downarrow x \cap L^c)$ for every $x \in L$.
+\end{definition}
 
-
+{\color{blue} 换句话说就是在$\lattice^c$中比$x$小的它们的join是$x$}. 
 \end{document}
