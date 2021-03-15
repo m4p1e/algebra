@@ -500,7 +500,7 @@ with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed w
 \end{enumerate}
 \end{example}
 
-{\color{red} closure rules就是一系列判断closed set的命题}.
+{\color{blue} closure rules就是一系列判断closed set的命题}.
 
 \begin{theorem}
 \rm {\color{red} If $\Gamma$ is a closure operator on a set $X$}，$\sum_{\Gamma}$ be the set of (1)all rules where $c \in \Gamma(\emptyset)$，and (2)all rules
@@ -548,18 +548,18 @@ in where $D_i \in \mathcal{C}_{\Gamma}$. Then $\mathcal{C}_\Gamma$ is complete l
 \end{theorem}
 
 \begin{proof}
-由Theorem 2.24和Theorem 2.25可以知道$\mathcal{C}_{\Gamma}$是一个closure system. 自然地我们要用集合上union和interestion. 先考虑interestion $\bigcap\limits_{i \in I} D_i$，它确实是greatest lower bound，且在closure system interestion下有
+由Theorem 2.25和Theorem 2.26可以知道一族closed set $\mathcal{C}_{\Gamma}$是一个closure system. 自然地我们要用集合上union和interestion. 先考虑interestion $\bigcap\limits_{i \in I} D_i$，它确实是greatest lower bound，且在closure system interestion下有
 $$
 \Gamma(\bigcap\limits_{i \in I} D_i) = \bigcap\limits_{i \in I} D_i.
 $$
-所以$\bigcap\limits_{i \in I} D_i \in \mathcal{C}_{\Gamma}$. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed set，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \in \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$. 
+所以$\bigcap\limits_{i \in I} D_i \in \mathcal{C}_{\Gamma}$. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed sets，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \in \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可，即它是$\mathcal{C}_{\Gamma}$包含$\bigcup\limits_{i \in I} D_i$最小的closed set. 但是证明过于简单2333，直接用closure operator第二个定义即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq \Gamma(A_j) \subseteq A_j$. 
 \end{proof}
 
 略{\color{red} algebra一般定义和subalgebra上的closure operator}.
 
 下面是一个{\color{red} representation theorem，刚才是closure operator 到 complete lattice，现在是complete lattice到 closuse}.
 
-{\color{blue} 下面的定理在说如果有一个complete lattice和closure operator之后可以得到一个新的同构的lattice}.
+{\color{blue} 下面的定理在说任意一个complete lattice和一些closed set构成lattice同构}.
 
 \begin{theorem}
 \rm If $\lattice$ is a complete lattice，define a closure operator $\Delta$ on $L$ by
@@ -570,7 +570,7 @@ Then {\color{red} $\lattice$ is isomorphic to $\mathcal{C}_{\Delta}$}. The isomo
 \end{theorem}
 
 \begin{proof}
-$\Delta$是一个closure operator还是比较obvious. 我们来回顾一下$\downarrow x$的definition $\downarrow x = \Set{y \in L}{ y \leq x}$. 所以$\Delta(\downarrow x) = \downarrow x \in \mathcal{C}_{\Delta}$.
+$\Delta$是一个closure operator还是比较obvious. 我们来回顾一下$\downarrow x$的definition $\downarrow x = \Set{y \in L}{ y \leq x}$，所以$\Delta(\downarrow x) = \downarrow x \in \mathcal{C}_{\Delta}$.
 
 先证bijective，若对于$x,y \in L$有$\varphi(x) = \varphi(y)$，那么$y \in \varphi(x)$和$x \in \varphi(y)$，就有$y \leq x$和$x \leq y$，所以$x = y$，即$\varphi$是injective. 任意一个$C \in \mathcal{C}_{\Delta}$，那么都有least upper bound $u \in C$. 自然地$\varphi(u) = C$，即$\varphi$是surjective.
 
@@ -756,6 +756,14 @@ $$
 \section{Alegbraic Lattices}
 
 \subsection{Algebraic Closure Operators}
+
+\begin{definition}
+\rm A {\color{red} closure operator} $\Gamma$ on a set $X$ is said to be {\color{red} algebraic} if for every $B \subseteq X$,
+$$
+\Gamma(B) = \bigcup \SET{\Gamma(F)}{$F$ is finite subset of $X$}.
+$$
+\end{definition}
+
 \begin{definition}
 \rm Let $\lattice$ be a complete lattice. An element $x \in L$ is {\color{red} compact} if whenever $x \leq \bigvee A$, then there exists a finite subset $F \subseteq A$ such that $x \leq \bigvee F$. The set of all compact elements of $\lattice$ is denoted by $\lattice^c$
 \end{definition}
@@ -774,7 +782,7 @@ $$
 \rm A lattice $\lattice$ is said to be {\color{red} algebraic, or compactly generated}, if it is complete and $\lattice^c$ is join dense in $\lattice$, i.e., $x = \bigvee (\downarrow x \cap L^c)$ for every $x \in L$.
 \end{definition}
 
-{\color{blue} 换句话说就是在$\lattice^c$中比$x$小的元素它们的join是$x$，每一个$x$都可以划分$\lattice^c$}.
+{\color{blue} 换句话说就是在$\lattice^c$中比$x$小的元素它们的join是$x$，每一个$x$都可以划分$\lattice^c$. 另外一个理解就是任意$x \in L$，都是某些compact elements的meet}.
 
 \begin{example}
 \rm 自然地，finite lattice都是algebraic lattice， 首先finite lattice是complete lattice，其中每一个元素都是compact，所以有$\lattice = \lattice ^c$，那么$x = \bigvee (\downarrow x \cap L) = \bigvee (\downarrow x) = x$，即$\lattice$是join dense的. 
@@ -811,6 +819,28 @@ $$
 	\end{tikzpicture}
 	\end{center}
 \end{enumerate}
+
+\begin{theorem}
+\rm If $\lattice$ is an algebraic lattice, define a algebraic closure operator $\Delta$ on the $\lattice^c$ by
+$$
+	\Delta(A) = \Set{x \in \lattice^c}{x \leq \bigvee A}
+$$ 
+where $A \subseteq \lattice^c$. Then $\lattice$ is isomorphic to $\mathcal{C}_\Delta$. Then isomorphism $\func{\varphi}{\lattice}{\mathcal{C}_\Delta}$ is just given by $\varphi(a) = \Set{x \in \lattice^c}{x \leq a}$.
+\end{theorem}
+
+\begin{proof}
+$\Delta$是一个closure operator是显然的. 它为什么是algebraic呢？因为对于任意$x \in \Delta(A)$都是一个compact element. 有$x \leq \bigvee A$，那么就可以找到一个有限子集$F \subseteq A$，使得$x \leq \bigvee F$，这个$F$还是一堆compact elements，所以$\Delta(A) = \bigcup\limits_{x \in \Delta(A)} \Delta(F_x).$
+
+先证bijective. 给定$a,b \in L$，若$\varphi(a) = \varphi(b)$，那么$a = \bigvee \varphi(a) = \bigvee \varphi(b) = b$，所以$\varphi$是injective. 对于任意的$C \in \mathcal{C}_\Delta$，它对应一个子集$A \subseteq \lattice^c$，使得$\Delta(A) = C$，那么我们取$a = \bigvee A$，我们知道compact element的join还是一个compact element,所以$a \in \lattice^c$，那么$\varphi(a) = C$，即$\varphi$是surjective.
+
+再证homomorphism. 
+$$
+\begin{aligned}
+\varphi(a \wedge b) = \varphi(a) \cap \varphi(b) = \varphi(a) \wedge \varphi(b) \\
+\varphi(a \vee b) = \varphi(a) \cup \varphi(b) = \varphi(a) \vee \varphi(b).
+\end{aligned}
+$$
+\end{proof}	
 
 \end{example}
 \end{document}
