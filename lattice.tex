@@ -837,7 +837,12 @@ $$
 $$
 其中$\mathcal{C}_{\sum}$表示closure rules确定的closed set. 那么我们现在就可以说$\Gamma = \Gamma_{\sum}$，是不是感觉绕了一个大湾？哈哈. whatever its done!
 
-%反过来如果$\sum$是一族finitary closure rules，我们定义这样一个closure operator $\Gamma_{\sum}$，给定$B \subseteq X$，若$x \in \Gamma_{\sum}(B)$当且仅当finite $F \subseteq B$，使得$x \in \Gamma_{\sum}(F)$. 显然这样定义出来的 那么$\Gamma_{\sum}$就是algebraic.
+反过来如果$\sum$是一族finitary closure rules，那么也是可以确定一堆closed set，相似的用上面的方法去构造一个closure operator $\Gamma_{\sum}$，现在我们要来说明它是algebraic. 给定$B \subseteq X$，若$x \in \Gamma_{\sum}(B)$，那么对于每一个closed set $S\supseteq B$都有$x \in S$. 那么按照$F \subseteq S \Rightarrow z \in S$，则每一个$S$都包含同一个finite set $F$与之对应，考虑$F$与$B$的关系
+\begin{enumerate}
+	\item 若$F \subseteq B$，那么刚刚好$x \in \Gamma(F)_{\sum}$.
+	\item 若$F \nsubseteq B$，那么考虑finite set $F - B$，每一个$x \in F - B $，也应该对应一个finite set $F^{-1} \subseteq S$...
+\end{enumerate}
+为了用上面的方法，你得证明$\Gamma_{\sum}(B)$是$B$靠着closure rules生成的. 这里的证明去看universe alegbra中证明$Sg$是一个algebraic closure operator的方法.
 \end{proof}
 
 \begin{theorem}

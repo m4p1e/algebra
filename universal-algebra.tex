@@ -199,7 +199,31 @@ X \cup E(X) \cup E^2(X) \cup \cdots \subseteq \Sg(X).
 $$
 综上$\Sg(X) = X \cup E(X) \cup E^2(X) \cup \cdots.$
 
-那么对于任意的$a \in \Sg(X)$，都有$a \in E^n(X)$其中$n < \omega$ (omega 表示无穷远它比任何的自然数都大). 那么存在finite $Y \subseteq X$，使得$a \in E^n(X)$. 这个过程就是把生成$a$的哪些元素在$E^{n-1}(X)$里面挑出来，然后循环往复，$n$是finite的，所以$Y$也是有限的. 这就说明了$\Sg(X) = \bigcap \Sg(Y_i)$，因为每一个$a$都可以找到一个finite $Y$.
+那么对于任意的$a \in \Sg(X)$，都有$a \in E^n(X)$其中$n < \omega$ (omega 表示无穷远它比任何的自然数都大). 那么存在finite $Y \subseteq X$，使得$a \in E^n(Y)$. 这个过程就是把生成$a$的哪些元素在$E^{n-1}(X)$里面挑出来，然后循环往复，$n$是finite的，所以$Y$也是有限的. 这就说明了$\Sg(X) = \bigcap \Sg(Y_i)$，因为每一个$a$都可以找到一个finite $Y$.
+
+还是写一下严格的归纳假设吧，首先我们点出一个关系. 注意到$E^(\cdot)$是单调的，那么给定两个集合$X,Y$，因为$X \subseteq X \cup Y$和$Y \subseteq X \cup Y$，所以$E^k(X) \cup E^k(Y) \subseteq E^k(X \cup Y)$.
+
+我们要证明(1)任意的$x \in E^k(X)$都有finite set $Y \subseteq X$使得$x \in E^k(Y)$.
+
+那么当$k=0$时，
+$$
+a \in E^0(X) = X  \Rightarrow a \in E^(\{a\}),
+$$
+所以这里可以取$Y = \{a\}$.
+
+假设对任意$k < n$，都有命题(1)成立，那么当$k=n$时，
+$$
+\begin{aligned}
+a \in E^n(X) \Leftrightarrow& a \in E(E^{n-1}(X))\\ &= E^{n-1}(X) \cup \Set{f(a_1,\cdots,a_n)}{f\ \text{is a fundamental $t$-ary operation on}\ A\ \text{and}\ a_1,\cdots,a_n \in X}\\ &= E^{n-1}(X) \cup B_n,
+\end{aligned}
+$$
+要么$a \in E^{n-1}(X)$或者$a \in B_n$. 如果$a \in E^{n-1}(X)$，那么归纳假设就完成了. 如果$a \in B_n$，则$a \in E(\{a_1,\cdots,a_t\})$，其中$a_1,\cdots,a_t \in E^{n-1}(X)$ (这里用$t$是不想和这个上标$n$弄混)，那么根据假设有$a_i \in E^{n-1}(Y_i)$，其中finite set $Y_i \subseteq X$，再替换一下
+$$
+a \in E(\{a_1,\cdots,a_t\}) \subseteq  E(\bigcup\limits_{1}^{t} E^{n-1}(Y_i))  \subseteq E(E^{n-1}(\bigcup\limits_{1}^{t} Y_i)) = E^n(\bigcup\limits_{1}^{t} Y_i).
+$$
+所以这里取$Y = \bigcup\limits_{1}^{t} Y_i$，它确实是一个finite set.
+
+%最后的证明不规范 https://math.stackexchange.com/questions/725150/operator-generating-subuniverse-generated-by-x-is-algebraic-closure-operator
 \end{proof}
 
 \begin{corollary}
