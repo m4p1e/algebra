@@ -239,11 +239,6 @@ $$
 
 {\color{blue} 如果$A$有有限多个生成元，那么就说algebra $\algebra$是有限生成的}.
 
-\begin{theorem}
-\rm If $\lattice$ is an algebraic lattice, then $\lattice \cong \Sub{\algebra}$, for some algebra $A$.
-\end{theorem}
-
-下面上命题和下面的命题是等价的
 
 \begin{theorem}
 \rm Let $\Gamma$ be an algebraic closure operator on a set $X$. Then there is an $\algebra$ on the set $X$ such that the subuniverse of $\algebra$ are precisely the closed sets of $\Gamma$.
@@ -277,7 +272,16 @@ $$
 $$
 \Gamma(B) = \Set{f_{B,b}(a_1,\cdots,a_n)}{B={a_1,\cdots,a_n},b \in \Gamma(B)}.
 $$
-自然地，因为$f_{B,b}(a_1,\cdots,a_n)$在$S$下是封闭的，所以$\Gamma(B) \subseteq S$.
+自然地，因为$f_{B,b}(a_1,\cdots,a_n)$在$S$下是封闭的，这个operation的构造就巧到这里，所以$\Gamma(B) \subseteq S$.
+\end{proof}
+
+
+\begin{theorem}
+\rm If $\lattice$ is an algebraic lattice, then $\lattice \cong \Sub{\algebra}$, for some algebra $A$.
+\end{theorem}
+
+\begin{proof}
+这个命题和前一个命题等价的，这里的$\algebra$的underlying set可以设为$\lattice^c$即$\lattice$上所有的compact elements. 关于这一点去看lattice note里面$\lattice \cong \mathcal{C}_{\Delta}$部分. 那么接下来就是证明$\Sub{A} =  \mathcal{C}_{\Delta}$，就是前一个命题在做的事.
 \end{proof}
 
 \end{document}
