@@ -46,6 +46,8 @@
 \newcommand\lattice{\mathcal{L}}
 
 \newcommand\Sg{\text{Sg}}
+\newcommand\algebra{\mathbf{A}}
+\newcommand\Sub[1]{\text{Sub}(#1)}
 \begin{document}
 \title{Lattice}
 \author{枫聆}
@@ -68,14 +70,14 @@ of several seemingly different types of algebraic structures}.
 \end{definition}
 
 \begin{definition}
-\rm If $\mathcal{F}$ is a language of algebras then an {\color{red} algebra} $\mathbf{A}$ of type $\mathcal{F}$ is an ordered pair $\left<A,F\right>$ where $A$ is a nonempty set and $F$ is a family of finitary operations on A indexed by the language $\mathcal{F}$ such that corresponding to each n-ary function symbol $f$ in $\mathcal{F}$ there is an n-ary operation $f^\mathbf{A}$ on $A$. The set $A$ is called the {\color{red} universe} ({\color{blue} 全域}) (or underlying set) of $\mathbf{A} =\left<A,F\right>$, and the $f^\mathbf{A}$ ’s are called the {\color{red} fundamental operations} ({\color{blue}基本运算}) of $\mathbf{A}$. (In practice we prefer to write just $f$ for $f ^\mathbf{A}$ —this convention creates an ambiguity which seldom causes a problem. However, in this chapter we will be unusually careful.) If $\mathcal{F}$ is finite, say $\mathcal{F} = \{f_1,\cdots,f_k\}$, we often write $\left<A, f_1,\cdots,f_k\right>$ for $\left<A,F\right>$, usually adopting the convention:
+\rm If $\mathcal{F}$ is a language of algebras then an {\color{red} algebra} $\mathbf{A}$ of type $\mathcal{F}$ is an ordered pair $\left<A,F\right>$ where $A$ is a {\color{red} nonempty set} and $F$ is a family of {\color{red} finitary operations} on A indexed by the language $\mathcal{F}$ such that corresponding to each n-ary function symbol $f$ in $\mathcal{F}$ there is an n-ary operation $f^\mathbf{A}$ on $A$. The set $A$ is called the {\color{red} universe} ({\color{blue} 全域}) (or underlying set) of $\mathbf{A} =\left<A,F\right>$, and the $f^\mathbf{A}$ ’s are called the {\color{red} fundamental operations} ({\color{blue}基本运算}) of $\mathbf{A}$. (In practice we prefer to write just $f$ for $f ^\mathbf{A}$ —this convention creates an ambiguity which seldom causes a problem. However, in this chapter we will be unusually careful.) If $\mathcal{F}$ is finite, say $\mathcal{F} = \{f_1,\cdots,f_k\}$, we often write $\left<A, f_1,\cdots,f_k\right>$ for $\left<A,F\right>$, usually adopting the convention:
 $$
 arity f_1 \geq \cdots \geq arity f_k.
 $$
 An algebra $\mathbf{A}$ is {\color{red} unary} if all of its operations are unary, and it is mono-unary if it has just on unary operation.
 \end{definition}
 
-{\color{blue} 抽象来说一个algebra就是一个集合和一堆operations构成的,在目前已经学到的代数中operation的arity大多数不会超过2(够modern).}
+{\color{blue} 抽象来说一个algebra就是一个集合和一堆finitary operations构成的,在目前已经学到的代数中operation的arity大多数不会超过2(够modern).}
 
 \begin{example}
 \rm $\mathbf{A}$ is a {\color{red} groupoid} if it has just one binary operation; this operation is usually denoted by $+$ or $\cdot$, and we write $a+b$ or $a \cdot b$ for the image of $\left<a,b\right>$ under this operation, and call it the sum or product of $a$ and $b$, respectively.
@@ -221,7 +223,7 @@ $$
 $$
 a \in E(\{a_1,\cdots,a_t\}) \subseteq  E(\bigcup\limits_{1}^{t} E^{n-1}(Y_i))  \subseteq E(E^{n-1}(\bigcup\limits_{1}^{t} Y_i)) = E^n(\bigcup\limits_{1}^{t} Y_i).
 $$
-所以这里取$Y = \bigcup\limits_{1}^{t} Y_i$，它确实是一个finite set.
+所以这里取$Y = \bigcup\limits_{i=1}^{t} Y_i$，它确实是一个finite set.
 
 %最后的证明不规范 https://math.stackexchange.com/questions/725150/operator-generating-subuniverse-generated-by-x-is-algebraic-closure-operator
 \end{proof}
@@ -229,5 +231,53 @@ $$
 \begin{corollary}
 \rm If $\mathbf{A}$ is an algebra then $\mathcal{L}_{Sg}$, the lattice of subuniverses of $\mathbf{A}$, is an algebraic lattice.
 \end{corollary}
+
+\newpage
+\begin{definition}
+\rm Given an algebra $\algebra$, {\color{red} $\Sub{\algebra}$} denotes the set of subuniverses of $A$, and $\Sub{\algebra}$ is the corresponding algebraic lattice, the lattice of subuniverses of $\algebra$. For $X \subseteq A$ we say $X$ generates $\algebra$ if $\Sg(X) = A$. The algebra $\algebra$ is finitely generated if it has a finite set of generators.
+\end{definition}
+
+{\color{blue} 如果$A$有有限多个生成元，那么就说algebra $\algebra$是有限生成的}.
+
+\begin{theorem}
+\rm If $\lattice$ is an algebraic lattice, then $\lattice \cong \Sub{\algebra}$, for some algebra $A$.
+\end{theorem}
+
+下面上命题和下面的命题是等价的
+
+\begin{theorem}
+\rm Let $\Gamma$ be an algebraic closure operator on a set $X$. Then there is an $\algebra$ on the set $X$ such that the subuniverse of $\algebra$ are precisely the closed sets of $\Gamma$.
+\end{theorem}
+
+\begin{proof}
+Basic: 我们要构造出来一个algebra $\algebra$，首先我们得确定在哪个集合上，再给定它的operations. 
+
+我们的目标: 当前的前提是给定$X$上的algebraic closure operator $\Gamma$，以$X$为underlying set，构造其上的operations使得对应的algebra $\algebra$ 的universes都是$\Gamma$对应的closed set.
+
+对任意的finite set $B \subseteq X$和任意的$b \in \Gamma(B)$，我们定义n-ary operation如下，其中$n = |B|$.
+$$
+f_{B,b}(a_1,\cdots,a_n) = \left\{
+\begin{array}{ll} 
+b \ & \text{if}\ B=\{a_1,\cdots,a_n\} \\ 
+a_1\ & \text{otherwise}.  
+\end{array}
+\right.   
+$$
+接下来我们证明$\Gamma$对应的closed set $A$是一个在上面定义的operations下是封闭的. 这里明显地有
+$$
+f_{B,b}(a_1,\cdots,a_n) \subseteq \Gamma(\{a_1,\cdots,a_n\}).
+$$
+这里我们再利用一个结论（证明在lattice note里面），(1)$\Gamma$是algebraic closure operation，那么若$A \subseteq X$是一个closed set当且仅当$\Gamma(F) \subseteq A$对所有的finite set $F \subseteq A$成立. 那么任取对任意上述的operation，我们取$a_1,\cdots,a_n \in A$，那么
+$$
+f_{B,b}(a_1,\cdots,a_n) \subseteq \Gamma(\{a_1,\cdots,a_n\}) \subseteq A
+$$
+所以上述所有的operations在$A$下是封闭.
+
+反过来我们还要证明一个universe $S$ 是closed set. 还是用(1)这个结论，我们证明所有的finite set $B \subseteq S$，$\Gamma(B) \subseteq S$，其中
+$$
+\Gamma(B) = \Set{f_{B,b}(a_1,\cdots,a_n)}{B={a_1,\cdots,a_n},b \in \Gamma(B)}.
+$$
+自然地，因为$f_{B,b}(a_1,\cdots,a_n)$在$S$下是封闭的，所以$\Gamma(B) \subseteq S$.
+\end{proof}
 
 \end{document}
