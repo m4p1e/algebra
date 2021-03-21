@@ -46,6 +46,8 @@
 \newcommand\lattice{\mathcal{L}}
 
 
+
+
 \begin{document}
 \title{Lattice}
 \author{枫聆}
@@ -552,7 +554,7 @@ in where $D_i \in \mathcal{C}_{\Gamma}$. Then $\mathcal{C}_\Gamma$ is complete l
 $$
 \Gamma(\bigcap\limits_{i \in I} D_i) = \bigcap\limits_{i \in I} D_i.
 $$
-所以$\bigcap\limits_{i \in I} D_i \in \mathcal{C}_{\Gamma}$. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed sets，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \in \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可，即它是$\mathcal{C}_{\Gamma}$包含$\bigcup\limits_{i \in I} D_i$最小的closed set. 但是证明过于简单2333，直接用closure operator第二个定义即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq \Gamma(A_j) \subseteq A_j$. 
+所以$\bigcap\limits_{i \in I} D_i \in \mathcal{C}_{\Gamma}$. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed sets，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \in \bigcap \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可，即它是$\mathcal{C}_{\Gamma}$包含$\bigcup\limits_{i \in I} D_i$最小的closed set. 但是证明过于简单2333，直接用closure operator第二个定义即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq \Gamma(A_j) \subseteq A_j$. 
 \end{proof}
 
 略{\color{red} algebra一般定义和subalgebra上的closure operator}.
@@ -757,6 +759,21 @@ $$
 
 \subsection{Algebraic Closure Operators}
 
+
+\def\temp{&} \catcode`&=\active \let&=\temp
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12cYAPHYAMYNMTAE4wABBDQxRdHBFEBfEEtLpMufIRQAWclVqMWbTtz7BGAcxgAjOVgEShI8VJlyFy1epAZseAREZADMhvTMrIgcXLz8AhAAtmgMMNwSDPJ4AjAqahoB2kT6YdQRJtFmcZYMNvZ0jhlZjrk+BVpBKGQAbOHGUTHm-DgAFpKZONmSEABmzsJwMFASizh5vv4dOsj6vWX9prEWo+PNOVJzLovLq3mGSzYIKKAzoklIZCAKSABM+5GHWwwKxYMCWURyACeSmADAYSk4AHE6IlEnQABQAQQAlBJOAB3B6SJEotHogBCuIkADIALwSPHsZGojE4xkCOhoRnMsmUxmcbmk1m4zg0GDEplCilUumCllY9lMLmUzgwMBQcFQlTUTJAhgABU0gR0IFEWCsIxwbRAr3eiE+30QAEZ-hUYjzhRJ6ZxbOaBEq5WSAGK4kA6uh6w2FTogVIzK35G1vRJIF1fCBIEKugY+4GgzV0aGw+Ek+VsglEwMYvmyqtYkXsDlc0u8hsClue0Xius172SsuK5XY1XqgvQsOxiMwA1GorROMJ3y2lOIP7ppD6IwAypHfhYWCMeauaYeeSKdHWOwOAS42x0a5SMASAAknDRow5DGAABklM-tZOkazjGZoWouLzJr81COlmW5ulUxxjCsaQXM4SRoHQAg4BI04wIkao4HAEhYERABWECghIsBgIsAG6tOUZbGwC7WsumbQRmiAAKzZocQzAPuMCHlcYgnrIZ6iBetRXg0N4SHeD4EC+b7yCMn4-koAB6Aj-hO9EztGJosYmbGIJujo8XBOb9mSbJ9r6Vj+s2NkYiGEh6VOBlMdEoGWqoFBKEAA
+\begin{center}
+\begin{tikzcd}
+\text{closure operator} \arrow[ddd, "\begin{array}{ll}\Gamma(A) \wedge \Gamma(B)  &=  \Gamma(A) \cap \Gamma(B) \\ \Gamma(A) \vee \Gamma(B)  &= \Gamma(A \cup B)\end{array}"'] \arrow[rrrr, "\Gamma(A) = \bigcup \Gamma(F) "] &  &  &  & \text{algebraic closure operator} \arrow[ddd, "\begin{array}{ll}\Gamma(A) \wedge \Gamma(B) &=  \Gamma(A) \cap \Gamma(B) \\ \Gamma(A) \vee \Gamma(B) &= \Gamma(A \cup B)\end{array}"] \\
+                                                                                                                                                                                                                             &  &  &  &                                                                                                                                                                                      \\
+                                                                                                                                                                                                                             &  &  &  &                                                                                                                                                                                      \\
+\text{complete lattice} \arrow[ddd, "\text{ideal closure operator(algebraic) based on $\mathcal{L}$}"'] \arrow[rrrr, "\text{the set of compact elements is join dense}"]                                                     &  &  &  & \text{algebraic lattice} \arrow[ddd, "\text{ideal closure operator(algebraic) based on $\mathcal{L}^c$}"]                                                                            \\
+                                                                                                                                                                                                                             &  &  &  &                                                                                                                                                                                      \\
+                                                                                                                                                                                                                             &  &  &  &                                                                                                                                                                                      \\
+\text{the lattice of closed set} \arrow[rrrr, "\Gamma(A) = \bigcup \Gamma(F) "']                                                                                                                                             &  &  &  & \text{the lattice of closed set}                                                                                                                                                    
+\end{tikzcd}
+\end{center}
+
 \begin{definition}
 \rm A {\color{red} closure operator} $\Gamma$ on a set $X$ is said to be {\color{red} algebraic} if for every $B \subseteq X$,
 $$
@@ -782,7 +799,7 @@ $$
 \rm A lattice $\lattice$ is said to be {\color{red} algebraic, or compactly generated}, if it is complete and $\lattice^c$ is join dense in $\lattice$, i.e., $x = \bigvee (\downarrow x \cap L^c)$ for every $x \in L$.
 \end{definition}
 
-{\color{blue} 换句话说就是在$\lattice^c$中比$x$小的元素它们的join是$x$，每一个$x$都可以划分$\lattice^c$. 另外一个理解就是任意$x \in L$，都是某些compact elements的meet}.
+{\color{blue} 换句话说就是在$\lattice^c$中比$x$小的元素它们的join是$x$，每一个$x$都可以划分$\lattice^c$. 另外一个理解就是任意$x \in L$，都是某些compact elements的join，这就是为什么说compactly generated}.
 
 \begin{example}
 \rm 自然地，finite lattice都是algebraic lattice， 首先finite lattice是complete lattice，其中每一个元素都是compact，所以有$\lattice = \lattice ^c$，那么$x = \bigvee (\downarrow x \cap L) = \bigvee (\downarrow x) = x$，即$\lattice$是join dense的. 
@@ -825,7 +842,7 @@ $$
 \end{definition}
 
 \begin{theorem}
-\rm A closure operator $\Gamma$ is algebraic if and only if $\Gamma = \Gamma_{\sum}$ for some set $\sum$ of finitary closure rules.
+\rm {\color{red} (algebraic和finitary的关系)} A closure operator $\Gamma$ is algebraic if and only if $\Gamma = \Gamma_{\sum}$ for some set $\sum$ of finitary closure rules.
 \end{theorem}
 
 \begin{proof}
@@ -837,12 +854,12 @@ $$
 $$
 其中$\mathcal{C}_{\sum}$表示closure rules确定的closed set. 那么我们现在就可以说$\Gamma = \Gamma_{\sum}$，是不是感觉绕了一个大湾？哈哈. whatever its done!
 
-反过来如果$\sum$是一族finitary closure rules，那么也是可以确定一堆closed set，相似的用上面的方法去构造一个closure operator $\Gamma_{\sum}$，现在我们要来说明它是algebraic. 你得证明$\Gamma_{\sum}(B)$是$B$靠着closure rules生成的. 这里的证明去看universe alegbra中证明$Sg$是一个algebraic closure operator的方法.
+反过来如果$\sum$是一族finitary closure rules，那么也是可以确定一族closed set，相似的用上面的方法去构造一个closure operator $\Gamma_{\sum}$，现在我们要来说明它是algebraic. 你得证明$\Gamma_{\sum}(B)$是$B$靠着closure rules生成的. 这里的证明去看universe alegbra中证明$\text{Sg}$是一个algebraic closure operator的方法.
 \end{proof}
 
 \newpage
 \begin{theorem}
-\rm Let $\Gamma$ be an algebraic closure operator on set $X$. Then $\mathcal{C}_\Gamma$ is an algebraic lattice whose compact elements are $\SET{\Gamma(F)}{$F$ is a finite subset of $X$}$.
+\rm {\color{red} (在algebraic closure operator上构造algebraic lattice)} Let $\Gamma$ be an algebraic closure operator on set $X$. Then $\mathcal{C}_\Gamma$ is an algebraic lattice whose compact elements are $\SET{\Gamma(F)}{$F$ is a finite subset of $X$}$.
 \end{theorem}
 
 \begin{proof}
@@ -865,12 +882,13 @@ $$
 $$
 这里我们弄复杂了一点，直接让$A_{i \in I} \in \mathcal{C}_\Gamma$并且$\bigvee A_i = \Gamma(\bigcup A_i)$可能更方便一点.
 
-反过来，若$C$是$\mathcal{C}_{\Gamma}$上的compact element. {\color{red}我们要证明$C$是$X$上某个有限子集的闭包}. 自然地$C$是closed的，则$\Gamma(C) = C$，因为$\Gamma$是algebraic的，那么$C = \bigcup\SET{\Gamma(F)}{$F$ is finite subset of $C$}$. 又因为$C$是compact的，所以存在有限多个$F_1,\cdots,F_n$使得$C = F_1 \vee \cdots \vee F_n = \Gamma(F_1 \cup \cdots \cup F_n).$命题得证.
+反过来，若$C$是$\mathcal{C}_{\Gamma}$上的compact element. {\color{red}我们要证明$C$是$X$上某个有限子集的闭包}. 因为$C$是closed的，则$\Gamma(C) = C$. 再由$\Gamma$是algebraic的，那么$C = \bigcup\SET{\Gamma(F)}{$F$ is finite subset of $C$}$. 又因为$C$是compact的，所以存在有限多个$\Gamma(F_1),\cdots,\Gamma(F_n)$使得$C = \Gamma(F_1) \vee \cdots \vee \Gamma(F_n) = \Gamma(F_1 \cup \cdots \cup F_n).$命题得证.
 
-{\color{red} 最后证明$\mathcal{C}_{\Gamma}^c$是join dense的}. 对于任意的$A \subseteq \mathcal{C}_{\Gamma}$，$A$是closed，那么$A = \bigvee\limits_{i \in I} \Gamma(F_i)$其中finite subset$F \subseteq A$. 自然地有$\bigvee(\downarrow A \cap \mathcal{C}_{\Gamma}^c) \leq A$且$\Gamma(F_i)_{i \in I} \in \mathcal{C}_{\Gamma}^c$，那么$\bigvee(\downarrow A \cap \mathcal{C}_{\Gamma}^c) = A$. 命题得证.
+{\color{red} 最后证明$\mathcal{C}_{\Gamma}^c$是join dense的}. 对于任意的$A \in \mathcal{C}_{\Gamma}$，$A$是closed，那么$A = \bigvee\limits_{i \in I} \Gamma(F_i)$其中finite subset $F \subseteq A$. 自然地有$\bigvee(\downarrow A \cap \mathcal{C}_{\Gamma}^c) \leq A$且$\Gamma(F_i)_{i \in I} \in \mathcal{C}_{\Gamma}^c$，那么$\bigvee(\downarrow A \cap \mathcal{C}_{\Gamma}^c) = A$. 命题得证.
+
+\color{blue} 我们用algebraic closure operator生成了一个algebraic lattice，其上每一个元素都是compact elements的join，自然地联想到closure operator是algebraic的那个条件，每一个closed set都可以用finitely generated closed set来表示.
 \end{proof}
 
-{\color{blue} 之前我们有从closure operator生成complete lattice的过程，现在我们也可以自然地从algebraic closure operator生成一个algebraic lattice}.
 
 \begin{definition}
 \rm If $\Gamma$ is a closure operator on $X$ and $B$ is closed subset of $X$, then we way a set $A$ is a {\color{red} generating set} for $B$ if $\Gamma(A) = B$. The Set $B$ is {\color{red} finitely generated} if there is a finite generating set for $B$.  The set $A$ is {\color{red} minimal generating set} for $B$ if $A$ generates $B$ and no proper subset of $A$ generates $B$.
@@ -896,7 +914,7 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm Ideals are defined by closure rules，so the intersection of a set of ideals of $\slattice$ is again one. Since the closure rules are finitary, {\color{red} the lattice of ideals is algebraic}. 
+\rm (ideal closure operator的引入) Ideals are defined by closure rules，so the intersection of a set of ideals of $\slattice$ is again one. Since the closure rules are finitary, {\color{red} the lattice of ideals is algebraic}. 
 
 The closure operator $I$ on $S$ such that $I(B)$ is the ideal of $\slattice$ generated by $B$ is given by
 $$
@@ -922,7 +940,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm If $\slattice$ is a join semilattice with 0, then the ideal lattice $\mathcal{I}(\mathcal{S})$ is algebraic. The {\color{red} compact elements of $\mathcal{I}(\mathcal{S})$ are the principal ideals} $\downarrow x$ with $x \in S$. Conversely, if $\lattice$ is an algebraic lattice, then $\lattice^c$ is a join semilattice with 0, and $\lattice \cong \mathcal{I}(\lattice ^ c)$.
+\rm {\color{red} (ideal closure operator生成的algebraic lattice的性质)} If $\slattice$ is a join semilattice with 0, then the ideal lattice $\mathcal{I}(\mathcal{S})$ is algebraic. The {\color{red} compact elements of $\mathcal{I}(\mathcal{S})$ are the principal ideals} $\downarrow x$ with $x \in S$. Conversely, if $\lattice$ is an algebraic lattice, then $\lattice^c$ is a join semilattice with 0, and $\lattice \cong \mathcal{I}(\lattice ^ c)$.
 \end{theorem}
 
 \begin{proof}
@@ -934,7 +952,7 @@ $$
 
 \newpage
 \begin{theorem}
-\rm If $\lattice$ is an algebraic lattice, define a algebraic closure operator $\Delta$ on the $\lattice^c$ by
+\rm {\color{red}(与algebraic lattice同构的algebraic lattice)} If $\lattice$ is an algebraic lattice, define a algebraic closure operator $\Delta$ on the $\lattice^c$ by
 $$
 	\Delta(A) = \Set{x \in \lattice^c}{x \leq \bigvee A}
 $$ 
@@ -944,7 +962,7 @@ where $A \subseteq \lattice^c$. Then $\lattice$ is isomorphic to $\mathcal{C}_\D
 \begin{proof}
 $\Delta$是一个closure operator是显然的. 它为什么是algebraic呢？因为对于任意$x \in \Delta(A)$都是一个compact element. 有$x \leq \bigvee A$，那么就可以找到一个有限子集$F \subseteq A$，使得$x \leq \bigvee F$，这个$F$还是一堆compact elements，所以$\Delta(A) = \bigcup\limits_{x \in \Delta(A)} \Delta(F_x).$
 
-先证bijective. 给定$a,b \in L$，若$\varphi(a) = \varphi(b)$，那么$a = \bigvee \varphi(a) = \bigvee \varphi(b) = b$，所以$\varphi$是injective. 对于任意的$C \in \mathcal{C}_\Delta$，它对应一个子集$A \subseteq \lattice^c$，使得$\Delta(A) = C$，那么我们取$a = \bigvee A$，我们知道compact element的join还是一个compact element,所以$a \in \lattice^c$，那么$\varphi(a) = C$，即$\varphi$是surjective.
+先证bijective. 给定$a,b \in L$，若$\varphi(a) = \varphi(b)$，那么$a = \bigvee \varphi(a) = \bigvee \varphi(b) = b$，注意两边等号成立的条件是$\lattice^c$是join dense({\text{blue}join dense终于在这里起作用了})，所以$\varphi$是injective. 对于任意的$C \in \mathcal{C}_\Delta$，它对应一个子集$A \subseteq \lattice^c$，使得$\Delta(A) = C$，那么我们取$a = \bigvee A$，我们知道compact element的join还是一个compact element,所以$a \in \lattice^c$，那么$\varphi(a) = C$，即$\varphi$是surjective.
 
 再证homomorphism. 
 $$
@@ -953,9 +971,10 @@ $$
 \varphi(a \vee b) = \varphi(a) \cup \varphi(b) = \varphi(a) \vee \varphi(b).
 \end{aligned}
 $$
+
+{\color{blue} 从这个定理的证明里面，你可以发现从$\lattice^c$上构造一个algebraic closure operator出来，是不需要$\lattice^c$是join dense的这个条件，但是为了说明isomorphism才加上这个条件}.
 \end{proof}	
 
-{\color{blue} 前面说$\lattice^c$其实已经是一个join semilattice with a least element，想让它变成一个complete lattice，你得让join操作不仅仅在finite下成立}.
-
 \end{example}
+
 \end{document}
