@@ -142,7 +142,7 @@ $$
 \newpage
 \subsection{Algebraic Lattices and Subuniverses}
 
-{\color{red} 这一章阐述algebraic lattice出现在universe algebra的原因}.
+{\color{red} 这一章阐述algebraic lattice是如何自然地出现在了universe algebra里面}.
 
 \begin{definition}
 \rm Given an algebra $\mathbf{A}$ define, for every $X \subseteq A$,
@@ -160,7 +160,7 @@ $$
 \end{definition}
 
 \begin{theorem}
-\rm If we are given an algebra $\mathbf{A}$, then $\Sg$ is an algebraic closure operator on $A$.
+\rm If we are given an algebra $\mathbf{A}$, then {\color{red} $\Sg$ is an algebraic closure operator} on $A$.
 \end{theorem}
 
 \begin{proof}
@@ -181,7 +181,7 @@ X \subseteq E(X) \subseteq \cdots \subseteq E^n(X).
 $$
 接下来我们来证明下面的式子
 $$
-\Sg(X) = X \cup E(X) \cup E^2(X) \cup \cdots.
+{\color{red} \Sg(X) = X \cup E(X) \cup E^2(X) \cup \cdots}.
 $$
 思路是(1)$\Sg(X) \subseteq X \cup E(X) \cup E^2(X) \cup \cdots$和(2)$X \cup E(X) \cup E^2(X) \cup \cdots \subseteq \Sg(X)$. 
 
@@ -203,7 +203,7 @@ $$
 
 那么对于任意的$a \in \Sg(X)$，都有$a \in E^n(X)$其中$n < \omega$ (omega 表示无穷远它比任何的自然数都大). 那么存在finite $Y \subseteq X$，使得$a \in E^n(Y)$. 这个过程就是把生成$a$的哪些元素在$E^{n-1}(X)$里面挑出来，然后循环往复，$n$是finite的，所以$Y$也是有限的. 这就说明了$\Sg(X) = \bigcap \Sg(Y_i)$，因为每一个$a$都可以找到一个finite $Y$.
 
-还是写一下严格的归纳假设吧，首先我们点出一个关系. 注意到$E^(\cdot)$是单调的，那么给定两个集合$X,Y$，因为$X \subseteq X \cup Y$和$Y \subseteq X \cup Y$，所以$E^k(X) \cup E^k(Y) \subseteq E^k(X \cup Y)$.
+还是写一下严格的归纳假设吧，首先我们点出一个关系. 注意到$E^{\cdot}$是单调的，那么给定两个集合$X,Y$，因为$X \subseteq X \cup Y$和$Y \subseteq X \cup Y$，所以$E^k(X) \cup E^k(Y) \subseteq E^k(X \cup Y)$.
 
 我们要证明(1)任意的$x \in E^k(X)$都有finite set $Y \subseteq X$使得$x \in E^k(Y)$.
 
@@ -229,7 +229,7 @@ $$
 \end{proof}
 
 \begin{corollary}
-\rm If $\mathbf{A}$ is an algebra then $\mathcal{L}_{Sg}$, the lattice of subuniverses of $\mathbf{A}$, is an algebraic lattice.
+\rm If $\mathbf{A}$ is an algebra then $\mathcal{L}_{\Sg}$, the lattice of subuniverses of $\mathbf{A}$, is an algebraic lattice.
 \end{corollary}
 
 \newpage
@@ -281,7 +281,16 @@ $$
 \end{theorem}
 
 \begin{proof}
-这个命题和前一个命题等价的，这里的$\algebra$的underlying set可以设为$\lattice^c$即$\lattice$上所有的compact elements. 关于这一点去看lattice note里面$\lattice \cong \mathcal{C}_{\Delta}$部分. 那么接下来就是证明$\Sub{A} =  \mathcal{C}_{\Delta}$，就是前一个命题在做的事.
+这个命题是上面命题的一个推论，这里的$\algebra$的underlying set可以设为$\lattice^c$即$\lattice$上所有的compact elements. 关于这一点去看lattice note里面$\lattice \cong \mathcal{C}_{\Delta}$部分. 那么接下来就是证明$\Sub{A} =  \mathcal{C}_{\Delta}$，这里有更比上面更简单的operations的构造方式. 对任意的$a \in \mathcal{C}_{\Delta}$, 定义一个unary operation
+$$
+f_{a}(x) = \left\{
+\begin{array}{ll} 
+a \ & \text{if}\ a \leq x \\ 
+x\ & \text{otherwise}.  
+\end{array}
+\right.  
+$$
+把这样的unary operation作用到某个$x \subseteq \lattice^c$，它生成就是principle ideal $\downarrow x$，自然地到某个$A \subseteq lattice^c$，它就是$\Delta(A)$.
 \end{proof}
 
 \end{document}
