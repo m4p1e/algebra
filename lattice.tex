@@ -977,4 +977,99 @@ $$
 
 \end{example}
 
+
+\newpage
+\begin{definition}
+\rm A subset $D$ of an ordered set $\mathcal{P}$ is said to be {\color{red} \emph{up-directed}} if for every $x,y \in D$ there exists $z \in D$ with $x \leq z$ and $y \leq z$.
+\end{definition}
+
+\begin{example}
+\rm Every chain, or more generally every join semilattice, forms an up-directed set.
+\end{example}
+
+\begin{theorem}
+\rm Let $\Gamma$ be a closure operator on a set $X$. The following are equivalent.
+\begin{enumerate}
+	\item $\Gamma$ is an algebraic closure operator.
+	\item The union of any up-directed set of $\Gamma$-closed sets is $\Gamma$-closed. 
+	\item The union of any chain of $\Gamma$-clsoed sets is $\Gamma$-clsoed.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (2). 给定$\Gamma$是一个algebraic closure operator. 设$D \subseteq \mathcal{C}_{\Gamma}$上的一个up-directed set, 那么若$C_1,C_2 \in D$，则存在$C_3 \in D$使得$C_1 \subseteq C_3$和$C_2 \subseteq C_3)$. (只有清楚了$D$的定义，接下来的事情就好办了）我们要证明$\bigcup D$也是一个closed set，那么自然地考虑$\Gamma(\bigcup D)$，由于$\Gamma$是algebraic的，所以
+$$
+\Gamma(\bigcup D) = \bigcup \Set{\Gamma(F)}{F\ \text{is finite subset of}\ \bigcup D}.
+$$
+我再来考虑这个$F$，换句话说$F \subseteq \bigcup\limits_{j \in J} C_j$，其中$C_j \in D$和$J$是finite的. 那么
+$$
+\Gamma(F) \subseteq \Gamma(\bigcup\limits_{j \in J} C_j). 
+$$
+由于$D$是一个up-directed set，所以存在某个$C_m > C_j$对任意的$j \in J$成立，那么
+$$
+\Gamma(\bigcup\limits_{j \in J} C_j) \subseteq \Gamma(C_m) = C_m \subseteq \bigcup D.
+$$
+所以对任意的$F$,都有$\Gamma(F) \subseteq \bigcup D$，那么$\Gamma(\bigcup D) \subseteq \bigcup D$，所以$\Gamma(\bigcup D) = \bigcup D$，即$\bigcup D$也是一个closed set.
+
+(2) $\Rightarrow$ (3). 这个方向是trivial的，因为chain是一种特殊的up-directed set.
+
+(3) $\Rightarrow$ (1). 给定$\Gamma$是$X$上的一个closure operator，且任意一个closed sets组成的chain的交还是一个closed set. 对于任意的$S \in X$，我们对$S$的基数$|S|$进行归纳，证明任意的$|S|$都有
+$$
+\Gamma(S) = \bigcup \Set{\Gamma(F)}{F\ \text{is finite subset of}\ \bigcup S}.
+$$
+当$|S|=1$时，这是显然的$F=S$. 假设$|S| = n$时上述等式成立，那么$|S| = n+1$时，考虑$S$上任意元素$x$和包含它的finite set $x \in F \subseteq S$，那么自然地有$|F| \leq |S|$. 我们都可以找到包含它们一个chain $\Gamma(F) \subseteq \Gamma(S)$. TODO！
+\end{proof}
+
+\begin{definition}
+\rm The lattice $\lattice$ is said to be {\color{red} weakly atomic} if whenever $a > b$ in $\lattice$, there exist elements $u,v \in L$ such that $a \geq u \succ v \geq b.$ ($\succ$ means cover)
+\end{definition}
+
+\begin{example}
+\rm 所有的finite lattice都是weakly atomic的；闭区间$[0,1]$上所有实数自然序构成的lattice不是weakly atomic，给定一个$v$，你找不到它的cover $u$.
+\end{example}
+
+\begin{theorem}
+\rm Every algebraic lattice is weakly atomic.
+\end{theorem}
+
+\begin{proof}
+给定$\lattice$上任意两个元素$a,b$，若$a > b$， 那么存在一个compact element $c$使得$a \geq c$且，$b \nleq c$. 这是因为$\lattice$是compactly generated，所以$a$和$b$都是一些compact element的join，$a>b$则说明存在$a$对应的一些compact element是不小于等于$b$的. 接着我们考虑这样一个集合$Q=\Set{x \in a/b}{x \ngeq c}$ (其中$a/b$表示$b \leq x \leq a$称之为interval sublattice或者quotient sublattice). 注意到$Q$不是一个$\emptyset$，因为$b \in Q$. 我们考虑$\lattice$ 上所有的chains，任意一个chain的union还是在$Q$里面，假设这个union大于等于$c$，然而如果出现这种情况，这个chain肯定是infinite的，那么$c$小于等于finite subset of it，这就矛盾了. 根据Zorn's Lemma，$Q$存在一个maximal element $u$, 然后我们取$v = c \vee u$, $u$是covered by $v$，假设存在$u \leq z \leq v$，那么$z \ngeq c$，则$z \in Q$，这与$u$是maximal element是矛盾的. 这样我们就构造出来了满足weakly atomic的$u$和$v$，证毕. 
+\end{proof}
+
+\begin{definition}
+\rm A lattice $\lattice$ is said to be {\color{red} upper continuous} if whenever $D$ is an up-directed set having a least upper bound $\bigvee D$, then for any element $x \in L$, the join $\bigvee_{d \in D}(a \wedge d)$ exists, and 
+$$
+a \wedge \bigvee D = \bigvee_{d \in D}(a \wedge d).
+$$
+The property of being lower continuous is defined dually.
+\end{definition}
+
+\begin{theorem}
+\rm Every algebraic lattice is upper continuous.
+\end{theorem}
+
+\begin{proof}
+给定$\lattice$是一个algebraic lattice和$D$是$\lattice$上一个up-directed subset. 显然地$\bigvee_{d \in D}(a \wedge d) \leq a \wedge \bigvee D$. 我们用$r = a \wedge \bigvee D$. 考虑$c \in \downarrow r \cap L^c$，自然地$c \leq r$，那么$c \leq a$和$c \leq \bigvee D$. 由于$c$是compact的，所以存在finite set $F \subseteq \bigvee D$使得$c \leq \bigvee F$，$D$又是up-directed，所以存在$e \in D$使得$\bigvee F \leq e$，那么$c \leq e$. 前面也有$c \leq a$，所以$c \leq a \wedge e$. 因此
+$$
+r = \bigvee (\downarrow \cap L^c) \leq \bigvee_{d \in D}(a \wedge d).
+$$
+所以有$a \wedge \bigvee D \leq \bigvee_{d \in D}(a \wedge d)$，综上$a \wedge \bigvee D = \bigvee_{d \in D}(a \wedge d)$. 
+\end{proof}
+
+\begin{definition}
+\rm An element $a \in L$ is  called an {\color{red} atom} if $a \succ 0$, and a {\color{red} coatom} if $1 \succ a$. 
+\end{definition}
+
+\begin{definition}
+\rm An element $q$ in a complete lattice $\lattice$ is {\color{red} completely meet irreducible} if, for every subset $S$ of $L$, $q  = \wedge S$ implies $q \in S$.
+\end{definition}
+
+\begin{definition}
+\rm A {\color{red} decomposition} of an element $a \in L$ is a representation $a = \bigwedge Q$ where $Q$ is set of completely meet irreducible elements of $\lattice$
+\end{definition}
+
+\begin{definition}
+\rm A lattice is {\color{red} strongly atomic} if $a>b$ in $\lattice$ implies there exists $u \in L$ such that $a \geq u \succ b$.
+\end{definition}
+
 \end{document}
