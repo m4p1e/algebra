@@ -241,7 +241,7 @@ $$
 
 
 \begin{theorem}
-\rm Let $\Gamma$ be an algebraic closure operator on a set $X$. Then there is an $\algebra$ on the set $X$ such that the subuniverse of $\algebra$ are precisely the closed sets of $\Gamma$.
+\rm {\color{red} (closed sets对应某个algebra的universes)} Let $\Gamma$ be an algebraic closure operator on a set $X$. Then there is an $\algebra$ on the set $X$ such that the subuniverse of $\algebra$ are precisely the closed sets of $\Gamma$.
 \end{theorem}
 
 \begin{proof}
@@ -277,7 +277,7 @@ $$
 
 
 \begin{theorem}
-\rm If $\lattice$ is an algebraic lattice, then $\lattice \cong \Sub{\algebra}$, for some algebra $A$.
+\rm {\color{red} (algebraic lattice同构于某个algebra的universes构成的lattice)} If $\lattice$ is an algebraic lattice, then $\lattice \cong \Sub{\algebra}$, for some algebra $A$.
 \end{theorem}
 
 \begin{proof}
@@ -292,5 +292,47 @@ x\ & \text{otherwise}.
 $$
 把这样的unary operation作用到某个$x \subseteq \lattice^c$，它生成就是principle ideal $\downarrow x$，自然地到某个$A \subseteq lattice^c$，它就是$\Delta(A)$.
 \end{proof}
+
+\newpage
+\subsection{The Irredundant Basis Theorem}
+
+\begin{definition}
+\rm Let $C$ be a closure operator on $A$. For $n < \omega$, let $C_n$ be the function definied on $\text{Su}(A)$ by 
+$$
+C_n(X) = \bigcup\Set{C(Y)}{Y \subseteq X,\ |Y| \leq n}.
+$$
+We say that $C$ is $n$-ary if 
+$$
+C(X) = C_n (X) \cup C_n^2(X) \cup \cdots,
+$$
+where 
+$$
+\begin{aligned}
+C_n^1(X) &= C_n(X), \\
+C_n^{k+1}(X) &= C_n(C_n^k(X)).
+\end{aligned}
+$$
+\end{definition}
+
+\begin{lemma}
+\rm Let $\algebra$ be an algebra all of whose fundamental operations have arity at most $n$. Then $\Sg$ is an $n$-ary closure operator on $A$.
+\end{lemma}
+
+\begin{proof}
+从Theorem 1.13我们得到
+$$
+ E(X) \subseteq (\Sg)_n(X) \subseteq \Sg(X),
+$$
+第一个$\subseteq$由$E(X)$的definitio，第二个$\subseteq$由$\Sg$是algebraic的. 因此
+$$
+\begin{aligned}
+\Sg(X) &= X \cup E(X) \cup E^2(X) \cup \cdots \\
+ &\subseteq (\Sg)_n(X) \cup (\Sg)_n^2(X) \cup \cdots \\
+ &\subseteq \Sg(X).
+\end{aligned}
+$$
+所以$\Sg(x) = (\Sg)_n(X) \cup (\Sg)_n^2(X) \cup \cdots . $
+\end{proof}
+
 
 \end{document}
