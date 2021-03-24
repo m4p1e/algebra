@@ -297,7 +297,7 @@ $$
 \subsection{The Irredundant Basis Theorem}
 
 \begin{definition}
-\rm Let $C$ be a closure operator on $A$. For $n < \omega$, let $C_n$ be the function definied on $\text{Su}(A)$ by 
+\rm Let $C$ be a closure operator on $A$. For $n < \omega$, let $C_n$ be the function definied on $\text{Su}(A)$ (power set) by 
 $$
 C_n(X) = \bigcup\Set{C(Y)}{Y \subseteq X,\ |Y| \leq n}.
 $$
@@ -312,7 +312,10 @@ C_n^1(X) &= C_n(X), \\
 C_n^{k+1}(X) &= C_n(C_n^k(X)).
 \end{aligned}
 $$
+也可以用$C(X) = C_n^{\omega}(X)$来表示，其中$\omega$表示基数最小infinite set的基数. Tarski原本$C_n$的definition里面去掉了$|Y| \leq n$中的等号，这个$n$也叫做the rank of $(A,C)$. 
 \end{definition}
+%https://pdf.sciencedirectassets.com/271536/1-s2.0-S0012365X00X02609/1-s2.0-0012365X75900333/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDWjKUirhbVYtbBPzl18bAayuiamGcqjF4cCbt4l%2FqGswIhAIRpADqK85EmjFgXTJQa70PmJDOV4DYB0iRQ5vV%2BMDt2Kr0DCNX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQAxoMMDU5MDAzNTQ2ODY1IgxaBY6PwiSWwALol%2BgqkQNbGw6RJ0FfAR2LIdBE52bbJIPsfvJGAvfII6W%2FNsldi8Dpd0KeAs1ocLWPWu%2BhEF1s6nr8JoZqoXYj6vOHCDPkMTFzljMzKl54Onl%2BS4jhkA77aE5LztNlXhehZlIWKrSQhNr43bbrY9IVW239WldemfFVPOuLdBCMeefzDazqScmrnlNUy7AwEOHyNSlUDkZuz7GaoUNZvtJx5EoPAo%2BJxf4KNWhE6%2FK%2FiX6y1ZGPzQQrUxvZoc0ihSMqziC59shVnvZdhzGQwUhCoLhS4786syVNHZYe9%2BDbbbVAw2WQGS5ZWGjh0tjUg6JMUAmWqW%2Fd0Dn7zg6Stuctb3%2BEzzshy%2B8kblanPDRm9c4lTKkllta8Bz4tbDQ2QB%2BwTpImLccR6wG5w13mI8CxphT2d%2FjwVcS6YKs18s%2FFar1777yYnICU02eQ3UshS9fvWp7P366Cg2LAYtlPxi0fd6zK7XUyCF3ghUsCncUtRGJohk1MAzhACMGQJSt32%2BvGnWqg%2F8XZL4rHofp%2Fxc1acu69MRJ9rzCD1uyCBjrqAWUqtClc5LxtxcxhLBv1QrCJ0DlSTaGLpLfHIKTkAc365zT26tUaMfeh94JOg%2B1Ky4K%2F4Ha%2FJrywGQJeeUM9sXm0cNMwA%2FovVf2VzCHXXancu8rxL9MfEW%2FDJxjV9Ev3uj%2BY55POhuTxH5aGRxAT12QNJAc%2BSKdqpRvQ08j4H%2B1R%2FZRjOpP8iAiDRNTgo6JZA2CU0rCPLQrXCyoz01n1Ta6qtLhL4Iq5MXBt02%2FP%2FtFuUi6LKLBgqquQLSrK%2BAzb4pXciLwUv81UQbI66OnRf25sLwz9X%2Fvu6bQ9%2FmwAicxOu4JuJUJma8o7bg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210324T132857Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYS6IXFU5I%2F20210324%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=befd72904a96fb4310db932fb1448733eedd8419d0115911f15d28c5bb9e8d5b&hash=4acfc458cfe99335888ff2b376398155000dd6e9e3868490c2e55e316080af04&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=0012365X75900333&tid=spdf-d1eaed5e-918a-4bfd-af1c-59511093703f&sid=7d0d80a511ba8648b06beed4b4885ab20a62gxrqa&type=client
+
 
 \begin{lemma}
 \rm Let $\algebra$ be an algebra all of whose fundamental operations have arity at most $n$. Then $\Sg$ is an $n$-ary closure operator on $A$.
@@ -323,7 +326,7 @@ $$
 $$
  E(X) \subseteq (\Sg)_n(X) \subseteq \Sg(X),
 $$
-第一个$\subseteq$由$E(X)$的definitio，第二个$\subseteq$由$\Sg$是algebraic的. 因此
+第一个$\subseteq$由$E(X)$的definition，第二个$\subseteq$由$\Sg$的definition. 因此
 $$
 \begin{aligned}
 \Sg(X) &= X \cup E(X) \cup E^2(X) \cup \cdots \\
@@ -334,5 +337,33 @@ $$
 所以$\Sg(x) = (\Sg)_n(X) \cup (\Sg)_n^2(X) \cup \cdots . $
 \end{proof}
 
+\begin{theorem}
+\rm Let $C$ be a closure operator on $A$. $A'$ is closed set such that $C(A') = A'$ and $C'$ is the restriction of $C$ to the family of subsets of $A'$. Then $C'$ is also a closure operator; if, moreover, $C$ is $n$-ary,then so is $C'$. 
+\end{theorem}
+
+\begin{proof}
+$C'$是closure operator这是显然的，对于任意的$B' \subseteq A'$, $C'(B') = C(B')$，所以它们两个rank是相同的. 
+\end{proof}
+
+
+\begin{definition}
+\rm The set $X$ is a {\color{red} minimal generating set} for $Y$ if $X$ generates $Y$ and no proper subset of $X$ generates $Y$.
+\end{definition}
+
+\begin{definition}
+\rm Let $C$ be a closure operator on $S$. A set $X \subseteq S$ is called {\color{red} irredundant} if $y \notin C(X-\{y\})$ for every $y \in X$. 
+\end{definition}
+
+\begin{definition}
+\rm Suppose $C$ is a $n$-ary closure operator on $S$. A minimal generating set of $S$ is called an {\color{red} irredundant basis}. Let $\text{IrB}(C) = \SET{n \leq \omega}{$S$ has an irredundant basis of n elements}.$
+\end{definition}
+
+\begin{proposition}
+\rm If $S$ has a finite basis $B$, then it also has a finite irredundant basis $B'$, so $\text{IrB}(S)$ is not empty. 
+\end{proposition}
+
+\begin{proposition}
+\rm If $C$ is finite ary, then every basis for $S$ includes a finite irredundant basis. So that no infinite basis of $S$ is irredundant. Thus $\text{IrB}(S)$ is the set of cardinalities of all irredundant basis for $S$.
+\end{proposition}
 
 \end{document}
