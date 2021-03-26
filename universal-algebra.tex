@@ -370,12 +370,46 @@ $C'$是closure operator这是显然的，对于任意的$B' \subseteq A'$, $C'(B
 \begin{theorem}
 \rm If $C$ is an $n$-ary closure operator on $S$ with $n \geq 2$, and if $i < j$ with $i, j \in \text{IrB}(C)$ such that 
 $$
-{i+1,\cdots,j-1} \cap \text{IrB}(C) = \emptyset,
+\{i+1,\cdots,j-1\} \cap \text{IrB}(C) = \emptyset,
 $$
 then $j-i \leq n-1$. In particular, if $n=2$ then $\text{IrB}(C)$ is a convex subset of $\omega$, i.e., a sequence of consecutive numbers. 
 \end{theorem}
 
 \begin{proof}
-让$B$是一个irreducible basis且$|B| = j$. 让$K$表示那些小于irreducible basis $A$且$|A| \leq i$构成的集合. 我们的策略是从$K$里面挑一个$A_0$出来，让这个$A_0 \subseteq C_n^{t+1}(B)$但是$A_0 \nsubseteq C_n^{t}(B)$，那么再取一点$a_0 \in C_n^{t+1}(B) - C_n^{t}(B)$，把这个$a_0$替换成$c_1,\cdots,c_m \in C_n^{t}(B)$，这样构成了一个新的base $A_1$，它里面是有一个irredundant basis $A_2$的，且这个$|A_2| \leq i+n$的.
+让$B$是一个irreducible basis且$|B| = j$. 让$K$表示那些irreducible basis $A$且$|A| \leq i$构成的集合. 我们的策略是从$K$里面挑一个$A_0$出来，让这个$A_0 \subseteq C_n^{t+1}(B)$但是$A_0 \nsubseteq C_n^{t}(B)$，那么再取一点$a_0 \in C_n^{t+1}(B) - C_n^{t}(B)$，把这个$a_0$替换成$c_1,\cdots,c_m \in C_n^{t}(B)$，这样构成了一个新的base $A_1$，它里面是有一个irredundant basis $A_2$的，且这个$|A_2| < i+n$的. 这是基本的想法，下面来阐述一下这个想法的细节。
+
+首先$B$是一个irreducible basis且$C$是一个$n$-ary closure operator，那么
+$$
+A \subseteq S = C(B) = C_n^{\omega}(B).
+$$
+我们由前面的命题可以知道$A$是一个finite set且是一个base，那么$A \nsubseteq B$. 且$C_n^{k+1} \supseteq C_n^{k}$，那么是可以找到某个$t$使得$A \subseteq C_n^{t+1}(B)$且$A \nsubseteq C_n^{t}(B)$的，这就是为什么可以找到上面$A_0$的原因. 并且如果我们找到这样的$A_0 \in K$，那么
+$$
+A_0 \nsubseteq C_n^t(B)\ \text{implies} \ A \nsubseteq C_n^{t}(B),
+$$
+对任意的$A \in K$成立. 假设不成立，会得到$A$不是irreducible的，这是矛盾的. 我们再考虑对于$A \in K$且$A\subseteq C_n^{t+1}(B)$，我们假设
+$$
+|A_0 \cap (C_n^{t+1}(B) - C_n^{t}(B))| \leq |A \cap (C_n^{t+1}(B) - C_n^{t}(B))|,
+$$
+我们让$A_0$更靠近$B$一点，就是指$C_n^{t+1}(B)$和$C_n^t(B)$中间这个环，包含更少一点$A_0$中的点. 这样做的目的就是让后面得到的新base的基数尽可能的小. 然后我们选择一点$a_0 A_0 \cap (C_n^{t+1}(B) - C_n^{t}(B))$. 那么肯定是存在$b_1,\cdots,b_m \in C_n^t(B)$，其中$m \leq n$，使得
+$$
+a_0 \in C_n({b_1,\cdots,b_m}).
+$$
+然后把$a_0$替换掉得到的新base $A_1 = (A - \{a_0\}) \cup \{b_1,\cdots,b_m\}$，那么$A_0 \subseteq C(A_1)$，所以
+$$
+C(A_0) \subseteq C(A_1).
+$$
+那么在$A_1$上我们是可以找到一个irredundant basis $A_2 \subseteq A_1$. 现在我们有$|A_2| < |A_0| + n$. 如果$|A_0| + n \leq j$，那么这个$A_2$会和我们选择的$A_0$造成矛盾，即
+$$
+|A_2 \cap (C_n^{t+1}(B) - C_n^{t}(B))| < |A_0 \cap (C_n^{t+1}(B) - C_n^{t}(B))|.
+$$
+所以这里$|A_0| + n \geq j$，其中$|A_0| \leq i$，那么就可以得到$j - i \leq n$.
+
+我们来理一下关系，这个命题在讲如果两个irredundant basis的基数之间距离小到一定程度，你找不到一个irreducible basis的基数在它们之间. 这个距离如何描述呢？ $j-i < n$. 上面证明的方法是尝试在irreducible basis 基数小于$i$的basis的基础上构造一个新的irreducible basis出来，看它落在哪里. 
+
+现在我们构造了出来了这个新的irreducible basis $A_2$，我们只知道$|A_2| < i + n$，并不知道它和$i$和$j$有什么关系. 
+
+我们先来思考一下$|A_2|$和$i$的关系，我们先得思考一下$A_0$取法的特殊性，$A_0$ minimal condition这个性质可以让我们取出来$A_2$它不在$K$里面的，因为$A_0$ minimal condition是相对于整个$A \in K$且$A \subseteq C_n^{t+1}(B)$而言的，这是我们的假设。所以$|A_2| > i$.
+
+那么$|A_2|$和$j$的关系如何呢？我们来比较$|A_2|$的upper bound和$j$的关系.
 \end{proof}
 \end{document}
