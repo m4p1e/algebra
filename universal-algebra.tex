@@ -376,7 +376,12 @@ then $j-i \leq n-1$. In particular, if $n=2$ then $\text{IrB}(C)$ is a convex su
 \end{theorem}
 
 \begin{proof}
-让$B$是一个irreducible basis且$|B| = j$. 让$K$表示那些irreducible basis $A$且$|A| \leq i$构成的集合. 我们的策略是从$K$里面挑一个$A_0$出来，让这个$A_0 \subseteq C_n^{t+1}(B)$但是$A_0 \nsubseteq C_n^{t}(B)$，那么再取一点$a_0 \in C_n^{t+1}(B) - C_n^{t}(B)$，把这个$a_0$替换成$c_1,\cdots,c_m \in C_n^{t}(B)$，这样构成了一个新的base $A_1$，它里面是有一个irredundant basis $A_2$的，且这个$|A_2| < i+n$的. 这是基本的想法，下面来阐述一下这个想法的细节。
+让$B$是一个irreducible basis且$|B| = j$. 让$K$表示那些irreducible basis $A$且$|A| \leq i$构成的集合. 我们的策略是从$K$里面挑一个$A_0$出来，让这个$A_0 \subseteq C_n^{t+1}(B)$但是$A_0 \nsubseteq C_n^{t}(B)$，那么再取一点$a_0 \in C_n^{t+1}(B) - C_n^{t}(B)$，把这个$a_0$替换成$c_1,\cdots,c_m \in C_n^{t}(B)$，这样构成了一个新的base $A_1$，它里面是有一个irredundant basis $A_2$的，我们来探讨$A_2$存在性. 这是基本的想法，下面来阐述一下这个想法的细节。
+
+\begin{center}
+\includegraphics[scale=0.5]{./images/irredundant.png}
+\end{center}
+
 
 首先$B$是一个irreducible basis且$C$是一个$n$-ary closure operator，那么
 $$
@@ -398,7 +403,7 @@ $$
 $$
 C(A_0) \subseteq C(A_1).
 $$
-那么在$A_1$上我们是可以找到一个irredundant basis $A_2 \subseteq A_1$. 现在我们有$|A_2| < |A_0| + n$. 如果$|A_0| + n \leq j$，那么这个$A_2$会和我们选择的$A_0$造成矛盾，即
+那么在$A_1$上我们是可以找到一个irredundant basis $A_2 \subseteq A_1$. 现在我们有$|A_2| < |A_0| + n$. 如果$|A_0| + n \leq j$，那么这个$A_2$会和我们选择的$A_0$造成矛盾，为什么呢？ 因为我们前提是$i$和$j$之间是没有irreducible basis的，那么$|A_2| \in K$, 同时$A_2 \subseteq C_n^{t+1}(B)$，就会造成
 $$
 |A_2 \cap (C_n^{t+1}(B) - C_n^{t}(B))| < |A_0 \cap (C_n^{t+1}(B) - C_n^{t}(B))|.
 $$
@@ -410,6 +415,6 @@ $$
 
 我们先来思考一下$|A_2|$和$i$的关系，我们先得思考一下$A_0$取法的特殊性，$A_0$ minimal condition这个性质可以让我们取出来$A_2$它不在$K$里面的，因为$A_0$ minimal condition是相对于整个$A \in K$且$A \subseteq C_n^{t+1}(B)$而言的，这是我们的假设。所以$|A_2| > i$.
 
-那么$|A_2|$和$j$的关系如何呢？我们来比较$|A_2|$的upper bound和$j$的关系.
+那么$|A_2|$和$j$的关系如何呢？我们来比较$|A_2|$的upper bound和$j$的关系. 然后我们知道了这个upper bound不能小于等于$j$的，所以最后得到了我们想要的结论.
 \end{proof}
 \end{document}
