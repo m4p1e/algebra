@@ -250,9 +250,17 @@ Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).
 \end{definition}
 
 \begin{definition}\rm A {\color{red} homomorphism} between two semilattice is a map $\func{f}{\slattice}{\mathcal{T}}$ with the property that $f(x*y) = f(x) * f(y)$. An {\color{red} isomorphism} is a homomorphism that injective and surjective.
+
+{\color{red} 一个semilattice homomorphism肯定是一个monotone function(相对于poset来说)，但是一个monotone function并不一定是一个homomorphism}.
 \end{definition}
 
-{\color{blue} nothing new}...
+{\color{blue} nothing new}... {\color{red} has some!}
+
+\begin{definition}
+\rm A semilattice is {\color{red} bounded} if there is a top/bottom element. 
+\end{definition}
+
+
 
 \begin{theorem}
 \rm Let $\slattice$ be a meet semilattice. Define $\func{\phi}{S}{\mathcal{O}(S)}$ by
