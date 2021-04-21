@@ -44,6 +44,7 @@
 
 \newcommand\slattice{\mathcal{S}}
 \newcommand\lattice{\mathcal{L}}
+\newcommand\eql[1]{\ensuremath\mathbf{Eq}~{#1}}
 
 
 
@@ -761,6 +762,7 @@ $$
 综上$f(x) \leq f(y)$总是成立，所以$f$确实是一个preserving map.
 \end{proof}
 
+%https://core.ac.uk/download/pdf/4886291.pdf complete lattice上的endomorphim monotone map不动点构成集合是还是一个complete lattice.
 
 \newpage
 \section{Alegbraic Lattices}
@@ -800,7 +802,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-假设$x$和$y$是两个compact元素，集合$A$表示such $x \vee y \leq A$. 那么自然地有$x \leq x \vee y \leq A $和$y \leq x \vee y \leq A$，所以各自都可以找到$x \leq F_x \subseteq A$和$y \leq F_y \subseteq F_y A$. 从$F_x$和$F_y$各挑一个元素出来$a$和$b$出来，那么$x\vee y \leq a\vee b$. 0属于$\lattice^c$这是很自然的，它比任何一个元素都小.
+假设$x$和$y$是两个compact元素，集合$A$表示such $x \vee y \leq A$. 那么自然地有$x \leq x \vee y \leq A $和$y \leq x \vee y \leq A$，所以各自都可以找到$x \leq F_x \subseteq A$和$y \leq F_y \subseteq A$. 从$F_x$和$F_y$各挑一个元素出来$a$和$b$出来，那么$x\vee y \leq a\vee b$. 0属于$\lattice^c$这是很自然的，它比任何一个元素都小.
 \end{proof}
 
 \begin{definition}
@@ -1078,6 +1080,56 @@ $$
 
 \begin{definition}
 \rm A lattice is {\color{red} strongly atomic} if $a>b$ in $\lattice$ implies there exists $u \in L$ such that $a \geq u \succ b$.
+\end{definition}
+
+
+\section{Representation by Equivalence Relations}
+
+{\color{red} 这章目的是像在群论里面那样每一个group都能找到和它同构的permutation group，同样每一个lattice也都能找到和它同构的equivalence relation lattice}.
+
+{\color{blue} 等价关系的定义，等价类这是你必须已经提前掌握的东西！为了后面好说明一些东西，我还是把等价关系的定义再写一遍}.
+
+\begin{definition}
+\rm An {\color{red} equivalence relations} on a set $X$ is a binary relation $E$ satisfying, for all $x, y, z \in X$,
+\begin{enumerate}
+	\item $x~E~x$.
+	\item $x~E~y$ implies $y~E~x$.
+	\item if $x~E~y$ and $y~E~z$, then $x~E~z$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\rm Given two sets $X$ and $Y$, and $\func{f}{X}{Y}$ is any function, then 
+$$
+\text{ker}~f = \Set{(x,y) \in X^2}{f(x) = f(y)}
+$$
+is an equivalen relation, called the kernel of $f$. 
+
+{\color{blue} 这里的kernel和algebra那里面的kernel似乎有点不太一样...}
+\end{definition}
+
+\begin{definition}
+\rm {\color{red}(同余关系)} If $X$ and $Y$ are algebras and $\func{f}{X}{Y}$ is a homomorphism, then $\text{ker}~f$ is a {\color{red} congruence relation}.
+\end{definition}
+
+\begin{definition}
+\rm {\color{red}(等价关系代数格)} Thinking of binary relations as subsets of $X^2$, the axioms (1)-(3) for an equivalence relation are finitary closure rules. Thus the collection of all equivalence relations on $X$ forms an algebraic lattice $\eql{X}$. The order on $\eql{X}$ is given by set cotainment, i.e.,
+$$
+\begin{aligned}
+R \leq S\;& \text{iff}~R \subseteq S \in \mathfrak{P}(X^2)\\
+& \text{iff}~(x,y) \in R \Rightarrow (x,y) \in S.
+\end{aligned}
+$$
+{\color{blue} 等价关系的几个关系很自然的联想到了finitary closure rules}.
+\end{definition}
+
+\begin{definition}
+\rm The greatest element of $\eql{X}$ is the universal relation $X^2$, and its least element is the equality relation $=$. The meet operation in $\eql{X}$ is of course set intersection, which means that $(x,y) \in \bigwedge\limits_{i \in I} E_i$ if and only if $x E_i y$ for all $i \in I$. The join $\bigvee\limits_{i \in I} E_i$ is the transitive closure of the set union $\bigcup\limits_{i \in I} E_i$. Thus $(x,y) \in \bigvee\limits_{i \in I} E_i$ if and only if there exists a finite sequence of element $x_i$ and $i_j$ such that 
+$$
+x = x_0~E_{i_1}~x_1~E_{i_2}~x_2~\cdots x_{k-1}~E_{i_k}~x_k = y.
+$$
+
+{\color{blue} 这些都是很自然衍生出来的概念，等价关系的交还是一个等价关系，等价关系的并是一个传递闭包也是构成一个新的等价关系}.
 \end{definition}
 
 \end{document}
