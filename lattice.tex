@@ -873,10 +873,10 @@ $$
 \end{theorem}
 
 \begin{proof}
-首先我们得说明$\mathcal{C}(\Gamma)$是一个complete lattice. 给定一族$X$上的子集$A_{i \in I}$，我们定义$\bigvee\limits_{i \in I} A_i = \Gamma(\bigcup\limits_{i \in I} A_i)$和$\bigwedge_{i \in I} A_i = \Gamma(\bigcap_{i \in I} A_i)$，其中最大元是$\Gamma(X)$和最小元是$\Gamma(\emptyset)$. 所以$\mathcal{C}_{\Gamma}$是一个complete lattice.
+首先我们得说明$\mathcal{C}_\Gamma$是一个complete lattice. 给定一族$\mathcal{C}_\Gamma$上的元素$B_{i \in I}$，我们定义$\bigvee\limits_{i \in I} B_i = \Gamma(\bigcup\limits_{i \in I} B_i)$和$\bigwedge_{i \in I} B_i = \Gamma(\bigcap_{i \in I} B_i)$，其中最大元是$\Gamma(X)$和最小元是$\Gamma(\emptyset)$. 所以$\mathcal{C}_{\Gamma}$是一个complete lattice.
 
 
-给定$X$上的有限子集$F$和$X$上子集族$A_{i \in I}$. 若$\Gamma(F) \leq \bigvee\limits_{i\in I}\Gamma(A_i)$即$\Gamma(F) \subseteq \Gamma(\bigcup\limits_{i\in I} A_i)$，要{\color{red} 证明$\Gamma(F)$是compact的，就是要证明$\Gamma(F) \subseteq \bigvee\limits_{j \in J} A_j$其中$J$是有限的且$J \subseteq I$}.
+给定$X$上的有限子集$F$和$X$上子集族$A_{i \in I}$. 若$\Gamma(F) \leq \bigvee\limits_{i\in I}\Gamma(A_i) = \Gamma(\bigcup\limits_{i\in I} A_i)$，要{\color{red} 证明$\Gamma(F)$是compact的，就是要证明$\Gamma(F) \subseteq \bigvee\limits_{j \in J} \Gamma(A_j)$其中$J$是有限的且$J \subseteq I$}.
 
 由于$\Gamma$是algebraic的，那么
 $$
@@ -890,11 +890,10 @@ $$
 $$
 \Gamma(F) \subseteq \Gamma(\bigcup\limits_{x \in F}\Gamma(G_x)) \subseteq \Gamma(\bigcup\limits_{x \in F} \Gamma(\bigcup\limits_{j\in J_x} A_j)) = \bigvee\limits_{x \in F} \bigvee\limits_{j\in J_x} \Gamma(A_j) = \bigvee\limits_{\begin{aligned} x &\in F \\ j &\in J_x \end{aligned}} \Gamma(A_j).
 $$
-这里我们弄复杂了一点，直接让$A_{i \in I} \in \mathcal{C}_\Gamma$并且$\bigvee A_i = \Gamma(\bigcup A_i)$可能更方便一点.
 
 反过来，若$C$是$\mathcal{C}_{\Gamma}$上的compact element. {\color{red}我们要证明$C$是$X$上某个有限子集的闭包}. 因为$C$是closed的，则$\Gamma(C) = C$. 再由$\Gamma$是algebraic的，那么$C = \bigcup\SET{\Gamma(F)}{$F$ is finite subset of $C$}$. 又因为$C$是compact的，所以存在有限多个$\Gamma(F_1),\cdots,\Gamma(F_n)$使得$C = \Gamma(F_1) \vee \cdots \vee \Gamma(F_n) = \Gamma(F_1 \cup \cdots \cup F_n).$命题得证.
 
-{\color{red} 最后证明$\mathcal{C}_{\Gamma}^c$是join dense的}. 对于任意的$A \in \mathcal{C}_{\Gamma}$，$A$是closed，那么$A = \bigvee\limits_{i \in I} \Gamma(F_i)$其中finite subset $F \subseteq A$. 自然地有$\bigvee(\downarrow A \cap \mathcal{C}_{\Gamma}^c) \leq A$且$\Gamma(F_i)_{i \in I} \in \mathcal{C}_{\Gamma}^c$，那么$\bigvee(\downarrow A \cap \mathcal{C}_{\Gamma}^c) = A$. 命题得证.
+{\color{red} 最后证明$\mathcal{C}_{\Gamma}^c$是join dense的}. 对于任意的$B \in \mathcal{C}_{\Gamma}$，$B$是closed，那么$B = \bigvee\limits_{i \in I} \Gamma(F_i)$其中finite subset $F \subseteq B$ (这里已经可以说明$B$是compactly generated).  自然地有$\bigvee(\downarrow B \cap \mathcal{C}_{\Gamma}^c) \leq A$且$\Gamma(F_i)_{i \in I} \in \mathcal{C}_{\Gamma}^c$，那么$\bigvee(\downarrow B \cap \mathcal{C}_{\Gamma}^c) = B$. 命题得证.
 
 \color{blue} 我们用algebraic closure operator生成了一个algebraic lattice，其上每一个元素都是compact elements的join，自然地联想到closure operator是algebraic的那个条件，每一个closed set都可以用finitely generated closed set来表示.
 \end{proof}
