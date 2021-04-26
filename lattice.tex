@@ -1161,8 +1161,15 @@ And $R \vee S$ is the union of this chain.
 \end{definition}
 
 \begin{definition}
-\rm A weak representation of $\lattice$ is a pair $(U,F)$ where $U$ is a set and $\func{F}{\lattice}{\eql{U}}$ is a one-to-one meet homomorphism.
+\rm A {\color{red} weak representation} of $\lattice$ is a pair $(U,F)$ where $U$ is a set and $\func{F}{\lattice}{\eql{U}}$ is a one-to-one meet homomorphism. Let us order the weak representation of $\lattice$ by
+$$
+(U,F) \sqsubseteq (V,G)~\text{if}~U \subseteq V~\text{and}~G(x) \cap U^2 = F(x)~\text{for all}~x \in L.
+$$
 \end{definition}
+
+\begin{lemma}
+\rm If $(U,F)$ is a weak representation of $\lattice$ and $(p,q) \in F(x \vee y)$, then there exists $(V,G) \sqsupseteq (U,F)$  with $(p,q) \in G(x)\circ G(y) \circ G(x) \circ G(y)$.
+\end{lemma}
 
 \begin{theorem}
 \rm Every lattice has a type 3 representation.
