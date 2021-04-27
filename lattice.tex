@@ -1171,6 +1171,30 @@ $$
 \rm If $(U,F)$ is a weak representation of $\lattice$ and $(p,q) \in F(x \vee y)$, then there exists $(V,G) \sqsupseteq (U,F)$  with $(p,q) \in G(x)\circ G(y) \circ G(x) \circ G(y)$.
 \end{lemma}
 
+\begin{proof}
+往$U$里面加3个新的元素，使得$V = U \cup {r,s,t}$. 我们想让
+$$
+p~G(x)~r~G(y)~s~G(x)~t~G(y)~q.
+$$
+\begin{center}
+\includegraphics[scale=0.5]{./images/rel_lattice.png}
+\end{center}
+于是我们定义对任意的$z \in L$和$u,v \in U$, 使得$G(z)$满足下述条件
+\begin{enumerate}
+	\item $u~G(z)~v~\text{iff}~u~F(z)~v,$
+	\item $u~G(z)~r~\text{iff}~z \geq x ~\text{and}~u~F(z)~p,$
+	\item $u~G(z)~s~\text{iff}~z \geq x \vee y ~\text{and}~u~F(z)~p,$
+	\item $u~G(z)~r~\text{iff}~z \geq y ~\text{and}~u~F(z)~p,$
+	\item $r~G(z)~s~\text{iff}~z \geq y,$
+	\item $s~G(z)~t~\text{iff}~z \geq x,$
+	\item $r~G(z)~t~\text{iff}~z \geq x \vee y.$
+\end{enumerate}
+%TODO tikz!
+注意到$G(z)$由于(1)是满足自反省的性的，并且满足了weak representtation上order关系，即$G(z) \cap U^2 = F(z)$. 同时观察到条件(2-7)都和$r,s,t$的位置无关，所以它们也都是满足对称性的. 传递性也是很显然的，i.e.,(2)(4) => (3) 和 (5)(6) => 7. 所以$G(z)$是一个等价关系. 
+
+我们再来观察是否满足上述图里面的关系，首先来看$p~G(x)~r$, 把(2)中的$u$换成$p$和$z$换成$x$， 那么再看条件$x \geq x$ and $p~F(z)~p$， 这是显然满足的. 再来试一个$r~G(y)~s$，把(5)中的$z$换成$y$，那么条件变为$y \leq y$，这也是满足的. 回过头来看这个构造比较巧妙，注意到(2-4)必须带一个$u~F(x)~p$，这是要使得它们和$1$构成传递关系的时候是满足条件的.
+\end{proof}
+
 \begin{theorem}
 \rm Every lattice has a type 3 representation.
 \end{theorem}
