@@ -1160,6 +1160,7 @@ And $R \vee S$ is the union of this chain.
 \end{enumerate}
 \end{definition}
 
+\newpage
 \begin{definition}
 \rm A {\color{red} weak representation} of $\lattice$ is a pair $(U,F)$ where $U$ is a set and $\func{F}{\lattice}{\eql{U}}$ is a one-to-one meet homomorphism. Let us order the weak representation of $\lattice$ by
 $$
@@ -1172,7 +1173,7 @@ $$
 \end{lemma}
 
 \begin{proof}
-往$U$里面加3个新的元素，使得$V = U \cup {r,s,t}$. 我们想让
+往$U$里面加3个新的元素，使得$V = U \cup \{r,s,t\}$. 我们想让
 $$
 p~G(x)~r~G(y)~s~G(x)~t~G(y)~q.
 $$
@@ -1195,9 +1196,48 @@ $$
 我们再来观察是否满足上述图里面的关系，首先来看$p~G(x)~r$, 把(2)中的$u$换成$p$和$z$换成$x$， 那么再看条件$x \geq x$ and $p~F(z)~p$， 这是显然满足的. 再来试一个$r~G(y)~s$，把(5)中的$z$换成$y$，那么条件变为$y \leq y$，这也是满足的. 回过头来看这个构造比较巧妙，注意到(2-4)必须带一个$u~F(x)~p$，这是要使得它们和$1$构成传递关系的时候是满足条件的.
 \end{proof}
 
+\begin{lemma}
+\rm Let $\lambda$ be limit ordinal, and for $\xi < \lambda$ let $(U_\xi, F_\xi)$ be weak reprensentations of $\lattice$ such that $\alpha < \beta < \lambda$ implies $(U_\alpha,F_\alpha) \sqsubseteq (U_\beta, F_\beta)$. Let $V = \bigcup\limits_{\xi < \lambda} U_\xi$ and $G(x) = \bigcup\limits_{\xi < \lambda}F_\xi(x)$ for all $x \in L$. Then $(V,G)$ is a weak representation of $\lattice$ with $(U_\xi, F_\xi) \sqsubseteq (V,G)$ for each $\xi < \lambda$.
+\end{lemma}
+
+\begin{proof}
+先来证明满足的order关系，考虑$\xi < \lambda$，$U_\xi \subseteq V$这是显然的.    对任意的$\alpha < \xi$有$F_\alpha(x) = F_\xi \cap U_\alpha^2 \leq F_\xi(x)$和对任意的$\beta > \xi$有$F_\xi(x) = F_\beta(x) \cap U_\xi^2$，这两个东西就说明比你小的序数交出来的结果不会比你大，比你大的序数交出来的结果等于你是自身，所以有
+$$
+G(x) \cap U_\xi^2 = \left( \bigcup\limits_{\gamma \leq \lambda} F_\gamma(x) \right) \cap U_\xi^2 = \bigcup\limits_{\gamma \leq \lambda}(F_\gamma(x) \cap U_\xi^2) = F_\xi(x).
+$$
+再来证明单调和meet homomorphism，单调是因为$F_\xi$都是单调的，且满足对任意的$\alpha < \xi$有$F_\alpha(x) = F_\xi \cap U_\alpha^2 \leq F_\xi(x)$，这说明不会相互干扰，所以$G$是单调的. 最后只剩下meet homomorphism，单调即order-preserving，所以有$G(x \wedge y) \leq G(x) \wedge G(y)$. 考虑$(u,v) \in G(x) \wedge G(y)$，那么存在$\alpha < \lambda$使得$(u,v) \in F_\alpha(x)$和$\beta < \lambda$使得$(u,v) \in F_\beta(y)$. 让$\gamma = \max(\alpha,\beta)$，那么$(u,v) \in F_\gamma(x) \wedge F_\gamma(y) = F_\gamma(x \wedge y) \leq G(x \wedge y)$. 所以$G(x) \wedge G(y) \leq G(x \wedge y).$ 综上即有$G(x \wedge y) = G(x) \wedge G(y)$. 
+
+还有一个问题是$G(x)$是一个等价关系吗？ 考虑任意的$(u,v) \in G(x)$, 那么存在$\alpha < \lambda$使得$(u,v) \in F_\alpha(x)$，那么也有$(v,u) \in F_\alpha$，对称性满足了，自反性是trivial的，那么传递性呢？若还有$(v,w) \in G(x)$，那么存在$\beta$使得$(v,w) \in F_\beta(x)$. 让$\gamma= \max(\alpha,\beta)$，那么$(v,u),(u,w) \in F_\gamma(x)$，所以有$(v,w) \in F_\gamma(x)$. 好家伙似乎又把前面的东西写了一遍...
+\end{proof}
+
 \begin{theorem}
 \rm Every lattice has a type 3 representation.
 \end{theorem}
 
+\begin{proof}
+前面我们已经证明$G(x)$是一个meet homomorphism且单调，现在我们的目标是证明$G(x \vee y) = G(x) \circ G(y) \circ G(x) \circ G(y) \leq G(x) \vee G(y)$，显然$G$就是一个lattice embedding ($G$单调可以得到$G(x \vee y) \geq G(x) \vee G(x)$).
+
+现在我们从任意一个$\lattice$的weak representation $(U_0, F_0)$开始，考虑所有这样的四元组$(p,q,x,y)$，它是满足$(p,q) \in F_0(x \vee y)$，每次拿一个出来用下第一个lemma构造一个新的weak representation，让它们作为order $(p_\xi,q_\xi, x_\xi, y_\xi)$使得$(U_\xi,F_\xi)$，其中$\xi < \eta$，它们是满足如下条件
+\begin{enumerate}
+	\item 若$\xi < \eta$, 则$(U_\xi,F_\xi) \sqsubseteq (U_{\xi+1}, F_{\xi+1})$且$(p_\xi,q_\xi) \in F_{\xi+1}(x) \circ F_{\xi+1}(y) \circ F_{\xi+1}(x) \circ F_{\xi+1}(y)$;
+	\item 若$\lambda < \eta$是一个limit original，则$U_\lambda = \bigcup\limits_{\xi < \lambda} U_\xi$和对任意的$x\in L$有$F_\lambda(x) = \bigcup\limits_{\xi < \lambda} F_\xi$.
+\end{enumerate}
+其中$(p_\xi, q_\xi) \in F_\xi(x \vee y)$. {\color{blue} 现在我们是用ordinal number来描述的，所以你要分别对0或者successor ordinal和limit ordinal来说明}. 
+
+我们让$V_1 = U_\eta$和$G_1 = F_\eta$. 若对任意的$(p,q) \in U_0$和$x, y \in L$且$(p,q) \in F(x \vee y )$，那么存在$(p,q,x,y) = (p_\xi, q_\xi, x_\xi, y_\xi)$，使得$(p,q) = (p_\xi, q_\xi) \in F_{\xi+1}(x) \circ F_{\xi+1}(y) \circ F_{\xi+1}(x) \circ F_{\xi+1}(y)$，即
+$$
+F_0(x \vee y) \subseteq G_1(x) \circ G_1(y) \circ G_1(x) \circ G_1(y).
+$$
+注意到有$(U_0,F_0) \sqsubseteq (V_1,G_1)$. 我们定义$(V_0, G_0) = (U_0, F_0)$，然后用$(V_1, G_1)$代替$(U_0, F_0)$重复上面整个过程，我们又可以得到一个pair $(V_2, G_2)$，类似我们重复$\omega$次，就可以得到
+$$
+(U_0, F_0) = (V_0, G_0) \sqsubseteq (V_1, G_1) \sqsubseteq (V_2, G_2) \sqsubseteq \cdots.
+$$
+其中对任意的$n \in \omega$和$x,y \in L$有$G_n(x \vee y) \subseteq G_{n+1}(x) \circ G_{n+1}(y) \circ G_{n+1}(x) \circ G_{n+1}(y)$.
+
+最后我们让$W = \bigcup\limits_{n \in \omega} V_n$和$H(x) = \bigcup\limits_{n \in \omega}G_n(x)$，为什么会有
+$$
+H(x \vee y) = H(x) \circ H(y) \circ H(x) \circ H(y).
+$$
+\end{proof}
 
 \end{document}
