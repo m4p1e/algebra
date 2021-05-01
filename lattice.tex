@@ -1202,7 +1202,7 @@ $$
 \end{lemma}
 
 \begin{proof}
-先来证明满足的order关系，考虑$\xi < \lambda$，$U_\xi \subseteq V$这是显然的.    对任意的$\alpha < \xi$有$F_\alpha(x) = F_\xi \cap U_\alpha^2 \leq F_\xi(x)$和对任意的$\beta > \xi$有$F_\xi(x) = F_\beta(x) \cap U_\xi^2$，这两个东西就说明比你小的序数交出来的结果不会比你大，比你大的序数交出来的结果等于你是自身，所以有
+先来证明满足的order关系，考虑$\xi < \lambda$，$U_\xi \subseteq V$这是显然的.    对任意的$\alpha < \xi$有$F_\alpha(x) = F_\xi \cap U_\alpha^2 \leq F_\xi(x)$和对任意的$\beta > \xi$有$F_\xi(x) = F_\beta(x) \cap U_\xi^2$，{\color{blue} 这两个东西就说明比你小的序数交出来的结果不会比你大，比你大的序数交出来的结果等于你是自身}，所以有
 $$
 G(x) \cap U_\xi^2 = \left( \bigcup\limits_{\gamma \leq \lambda} F_\gamma(x) \right) \cap U_\xi^2 = \bigcup\limits_{\gamma \leq \lambda}(F_\gamma(x) \cap U_\xi^2) = F_\xi(x).
 $$
@@ -1218,7 +1218,7 @@ $$
 \begin{proof}
 前面我们已经证明$G(x)$是一个meet homomorphism且单调，现在我们的目标是证明$G(x \vee y) = G(x) \circ G(y) \circ G(x) \circ G(y) \leq G(x) \vee G(y)$，显然$G$就是一个lattice embedding ($G$单调可以得到$G(x \vee y) \geq G(x) \vee G(x)$).
 
-现在我们从任意一个$\lattice$的weak representation $(U_0, F_0)$开始，考虑所有这样的四元组$(p,q,x,y)$，它是满足$(p,q) \in F_0(x \vee y)$，每次拿一个出来用下第一个lemma构造一个新的weak representation，让它们作为order $(p_\xi,q_\xi, x_\xi, y_\xi)$使得$(U_\xi,F_\xi)$，其中$\xi < \eta$，它们是满足如下条件
+现在我们从任意一个$\lattice$的weak representation $(U_0, F_0)$开始，在此之前所有的lattice都有一个weak representation存在.{\color{blue} 其实这算一个lemma，但是证明没有新意，都是构造性的}. 我们让$U_0 = L$，若$(y,z) \in F_0(x)$当且仅当$y=z$或者$y \vee z \leq x$. 然后考虑所有这样的四元组$(p,q,x,y)$，它是满足$(p,q) \in F_0(x \vee y)$，每次拿一个出来用下第一个lemma构造一个新的weak representation，让它们作为order $(p_\xi,q_\xi, x_\xi, y_\xi)$使得$(U_\xi,F_\xi)$，其中$\xi < \eta$，它们是满足如下条件
 \begin{enumerate}
 	\item 若$\xi < \eta$, 则$(U_\xi,F_\xi) \sqsubseteq (U_{\xi+1}, F_{\xi+1})$且$(p_\xi,q_\xi) \in F_{\xi+1}(x) \circ F_{\xi+1}(y) \circ F_{\xi+1}(x) \circ F_{\xi+1}(y)$;
 	\item 若$\lambda < \eta$是一个limit original，则$U_\lambda = \bigcup\limits_{\xi < \lambda} U_\xi$和对任意的$x\in L$有$F_\lambda(x) = \bigcup\limits_{\xi < \lambda} F_\xi$.
@@ -1241,7 +1241,7 @@ H(x \vee y) = H(x) \circ H(y) \circ H(x) \circ H(y).
 $$
 我的理解实际第一步并不能直接得到上面的等式，只能得到
 $$
-H(x \vee y) \leq H(x) \circ H(y) \circ H(x) \circ H(y).
+H(x \vee y) = \bigcup\limits_{n \in \omega}G_n(x \vee y) \subseteq  \bigcup\limits_{{n+1} \in \omega}G_{n+1}(x) \circ G_{n+1}(y) \circ G_{n+1}(x) \circ G_{n+1}(y) \leq H(x) \circ H(y) \circ H(x) \circ H(y).
 $$
 再用一下单调性就能得到上面的等式.
 \end{proof}
