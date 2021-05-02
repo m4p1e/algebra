@@ -1218,7 +1218,7 @@ $$
 \begin{proof}
 前面我们已经证明$G(x)$是一个meet homomorphism且单调，现在我们的目标是证明$G(x \vee y) = G(x) \circ G(y) \circ G(x) \circ G(y) \leq G(x) \vee G(y)$，显然$G$就是一个lattice embedding ($G$单调可以得到$G(x \vee y) \geq G(x) \vee G(x)$).
 
-现在我们从任意一个$\lattice$的weak representation $(U_0, F_0)$开始，在此之前所有的lattice都有一个weak representation存在.{\color{blue} 其实这算一个lemma，但是证明没有新意，都是构造性的}. 我们让$U_0 = L$，若$(y,z) \in F_0(x)$当且仅当$y=z$或者$y \vee z \leq x$. 然后考虑所有这样的四元组$(p,q,x,y)$，它是满足$(p,q) \in F_0(x \vee y)$，每次拿一个出来用下第一个lemma构造一个新的weak representation，让它们作为order $(p_\xi,q_\xi, x_\xi, y_\xi)$使得$(U_\xi,F_\xi)$，其中$\xi < \eta$，它们是满足如下条件
+现在我们从任意一个$\lattice$的weak representation $(U_0, F_0)$开始，在此之前所有的lattice都有一个weak representation存在. {\color{blue} 其实这算一个lemma，但是证明没有新意，都是构造性的}. 我们让$U_0 = L$，若$(y,z) \in F_0(x)$当且仅当$y=z$或者$y \vee z \leq x$. 然后考虑所有这样的四元组$(p,q,x,y)$，它是满足$(p,q) \in F_0(x \vee y)$，每次拿一个出来用下第一个lemma构造一个新的weak representation，让它们作为order $(p_\xi,q_\xi, x_\xi, y_\xi)$使得$(U_\xi,F_\xi)$，其中$\xi < \eta$，它们是满足如下条件
 \begin{enumerate}
 	\item 若$\xi < \eta$, 则$(U_\xi,F_\xi) \sqsubseteq (U_{\xi+1}, F_{\xi+1})$且$(p_\xi,q_\xi) \in F_{\xi+1}(x) \circ F_{\xi+1}(y) \circ F_{\xi+1}(x) \circ F_{\xi+1}(y)$;
 	\item 若$\lambda < \eta$是一个limit original，则$U_\lambda = \bigcup\limits_{\xi < \lambda} U_\xi$和对任意的$x\in L$有$F_\lambda(x) = \bigcup\limits_{\xi < \lambda} F_\xi$.
@@ -1255,4 +1255,22 @@ $$
 \begin{proof}
 这个命题在1980被Pavel Pavel Pudlák and Jı́ři Tůma证明了，but the proof is quite difficult，{\color{blue} 若是未来机会再去看看吧}.
 \end{proof}
+
+\begin{theorem}
+\rm Every lattice can be embedded into the lattice of subgroups of a group
+\end{theorem}
+%http://www.math.hawaii.edu/~jb/expfour.pdf 更朴素的证明
+
+\begin{proof}
+Whitman在1946年证明了"every lattice can be embedded into the lattice of equivalence relations on same set"，在此之初这个问题的motivation源自1930年的Birkhoff's observation "a representation of a lattice $\lattice$ by equivalence relations induces an embedding of $\lattice$ into the lattice of subgroups of a group". 所以当前这个定理是和Whitman's theorem是等价的，我们来尝试构造性的证明它.
+
+给定一个representation $(X,F)$ of $\lattice$， 让$\mathcal{G}$表示$X$上所有限置换群(move only finitely many elements即只有有限多个$f(s) \neq s$)构成的群. 再让$\textbf{Sub}~\mathcal{G}$表示the lattice of subgroups of $\mathcal{G}$. 让$\func{h}{\lattice}{\textbf{Sub}~\mathcal{G}}$定义如下
+$$
+h(a) = \Set{\pi \in G}{x~F(a)~\pi(x) ~\text{for all}~ x \in X}.
+$$
+首先我们想证明$h(a)$是一个subgroup of $\mathcal{G}$. 若存在$\pi_1, \pi_2 \in h(a)$和任意的$x \in X$，考虑$\pi_1 \circ \pi_2(x) = \pi_1(\pi_2(x))$，那么$x~F(a)~\pi_2(x)~ F(a)~\pi_1(\pi_2(x))$，所以$\pi_1 \circ \pi_2 \in h(x)$. $h$是monotone还是比较显然的. 最后的lattice homomorphism证明，若$a , b \in L$, 考虑$h(a \wedge b)$， 在monotone的条件下我们只需要证明$h(a \wedge b) \geq h(a) \wedge h(b)$.
+
+
+\end{proof}
+
 \end{document}
