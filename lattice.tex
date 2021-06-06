@@ -1132,7 +1132,7 @@ $$
 x = x_0~E_{i_1}~x_1~E_{i_2}~x_2~\cdots x_{k-1}~E_{i_k}~x_k = y.
 $$
 
-{\color{blue} 这些都是很自然衍生出来的概念，等价关系的交还是一个等价关系，等价关系的并是一个传递闭包也是构成一个新的等价关系}.
+{\color{blue} 这些都是很自然衍生出来的概念，等价关系的交还是一个等价关系，等价关系的并并不一定构成一个等价关系，所以需要取一下它的传递闭包}.
 \end{definition}
 
 \begin{definition}
@@ -1148,7 +1148,7 @@ And $R \vee S$ is the union of this chain.
 \end{lemma}
 
 \begin{proof}
-假设$(x, y) \in S$，由于$R$是一个等价关系，所以存在$(x,x) \in R$，即$(x, y) \in R \circ S$. 同理可以证明$R \subseteq R \circ S$. 
+对任意的$(x, y) \in S$，由于$R$是一个等价关系，因此存在$(y,y) \in R$，即$(x, y) \in R \circ S$，所以$S \subseteq R \circ S$. 同理可以证明$R \subseteq R \circ S$. 
 \end{proof}
 
 \begin{definition}
