@@ -372,7 +372,7 @@ $$
 	\item integration map: $T \in \mathcal{L}(\mathcal{P}({R}),\mathbb{R})$定义为\[Tp = \int_{0}^{1} p(x)dx.\]
 	\item from $F^n$ to $F^m$($m,n$都是正整数): 定义$A_{j,k} \in F, j = 1,\cdots,m , k = 1,\cdots,n$，然后使得$T \in \mathcal{L}(F^n,F^m)$
 	$$
-		T(x_1,\cdots,x_n) = (A_{1,1}x_1+\cdots+A_{1,n}x_n,A_{m,1}x_1+\cdots+A_{m,n}x_n).
+		T(x_1,\cdots,x_n) = (A_{1,1}x_1+\cdots+A_{1,n}x_n,\cdots,A_{m,1}x_1+\cdots+A_{m,n}x_n).
 	$$
 \end{enumerate}
 \end{example}
@@ -581,12 +581,14 @@ $$
 但是在此之前，我们并没有定义矩阵乘法. 如果我们希望上面的问题有一个positive answer，定义$\mathcal{M}(S) = A$和$\mathcal{M}(T) = C$，取$1 \leq k \leq p $，那么
 $$
 \begin{aligned}
-(ST)u_k &= S(\sum\limits_{r=1}^{n}C_{r,k}v_r) \\
-		&= \sum\limits_{r=1}^{n}C_{r,k}\sum\limits_{j=1}^{m}A_{j,r}w_j\\
+(ST)u_k &= S(\sum\limits_{r=1}^{n}C_{r,k}v_r) & {\color{red}\text{apply $Tu_k$}} \\
+		&= S(C_{1,k}v_1) + S(C_{2,k}v_2) + \cdots + S(C_{n,k}v_n) & {\color{red}\text{利用线性函数的可加性}} \\
+		&= C_{1,k}S(v_1) + C_{2,k}S(v_2) + \cdots + C_{n,k}S(v_n)  & {\color{red}\text{利用线性函数的齐次性}} \\
+		&= \sum\limits_{r=1}^{n}C_{r,k}\sum\limits_{j=1}^{m}A_{j,r}w_j & {\color{red}\text{apply $Sv_j$}}\\
 		&= \sum\limits_{j=1}^{m}(\sum\limits_{r=1}^{n}A_{j,r}C_{r,k})w_j.
 \end{aligned}
 $$
-所以$ST$也是一个$m \times p$ matrix，这个结果是非常自然的，描述basis在linear map之间传递. 所以我们由此给出一个正式的矩阵乘法的定义.
+所以$ST$也是一个$m \times p$ matrix，这个结果是非常自然的，{\color{blue}描述basis在linear map之间传递}. 所以我们由此给出一个正式的矩阵乘法的定义.
 
 \begin{definition}
 \rm 给定$ m \times n$ matrix $A$和$n \times p$ matrix $C$. 则$m \times p$ product matrix $AC$的第j行和第$k$列定义为
