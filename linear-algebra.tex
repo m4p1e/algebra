@@ -74,7 +74,7 @@
 \end{definition}
 
 
-vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication. 很明显addition包含了abelian group的所有性质，vector space是 $R$-module的特殊化，$R$-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上，而不是环上的乘法. 这样做的好处是可以让可以把环上一些看起来不那么好性质都变得好一点，例如ideal在一般情况下并不一定还是一个环. 不那么好是相对于群的一些性质来说的，例如正规子群. 在定义了module之后，你会发现ideal就是一个module，我们的操作终于都在一个东西下面了，不会轻易的跑出去.
+vector spaces背后的直觉是什么？《linear algebra done right》上说来自于$F^{n}$上的addition和scalar multiplication. 很明显addition包含了abelian group的所有性质，vector space是 $R$-module的特殊化，$R$-module从结构上来说，要比Ring(带单位元)的性质要弱一些，主要体现在乘法上，弱化为数量乘法，表示把一个环作用在一个abelian group上. 这样做的好处是可以让可以把环上一些看起来不那么好性质都变得好一点，例如ideal在一般情况下并不一定还是一个环. 不那么好是相对于群的一些性质来说的，例如正规子群. 在定义了module之后，你会发现ideal就是一个module，我们的操作终于都在一个东西下面了，不会轻易的跑出去.
 
 我想这里多记录一些$R$-module的东西，如何把一个环弱化成一个模结构呢？首先我们需要一个abelian group $M$，定义“the left-action of a ring $R$ on $M$”为\[\func{\sigma}{R}{\textsf{End}_{Ab}(M)}\]是一个环同态. 可能这里有一个小疑问为什么$\textsf{End}_{Ab}(M)$是一个环结构？ 首先这个环里面的元素都是关于$M$的endomorphisms,乘法定义为endomorphisms之间的复合，加法定义为$(f+g)(a)=f(a)+g(a)$，其中$f,g \in \textsf{End}_{Ab}(M)$. 我们说$\sigma$把$M$变成了一个left-$R$-module，$\sigma$这个映射可以理解为left-$R$-module structure(算子)，\[\sigma(r)(m) \in _{R}M\]间接的定义了数量乘法，并且有一些有趣的性质:
 
@@ -350,6 +350,7 @@ $$
 \newpage
 \section{Linear Maps}
 
+\subsection{The Definition of Linear Map}
 \begin{definition}
 \rm 给定两个vector space $V$和$W$，若存在一个映射$\func{T}{V}{W}$使得
 \begin{enumerate}
@@ -366,10 +367,10 @@ $$
 \begin{example}
 \rm 有几种特殊的linear map.
 \begin{enumerate}
-	\item zero map: $0 \in \mathcal{L}(V,W)$定义\[0v=0\]($0$在这里表示特殊$T$下同).
-	\item identity map: $I \in \mathcal{L}(V,W)$定义为\[Iv=v.\]
-	\item differentiation map: $D \in \mathcal{L}(\mathcal{P}({R}),\mathcal{P}(\mathbb{R}))$定义为\[Dp = p'.\] 这里可以想一下导数的运算法则.
-	\item integration map: $T \in \mathcal{L}(\mathcal{P}({R}),\mathbb{R})$定义为\[Tp = \int_{0}^{1} p(x)dx.\]
+	\item zero map: $0 \in \mathcal{L}(V,W)$定义\[0(v)=0\]($0$在这里表示特殊$T$下同).
+	\item identity map: $I \in \mathcal{L}(V,W)$定义为\[I(v)=v.\]
+	\item differentiation map: $D \in \mathcal{L}(\mathcal{P}({R}),\mathcal{P}(\mathbb{R}))$定义为\[D(p) = p'.\] 这里可以想一下导数的运算法则.
+	\item integration map: $T \in \mathcal{L}(\mathcal{P}({R}),\mathbb{R})$定义为\[T(p) = \int_{0}^{1} p(x)dx.\]
 	\item from $F^n$ to $F^m$($m,n$都是正整数): 定义$A_{j,k} \in F, j = 1,\cdots,m , k = 1,\cdots,n$，然后使得$T \in \mathcal{L}(F^n,F^m)$
 	$$
 		T(x_1,\cdots,x_n) = (A_{1,1}x_1+\cdots+A_{1,n}x_n,\cdots,A_{m,1}x_1+\cdots+A_{m,n}x_n).
@@ -383,12 +384,12 @@ $$
 \begin{proposition}
 \rm 给定$V$上一个basis $v_1,v_2,\cdots,v_n$和$W$上一个basis $w_1,w_2,\cdots,w_n$. 则存在一个唯一的linear map $\func{T}{V}{W}$使得
 $$
-	Tv_j = w_j, j = 1,\cdots,n.
+	T(v_j) = w_j, j = 1,\cdots,n.
 $$
 \end{proposition}
 
 \begin{proof}
-现在给定这样的linear map $T$，我们要证明要它是唯一的，就是要说它对任意$v \in V$都有一一对应的$w \in W$. 让$v = a_1v_1+a_2v_2+\cdots+a_nv_n$，那么
+现在给定这样的linear map $T$，我们要证明要它是唯一的，就是要说它当满足上述条件之后，对任意$v \in V$都有定义了. 让$v = a_1v_1+a_2v_2+\cdots+a_nv_n$，那么
 $$
 \begin{aligned}
 T(a_1v_1+a_2v_2+\cdots+a_nv_n) &= T(a_1v_1) + T(a_2v_2) + \cdots + T(a_nv_n)\\
@@ -411,16 +412,16 @@ Q.E.D.
 其中$v \in V.$
 \end{definition}
 
-{\color{red} 整个$\mathcal{L}(V,W)$代数结构是一个vector space,这是一个比较重要的结论}. 当然了你可能还需要验证一下其他的axioms，例如乘法结合性，乘法单位元，分配律等等.
+{\color{blue} 整个$\mathcal{L}(V,W)$代数结构是一个vector space,这是一个比较重要的结论}. 当然了你可能还需要验证一下其他的axioms，例如乘法结合性，乘法单位元，分配律等等.
 
 \begin{definition}
 \rm $\mathcal{L}(V,W)$ is a vector space
 \end{definition}
 
-{\color{red} 再引入一个vector space $U$，讨论两个linear maps的product变得有意义了}.
+{\color{blue} 再引入一个vector space $U$，讨论两个linear maps的product变得有意义了}.
 
 \begin{definition}
-\rm 给定$T \in \mathcal{L}(U,V)$和$S \in \mathcal{L}(V,W)$，则存在product $ST \in \mathcal{L}(U,W)$使得
+\rm 给定$T \in \mathcal{L}(U,V)$和$S \in \mathcal{L}(V,W)$，则存在复合映射(product) $ST \in \mathcal{L}(U,W)$使得
 $$
 	(ST)(u) = S(T(u)).
 $$
@@ -431,10 +432,10 @@ $$
 \subsection{Null Spaces and Ranges}
 
 \begin{definition}
-\rm 给定linear map $T \in \mathcal{L}(V,W)$. 集合$\Set{v \in V}{Tv = 0}$表示\textbf{null space} of $T$，记为$\nul{T}$.
+\rm 给定linear map $T \in \mathcal{L}(V,W)$. 集合$\Set{v \in V}{T(v)= 0}$表示\textbf{null space} of $T$，记为$\nul{T}$.
 \end{definition}
 
-{\color{red} null space 就是0的preimage收集起来}.
+{\color{blue} null space 就是0的preimage收集起来}.
 
 \begin{proposition}
 \rm The null space is subspace.
@@ -444,14 +445,14 @@ $$
 我们要证明它在加法和数量乘法下封闭，并且$0$在里面. 对任意的$u,v \in \nul{T}$，有\[T(u+v) = T(u) + T(v) = 0,\]所以$u+v \in \nul{T}$. 同理$T(\lambda u) = \lambda T(u), T(0)=T(0)+T(0)=0$.
 \end{proof}
 
-{\color{red} 现在我们可以用null space来说明linear map一些性质}.
+{\color{blue} 现在我们可以用null space来说明linear map一些性质}.
 
 \begin{proposition}
 \rm 给定linear map $T \in \mathcal{L}(V,W)$. $T$是injective当且仅当$\nul{T}=\{0\}.$
 \end{proposition}
 
 \begin{proof}
-如果$T$是injective，clearly $\nul{T}=\{0\}$. 如果$\nul{T}=\{0\}$，假设$T$不是injective，则存在$a \neq b \in F$，使得$T(a) = T(b)$. 我们可以稍微变换一下$T(a-b) = T(a) - T(b)$，矛盾就来了，$(a - b) \in \nul{T}$，这是和前提矛盾的.
+如果$T$是injective，clearly $\nul{T}=\{0\}$. 反过来如果满足$\nul{T}=\{0\}$，假设$T$不是injective，则存在$a \neq b \in F$，使得$T(a) = T(b)$. 我们可以稍微变换一下$T(a-b) = T(a) - T(b)$，此时有$a-b \neq 0$且$(a - b) \in \nul{T}$，这是和前提矛盾的，于是$T$是injective的.
 \end{proof}
 
 
@@ -462,6 +463,10 @@ $$
 \begin{proposition}
 \rm 若$T \in \mathcal{L}(V,W)$，则$\range{T}$是一个subspace.
 \end{proposition}
+
+\begin{proof}
+设任意$u',v' \in \range{T}$，那么存在$u,v$使得$T(u) = u'$及$T(v) = v'$成立. 考虑向量加法$u' + v' = T(u) + T(v) = T(u+v) \in \range{T}$. 同理数量乘法$\lambda u' = \lambda T(u) = T(\lambda u) \in \range{T}$. $0$向量显然在$\range{T}$里面 i.e. $T(0) = 0$.
+\end{proof}
 
 \newpage
 \subsection{Foudamental Theorem of Linear Maps}
@@ -480,17 +485,24 @@ $$
 \begin{aligned}
  T(a_1u_1+a_2u_2+\cdots+a_mu_m + b_1v_1+b_2v_2 + \cdots + b_nv_n) &= T(a_1u_1+a_2u_2+\cdots+a_mu_m) + T(b_1v_1+b_2v_2 + \cdots + b_nv_n) \\
  &=  0 + T(b_1v_1+b_2v_2 + \cdots + b_nv_n) \\
- &= b_1Tv_1 + b_2Tv_2 + \cdots + b_nTv_n.
+ &= b_1T(v_1) + b_2T(v_2) + \cdots + b_nT(v_n).
 \end{aligned}
 $$
-我们可以知道$Tv_1 , Tv_2 , \cdots , Tv_n$ spans $\range{T}$，所以$\range{T}$是finite-dimensional的. 但是我们还要证明它们是$\range{T}$的一个basis， 即它们还要linearly independent. 要证明$c_1Tv_1+c_2Tv_2+\cdots+c_nTv_n=0$，那么
+从上式我们可以知道$T(v_1) , T(v_2) , \cdots , T(v_n)$ spans $\range{T}$，所以$\range{T}$是finite-dimensional的. 但是我们还要证明它们是$\range{T}$的一个basis， 即它们还要linearly independent. 要证明当$c_1T(v_1)+c_2T(v_2)+\cdots+c_nT(v_n)=0$，$c_1,c_2,\cdots c_3$全为零. 那么考虑
 $$
-T(c_1v_1+c_2v_2+\cdots+c_nv_n)=0.
+c_1T(v_1)+c_2T(v_2)+\cdots+c_nT(v_n) =T(c_1v_1+c_2v_2+\cdots+c_nv_n)=0.
 $$
-由于$v_1,v_2,\cdots,v_n$是linearly independent，且$c_1Tv_1+c_2Tv_2+\cdots+c_nTv_n \notin \nul{T}$. 所以$c_1=c_2=\cdots=c_n =0$.
+即有
+$$
+\begin{array}{rl}
+a_1u_1+a_2u_2+\cdots+a_mu_m &= c_1v_1+c_2v_2+\cdots+c_nv_n \\
+a_1u_1+a_2u_2+\cdots+a_mu_m - (c_1v_1+c_2v_2+\cdots+c_nv_n) &= 0.
+\end{array}
+$$
+由于$u_1,u_2,\cdots,u_m,v_1,v_2,\cdots,v_n,$线性无关的，所以$c_1=c_2=\cdots=c_n =0$.
 \end{proof}
 
-{\color{red} 这个theorem说明了一个重要的性质就是不存在一个injective linear map使得一个finite-dimensional vector space 到一个更低维的vector space}. {\color{blue}反之map to 一个更高维的vector space不会是一个满射}. 
+{\color{red} 这个theorem说明了一个重要的性质就是不存在一个injective linear map使得一个finite-dimensional vector space 到一个更低维的vector space}. {\color{blue}同样映射到一个更高维的vector space不会是一个满射}. 
 
 \newpage
 \subsection{Homogeneous system of linear equations}
@@ -1457,9 +1469,9 @@ $$
 \begin{proof}
 这个问题拿到手的时候，似乎单纯从定义我们无法下手. 不用说肯定是要用前面的proposition. 至少我们这里需要构造一个linear map出来. 这里用一个之前我们提到的matrix multiplication map $\func{T}{F^{n,1}}{F^{m,1}}$
 $$
-Tx=Ax, x \in F^{n,1}.
+T(x)=Ax, x \in F^{n,1}.
 $$
-要是把$A$可以换成$\mathcal{M}(T)$那就太好了. 只要我们fix的basis都是standard basis($\begin{pmatrix} 1\\0 \\ \vdots \\ 0 \end{pmatrix},\begin{pmatrix} 0\\1 \\ \vdots \\ 0 \end{pmatrix},\cdots$就行，可以简单的验算一下.
+要是把$A$可以换成$\mathcal{M}(T)$那就太好了. 只要我们fix的basis都是standard basis($\begin{pmatrix} 1\\0 \\ \vdots \\ 0 \end{pmatrix},\begin{pmatrix} 0\\1 \\ \vdots \\ 0 \end{pmatrix},\cdots$)就行，可以简单的验算一下.
 
 那么
 $$
