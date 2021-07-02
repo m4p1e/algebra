@@ -641,7 +641,17 @@ $$
 换句话说就是在刻画一个linear combination ($Ax = b$).
 \end{proposition}
 
-把\ref{matrix: one-column-1}和\ref{matrix: one-column-2} 两个propositions 结合起来就是说{\color{red} $AC$的第$k$列等于$A$中所有列向量以$C$中第$k$列为系数的linear combination}. {\color{blue}同理$AC$的第$j$行等于$C$中所有行以$A$中第$j$行为系数的linear combination (注意这里反过来了)}.
+把\ref{matrix: one-column-1}和\ref{matrix: one-column-2} 两个propositions 结合起来就是说{\color{red} $AC$的第$k$列等于$A$中所有列向量以$C$中第$k$列为系数的linear combination}. {\color{blue}同理$AC$的第$j$行等于$C$中所有行以$A$中第$j$行为系数的linear combination}，
+$$
+\begin{pmatrix}
+a_{j1} \cdots a_{jn}
+\end{pmatrix}
+\begin{pmatrix}
+c_{11} & \cdots & c_{1p} \\
+\vdots & & \vdots \\ 
+c_{n1} & \cdots & c_{np}
+\end{pmatrix}
+$$
 
 \begin{proof}
 $$
