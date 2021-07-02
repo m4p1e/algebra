@@ -19,6 +19,16 @@
 \setlength{\parindent}{2em} 
 \usepackage{indentfirst}
 
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
 
 \usepackage{xcolor}
 \usepackage{titlesec}
@@ -381,7 +391,7 @@ $$
 
 {\color{red} basis在经过linear map的作用会变得如何呢}？
 
-\begin{proposition}
+\begin{proposition}\label{lm: unique}
 \rm 给定$V$上一个basis $v_1,v_2,\cdots,v_n$和$W$上一个basis $w_1,w_2,\cdots,w_n$. 则存在一个唯一的linear map $\func{T}{V}{W}$使得
 $$
 	T(v_j) = w_j, j = 1,\cdots,n.
@@ -447,7 +457,7 @@ $$
 
 {\color{blue} 现在我们可以用null space来说明linear map一些性质}.
 
-\begin{proposition}
+\begin{proposition}\label{lm: injective}
 \rm 给定linear map $T \in \mathcal{L}(V,W)$. $T$是injective当且仅当$\nul{T}=\{0\}.$
 \end{proposition}
 
@@ -471,7 +481,7 @@ $$
 \newpage
 \subsection{Foudamental Theorem of Linear Maps}
 
-\begin{theorem}
+\begin{theorem}\label{lm:basic}
 \rm 给定finite-dimensional $V$和linear map $T \in \mathcal{L}(V,W)$. 则$\range{T}$也是finite-dimensional且有下面等式成立.
 $$
 \dim V  = \dim \nul{T} + \dim \range{T}.
@@ -502,7 +512,7 @@ $$
 由于$u_1,u_2,\cdots,u_m,v_1,v_2,\cdots,v_n,$线性无关的，所以$c_1=c_2=\cdots=c_n =0$.
 \end{proof}
 
-{\color{red} 这个theorem说明了一个重要的性质就是不存在一个injective linear map使得一个finite-dimensional vector space 到一个更低维的vector space}. {\color{blue}同样映射到一个更高维的vector space不会是一个满射}. 
+这个theorem说明了一个重要的性质就是{\color{red} 不存在一个单射使得一个有限维的向量空间到映比它更低维的向量空间}. {\color{blue}同样映射到一个比它更高维的向量空间不会是一个满射}. 
 
 \newpage
 \subsection{Homogeneous system of linear equations}
@@ -512,7 +522,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-首先得知道什么齐次线性方程组.
+给定齐次线性方程组.
 $$
 \begin{aligned}
 \sum\limits_{k=1}^{n}A_{1,k}x_k&=0 \\
@@ -520,11 +530,11 @@ $$
 \sum\limits_{k=1}^{n}A_{m,k}x_k&=0.
 \end{aligned}
 $$
-显然$x_1=x_2=\cdots=x_n = 0$是这组方程组的解. 这是trivial的，我们要考虑的是有没有非零解的情况. 之前我们定义过一个linear map $\func{T}{F^n}{F^m}$.
+其中$A$表示对应齐次方程组的系数矩阵. 显然$x_1=x_2=\cdots=x_n = 0$是这组方程组的解. 这是trivial的，我们要考虑的是有没有非零解的情况. 之前我们定义过一个linear map $\func{T}{F^n}{F^m}$.
 $$
 	T(x_1,\cdots,x_n)  = (\sum\limits_{k=1}^{n}A_{1,k}x_k,\cdots,\sum\limits_{k=1}^{n}A_{m,k}x_k).
 $$
-上面方程组可以用$T(x_1,\cdots,x_n)=0$来简洁的表示，注意这里的$0$是$F^m$中的加法单位元. 我们想要非零解，在这里只要保证$T$不是单射就行，即只要$\nul{T}$不是$\{0\}$. 由linear map基本定理推出性质，injective的一个充分条件是只要$n>m$就行. 这就是当前命题的最本质的刻画.
+上面方程组可以用$T(x_1,\cdots,x_n)=0$来简洁的表示，注意这里的$0$是$F^m$中的加法单位元，即零向量. 我们想要非零解，在这里只需要保证$\nul{T}$不为$\{0\}$. 由命题 \ref{lm: injective}，$\nul{T} = \{0\}$充要条件是$T$是injective的. 这里由基本定理 \ref{lm:basic}，当$n > m$时，从的高维到低维的线性映射不可能是一个单射，所以$\nul{T} \neq \{ 0 \}$. {\color{blue} 这就是基本定理的一个非常意思的应用}. 
 \end{proof}
 
 {\color{red} 对于非齐次方程组也有类似的结论，但是有一些不一样}.
@@ -539,10 +549,10 @@ $$
 \end{aligned}
 $$
 \end{proposition}
-当方程组的个数大于未知数的个数时，可以找到一些$c_1,\cdots,c_m$使得方程误解.
+当方程组的个数大于未知数的个数时，可以找到一些$c_1,\cdots,c_m$使得方程无解.
 
 \begin{proof}
-这里就变成了$T(x_1,\cdots,x_n) =  (c_1,\cdots,c_m)$. 要使得它没有解，我们可以让$\range{T}$只是$F^m$一个subspace，即$T$不是一个surjective. 所以$n<m$就可以有一个充分条件来满足这一点.
+这里就变成了$T(x_1,\cdots,x_n) =  (c_1,\cdots,c_m)$. 要使得它没有解，我们只需要让$\range{T}$是$F^m$的一个子空间，且$\range{T} \neq F^m$. 当$n < m$时，由基本定理\ref{lm:basic}，从低维到高维的线性映射不可能是满射，这种情况上当然是满足条件的.
 \end{proof}
 
 \newpage
@@ -562,11 +572,11 @@ $$
 \begin{definition}
 \rm 给定一个linear map $T \in \mathcal{L}(V,W)$，$V$上的一个basis $v_1,\cdots,v_n$和$W$上的一个basis $w_1,\cdots,w_m$. 用$\mathcal{M}(T)$表示$m \times n$ matrix of $T$. 其中$A_{j,k}$定义为
 $$
-Tv_k = A_{1,k}w_1 +  \cdots + A_{m,k}w_m.
+T(v_k) = A_{1,k}w_1 +  \cdots + A_{m,k}w_m.
 $$
 \end{definition}
 
-这个定义的直觉是什么呢？当给定一个linear map $\func{T}{V}{W}$和$V$上一个basis $v_1,\cdots,v_n$. 那么$Tv_1,\cdots,Tv_n$是$\range{T}$的一个basis，所以它们spans $\range{T}$. 这里的想法就是把$Tv_1,\cdots,Tv_n$和$W$上的basis联系起来了.
+这个定义的直觉是什么呢？ {\color{blue}就是在分别确定两个空间的basis的之后，用矩阵的手法把linear map表示出来}. 特别地我们在 \ref{lm: unique} 证明过只要确定了$T(v_1),\cdots,T(v_n)$，就确定了整个$T$，所以这里$T$是well-defined. 
 
 {\color{red} matrix的加法和数量乘法定义}. 直觉来源于下面两个命题.
 
@@ -588,7 +598,7 @@ $$
 $$
 
 
-矩阵的乘法需要单独拿出来讲一下，在这里我们需要再额外定义$U$和它的一个basis $u_1,\cdots,u_p$. 给定两个linear maps $\func{T}{U}{V}$和$\func{S}{V}{W}$，它们的复合$ST$也是一个linear map. {\color{red} 那么现在有一个问题是$\mathcal{M}(ST)$是否等于$\mathcal{M}(S)\mathcal{M}(S)$}?
+矩阵的乘法需要单独拿出来讲一下，在这里我们需要再额外定义$U$和它的一个basis $u_1,\cdots,u_p$. 给定两个linear maps $\func{T}{U}{V}$和$\func{S}{V}{W}$，它们的复合$\func{ST}{U}{W}$也是一个linear map. {\color{red} 那么现在有一个问题是$\mathcal{M}(ST)$是否等于$\mathcal{M}(S)\mathcal{M}(T)$}? {\color{blue}所以实际上当矩阵是linear map的一个representation的时候，矩阵乘法就是linear map的复合}. 
 
 但是在此之前，我们并没有定义矩阵乘法. 如果我们希望上面的问题有一个positive answer，定义$\mathcal{M}(S) = A$和$\mathcal{M}(T) = C$，取$1 \leq k \leq p $，那么
 $$
@@ -603,7 +613,7 @@ $$
 所以$ST$也是一个$m \times p$ matrix，这个结果是非常自然的，{\color{blue}描述basis在linear map之间传递}. 所以我们由此给出一个正式的矩阵乘法的定义.
 
 \begin{definition}
-\rm 给定$ m \times n$ matrix $A$和$n \times p$ matrix $C$. 则$m \times p$ product matrix $AC$的第j行和第$k$列定义为
+\rm {\color{red} 矩阵乘法的标准定义} 给定$ m \times n$ matrix $A$和$n \times p$ matrix $C$. 则$m \times p$ product matrix $AC$的第j行和第$k$列定义为
 $$
 (AC)_{j,k} =  \sum\limits_{r=1}^{n}A_{j,r}C_{r,k} .
 $$
@@ -615,23 +625,23 @@ $$
 $$
 其中$A_{j,\cdot}$表示第$j$行$1 \times n$矩阵，$C_{\cdot,k}$表示第$k$列$n \times 1$矩阵. 还是刻画成了两个矩阵的乘法.
 
-\begin{proposition}
+\begin{proposition} \label{matrix: one-column-1}
 特别地,
 $$
 (AC)_{\cdot,k}=AC_{\cdot,k}
 $$
 \end{proposition}
-表示$AC$的第$k$的列等于$A$乘上$C$的第$k$的列(fixed k). {\color{red} 直觉上$u_k$相关的只有$C_{\cdot,k}$，所以可以直接把它取出来直接乘}.
+表示$AC$的第$k$的列等于$A$乘上$C$的第$k$的列(fixed k). {\color{blue} 这是因为与$u_k$相关的只有$C$中第$k$行对应的$v_1,v_2,\cdots,v_n$的系数，所以可以直接把它取出来直接乘}.
 
-\begin{proposition}
+\begin{proposition} \label{matrix: one-column-2}
 \rm 给定一个$m \times n$ matrix $A$和$n \times 1$ matrix $c = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}$. 那么
 $$
 Ac = c_1A_{\cdot,1} + \cdots + c_nA_{\cdot,n}.
 $$
-换句话说就是在刻画一个linear combination.
+换句话说就是在刻画一个linear combination ($Ax = b$).
 \end{proposition}
 
-把3.20个3.21两个proposition结合起来就是说{\color{red} $AC$的第$k$列等于$A$中所有列以$C$第$k$列为系数的linear combination}. {\color{blue}同理$AC$的第$j$行等于$C$中所有行以$A$中第$j$行为系数的linear combination}.
+把\ref{matrix: one-column-1}和\ref{matrix: one-column-2} 两个propositions 结合起来就是说{\color{red} $AC$的第$k$列等于$A$中所有列向量以$C$中第$k$列为系数的linear combination}. {\color{blue}同理$AC$的第$j$行等于$C$中所有行以$A$中第$j$行为系数的linear combination (注意这里反过来了)}.
 
 \begin{proof}
 $$
