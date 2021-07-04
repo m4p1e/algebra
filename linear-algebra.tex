@@ -552,7 +552,7 @@ $$
 当方程组的个数大于未知数的个数时，可以找到一些$c_1,\cdots,c_m$使得方程无解.
 
 \begin{proof}
-这里就变成了$T(x_1,\cdots,x_n) =  (c_1,\cdots,c_m)$. 要使得它没有解，我们只需要让$\range{T}$是$F^m$的一个子空间，且$\range{T} \neq F^m$. 当$n < m$时，由基本定理\ref{lm:basic}，从低维到高维的线性映射不可能是满射，这种情况上当然是满足条件的.
+这里就变成了$T(x_1,\cdots,x_n) =  (c_1,\cdots,c_m)$. 要使得它没有解，我们只需要让$\range{T}$是$F^m$的一个子空间，且$\range{T} \neq F^m$，这样就有缝隙可以找了. 当$n < m$时，由基本定理\ref{lm:basic}，从低维到高维的线性映射不可能是满射，这种情况上当然是满足条件的.
 \end{proof}
 
 \newpage
@@ -574,13 +574,21 @@ $$
 $$
 T(v_k) = A_{1,k}w_1 +  \cdots + A_{m,k}w_m.
 $$
+$$
+\mathcal{M} = \bordermatrix{
+	& v_1& \cdots& v_k&\cdots& v_n \cr
+w_1 &&&A_{1,k}&&& \cr
+\vdots &&&\vdots&&& \cr
+w_1 &&&A_{n,k}&&& \cr
+}
+$$ 
 \end{definition}
 
 这个定义的直觉是什么呢？ {\color{blue}就是在分别确定两个空间的basis的之后，用矩阵的手法把linear map表示出来}. 特别地我们在 \ref{lm: unique} 证明过只要确定了$T(v_1),\cdots,T(v_n)$，就确定了整个$T$，所以这里$T$是well-defined. 
 
 {\color{red} matrix的加法和数量乘法定义}. 直觉来源于下面两个命题.
 
-\begin{proposition}
+\begin{proposition}\label{matrix: prop1}
 \rm 给定两个linear map $S,T \in \mathcal{L}(V,W)$，$\lambda \in F.$
 \begin{enumerate}
 	\item $\mathcal{M}(S+T) = \mathcal{M}(S) + \mathcal{M}(T).$
@@ -636,7 +644,18 @@ $$
 \begin{proposition} \label{matrix: one-column-2}
 \rm 给定一个$m \times n$ matrix $A$和$n \times 1$ matrix $c = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}$. 那么
 $$
-Ac = c_1A_{\cdot,1} + \cdots + c_nA_{\cdot,n}.
+Ac =
+\begin{pmatrix}
+a_{11} & \cdots & a_{1p} \\
+\vdots & & \vdots \\ 
+a_{n1} & \cdots & a_{np}
+\end{pmatrix} 
+\begin{pmatrix}
+c_1 \\ 
+\vdots \\ 
+c_n
+\end{pmatrix}
+= c_1A_{\cdot,1} + \cdots + c_nA_{\cdot,n}.
 $$
 换句话说就是在刻画一个linear combination ($Ax = b$).
 \end{proposition}
@@ -688,7 +707,7 @@ A_{n,n}
 $$
 \end{proof}
 
-以上都是从不同的方向去思考矩阵乘法.
+{\color{blue} 实际上上述就是按行或者按列展开矩阵乘法}.
 
 \begin{example}
 \rm 先给出一个classic 矩阵乘法.
@@ -749,6 +768,14 @@ $$
 对于任意的正整数$m,n$，所有$m \times n$ matrix构成的集合记为$F^{m,n}$.
 \end{definition}
 
+\begin{proposition}\label{matrix: vector-space-dim}
+\rm {\color{red} $\dim F^{m,n} = mn$}
+\end{proposition}
+
+\begin{proof}
+显然$F^{m,n}$ over $F$是一个向量空间，其中零矩阵(矩阵中所有元素均为0)为它的加法单位元. 我们让只有一个元素为$1$其余均为的$0$的矩阵构成一个集合，这个集合就是$F^{m,n}$的一个basis.
+\end{proof}
+
 \newpage
 \subsection{Invertibility}
 
@@ -769,7 +796,7 @@ $$
 
 自然地，{\color{red} 我们需要思考一个linear map什么时候可逆}?
 
-\begin{proposition}
+\begin{proposition}\label{iso: cond}
 \rm 一个linear map可逆当且仅当它是injective和surjective.
 \end{proposition}
 
@@ -786,12 +813,12 @@ $$
 \subsection{Isomorphic Vector Spaces}
 
 \begin{definition}
-\rm 若两个vector spaces之间一个可逆的linear map，则称这两个vector space 是同构的(isomorphic)，这个可逆的linear map称为isomorphism.
+\rm 若两个vector spaces之间一个可逆的linear map，则称这两个vector space 是同构的(isomorphic)，这个可逆的linear map称为{\color{red}isomorphism}.
 \end{definition}
 
 {\color{blue} The Greek word \textbf{isos} means equal; the Greek word \textbf{morph} means shape. Thus isomorphic literally means equal shape}.
 
-\begin{proposition}
+\begin{proposition}\label{matrix: iso-same-dim}
 \rm 两个finite-dimensional vector spaces over $F$ 同构当且仅当它们有相同的维数(dimension).
 \end{proposition}
 
@@ -804,42 +831,48 @@ $$
 $$
 这里有$\nul{V} =  0$，同时$\range{V} =  W$. 所以$\dim V  = \dim W$.
 
-($\Leftarrow$) 若$V$和$W$拥有相同的dimension. 分别挑$V$上的basis $v_1,\cdots,v_n$和$W$上的basis $w_1,\cdots,w_n$. 我们定义一个linear map $T$，使得
+($\Leftarrow$) 若$V$和$W$拥有相同的dimension，即它们的basis有相同的个数. 分别挑$V$上的basis $v_1,\cdots,v_n$和$W$上的basis $w_1,\cdots,w_n$. 我们定义一个linear map $T$，使得
 $$
-	T(c_1v_1 + \cdots + c_nv_n) =  c_1w_1 + \cdots + c_nvw_n.
+	T(c_1v_1 + \cdots + c_nv_n) =  c_1w_1 + \cdots + c_nw_n.
 $$
-我们需要说明$T$是well-defined. $\forall v \in V$，都可以被$v_1,\cdots,v_n$唯一表示，继而对应的$w \in W$也是被$w_1,\cdots,w_n$唯一表示的. 很显然这是一个linear map. 同时$\nul{T} = \{0\}$，所以$T$是一个injective. 并且$T$的函数值可以spans $W$，所以$T$是一个surjective. 最后$T$是一个isomorphism.
+我们需要说明$T$是well-defined. $\forall v \in V$，都可以被$v_1,\cdots,v_n$唯一表示，继而对应的$T(v)$也是被$w_1,\cdots,w_n$唯一表示的. 很显然这是一个linear map. 同时$\nul{T} = \{0\}$，所以$T$是一个injective. 并且$T$的函数值可以spans $W$，所以$T$是一个surjective，于是由\ref{iso: cond}可知$T$是一个isomorphism.
 \end{proof}
 
 {\color{red} 我们来思考一个有趣的isomophism}.
 
-\begin{proposition}
-\rm 给定$V$上basis $v_1,\cdots,c_n$和$W$上的basis $w_1,\cdots,w_m$. 任意一个$T \in \mathcal{L}(V,W)$，都能确定一个$\mathcal{M}(T) \in F^{m,n}$. 那么$\mathcal{L}(V,W)$和$F^{m,n}$同构，其中$\mathcal{M}$是isomorphism.
+\begin{proposition} \label{matrix: iso-with-linear-maps-set}
+\rm 给定$V$上basis $v_1,\cdots,c_n$和$W$上的basis $w_1,\cdots,w_m$. 任意一个$T \in \mathcal{L}(V,W)$，都能确定一个$\mathcal{M}(T) \in F^{m,n}$. 那么$\mathcal{L}(V,W)$和$F^{m,n}$同构，其中$\mathcal{M}$是一个isomorphism.
 \end{proposition}
 
 \begin{proof}
-前面我们在定义矩阵加法和数量乘法的时候，已经可以表明$\mathcal{M}$是一个linear map了. 我们需要证明它是可逆的，即它是injective和surjective.
+由\ref{matrix: prop1} 已经可以表明$\mathcal{M}$是一个linear map了. 我们需要证明它是可逆的，即它是injective和surjective.
 
-若$\mathcal{M}(T) = 0$，这里matrix等于0表示$F^{m,n}$中的零矩阵. 那么$Tv_k = 0,k = 1,\cdots,n$，则$T$是一个zero linear map. 所以$\mathcal{M}$是injective的. 对于$\forall A \in F^{m,n}$
+首先考虑injective，自然地来探究一下$\nul{\mathcal{M}}$的结构. $F^{m,n}$中的零向量对应零矩阵，我们用$\mathbf{0}$表示. 设$T \in \mathcal{L}(V,W)$，且分别给定$V$和$W$上的basis $v_1,v_2,\cdots,v_m$和$w_1,w_2,\cdots,w_m$. 那么当$\mathcal{M}(T) = \mathbf{0}$时，对任意的$v_k, \; k=1,2,\cdots,m$有$T(v_k) = 0 \cdot  w_i, i=1,2,\cdots,n$，所以$T$在这里是一个zero linear map. 
+
+为了证明srujective，设对于$\forall A \in F^{m,n}$，我们可以构造一个linear map使得
 $$
-	Tv_k  = \sum\limits_{r=1}^{m}A_{r,k}w_j.
-$$ 
-显然$\mathcal{M}(T)=A$. 所以$\mathcal{M}$是surjective.（这里可以意味着$A_{j,k}$可以取遍所有$F$） 
+	T(v_k) = \sum\limits_{r=1}^{m}A_{r,k}w_j, k= 1,2,\cdots,m.
+$$
+显然$\mathcal{M}(T)=A$. 所以$\mathcal{M}$是surjective.
 \end{proof}
 
 {\color{red} 如果能从它们的dimension去证明上面的命题就好了，但是$\mathcal{L}(V,W)$的dimension并没有那么显然}.
 
-\begin{proposition}
+\begin{proposition}\label{linear-map-space: dim}
 \rm 给定$V$和$W$都是finite-dimensional. 则$\mathcal{L}(V,W)$也是finite-dimensional，其中
 $$
 \dim \mathcal{L}(V,W) = \dim V \dim W.
 $$
 \end{proposition}
 
+\begin{proof}
+由\ref{matrix: iso-with-linear-maps-set},\ref{matrix: iso-same-dim},\ref{matrix: vector-space-dim}可证.
+\end{proof}
+
 \newpage
 \subsection{Linear Maps Thought of as Matrix Multiplication}
 
-之前我们定义了matrix of a linear map，现在我们来定义matrix of a vector.
+之前我们定义了{\color{blue}matrix of a linear map}，现在我们来定义{\color{blue} matrix of a vector}.
 
 \begin{definition}
 给定$V$上的basis $v_1,\cdots,v_n$和$v \in V$. 那么matrix of $v$表示为
@@ -857,32 +890,32 @@ v = c_1v_1 + \cdots + c_2v_n.
 $$
 \end{definition} 
 
-{\color{red} 所以这里有一个很自然的式子把它们联系起来}.
+{\color{blue} 所以这里有一个很自然的式子把它们联系起来}.
 $$
-\mathcal{M}(T)_{\cdot,k}=\mathcal{M}(Tv_k).
+\mathcal{M}(T)_{\cdot,k}=\mathcal{M}(T(v_k)).
 $$
-
-\begin{proposition}
-\rm 给定linear map $T \in \mathcal{L}(V,W)$和$v \in V$. 给定$V$上的basis $v_1,\cdots,v_,$和$W$上的basis $w_1,\cdots,w_m$. 那么
+等式左边表示$T$的矩阵表示的第$k$行，而等式右边表示$T(v_k)$的矩阵表示.
+\begin{proposition}\label{linear map: matrix-mul}
+\rm 给定linear map $T \in \mathcal{L}(V,W)$和$v \in V$. 给定$V$上的basis $v_1,\cdots,v_n,$和$W$上的basis $w_1,\cdots,w_m$. 那么
 $$
-\mathcal{M}(Tv) =  \mathcal{M}(T)\mathcal{M}(v).
+\mathcal{M}(T(v)) =  \mathcal{M}(T)\mathcal{M}(v).
 $$
 \end{proposition}
 
 \begin{proof}
 假定$v=c_1v_1 + \cdots + c_nv_n$，其中$c_1,\cdots,c_n \in F$. 那么
 $$
-Tv =  c_1Tv_1 + \cdots c_nTv_n.
+T(v) =  c_1T(v_1) + \cdots c_nT(v_n).
 $$
 继而
 $$
 \begin{aligned}
-\mathcal{M}(Tv) &= c_1\mathcal{M}(Tv_1) + \cdots +c_n \mathcal{M}(Tv_n) \\
+\mathcal{M}(T(v)) &= c_1\mathcal{M}(T(v_1)) + \cdots +c_n \mathcal{M}(T(v_n)) \\
 				&= c_1\mathcal{M}(T)_{\cdot,1} + \cdots + c_n \mathcal{M}(T)_{\cdot,n} \\
 				&= \mathcal{M}(T)\mathcal{M}(v).
 \end{aligned} 
 $$
-注意这里用了很多的变换，第一个变换是矩阵的scalar multiplication，第二个是前面的式子，第三个矩阵乘法中的特殊的linear combination.
+{\color{red}这个命题的内蕴一个向量$v$在$T$下变换的结果等于$T$的表示矩阵左乘$v$的矩阵表示}.
 \end{proof}
 
 这个命题到底有什么用呢？{\color{blue}每一个$m \times n$ matrix 都蕴含了一个$F^{n,1}$到$F^{m,1}$的linear map}.
@@ -899,15 +932,30 @@ V \arrow[rr, "T"] \arrow[dd, "\mathcal{M}_{\{v_i\}}"'] &  & W \arrow[dd, "\mathc
 {F^{n,1}} \arrow[rr, "T'"']                            &  & {F^{m,1}}                            
 \end{tikzcd}
 \end{center}
-注意$T'$不是dual map，$\mathcal{M}_{\{v_i\}}$和$\mathcal{M}_{\{w_i\}}$分别表示一个matrix operator，$\{v_i\}$和$\{w_i\}$都是fix basis. $\mathcal{M}_{\{v_i\}}$和$\mathcal{M}_{\{w_i\}}$都是一个可逆的linear map，这是很显然的. 如果有上面的交换图，则$T'$是唯一确定的.
+给定两个有限向量空间$V$和$W$，它们basis分别为$\{v_i : i =1,2,\cdots,n\}$和$\{w_i: i = 1,2,\cdots,m\}$，$\mathcal{M}_{\{v_i\}}$和$\mathcal{M}_{\{w_i\}}$分别表示$V \rightarrow F^{n,1}$和$W \rightarrow F^{m,1}$的isomorphism. 自然地$\mathcal{M}_{\{v_i\}}$和$\mathcal{M}_{\{w_i\}}$都是一个可逆的linear map. 如果有上面的交换图，则$T'$是唯一确定的，即
 $$
-T' = TM_{\{w_i\}}M^{-1}_{\{v_i\}}.
+T' = \mathcal{M}_{\{w_i\}}T\mathcal{M}^{-1}_{\{v_i\}}.
 $$
-前面我们证明了$\mathcal{M}(Tv) = \mathcal{M}(T)\mathcal{M}(v)$，实际上是证明了
+前面我们证明了$\mathcal{M}(T(v)) = \mathcal{M}(T)\mathcal{M}(v)$，实际上是证明了
 $$
-\mathcal{M}T = T'\mathcal{M}.
+\mathcal{M}_{\{w_i\}}T = T'\mathcal{M}_{\{v_i\}},
 $$
-所以我们已经把$T'$求出来了，$T'v= \mathcal{M}(T)x$. 把其中的$\mathcal{M}(T)$用$A$表示. 我们把这个特殊的linear map称为matrix multiplication map. 当然了你也可以想象每一个从$V$到$W$(finite-dimensional)的linear map，都可以唯一确定上述的matrix multiplication map.
+其中$T'(x)= \mathcal{M}(T)\cdot x = Ax,\; x \in F^{n,1}$. 这说明一个$m \times n$也可以诱导出$F^{n,1} \rightarrow F^{m,1}$的linear map.
+
+特别地思考一个问题$\mathcal{M}(T') = ?$ 首先$V$与$F^{n,1}$和$W$与$F^{m,1}$在$\mathcal{M}$都是分别同构的，那么$v_1,\cdots,v_n$与$w_1,\cdots,w_n$在$\mathcal{M}$的作用下也分别确定了$F^{n,1}$与$F^{m,1}$的一个basis，你会发现这两个basis都是standard basis，而在交换图的意义之下
+
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiVoH0BrEAX1PUy58hFGQBMVWoxZsAOrIBGEAE6xlAWzo5lWAB7AABADID8gMbLjB4qdkWr8mlAg44t+5xMBGd5aOPnV18rGx5efhAMbDwCIjFySXpmVkQQAFkACgAVAEp2YHNA0k4eeQUYAHMsMGA0TW09HgMAd3YfeXlbJxc3DtkW9nVbGDAoWvqdXTC+AWjhONIJaiSZVLLK6vGtSabW9o6uwN6D1qH5EbG67cbeSRgoCvgiUAAzZQh1JDIQHAgkLxmIDeH3+1F+SAAzIDgZ9EBCwX9EGJoe9Yd9wUieBQeEA
+\begin{tikzcd}
+v_k \arrow[dd] \arrow[rr]                                                       &  & {\begin{pmatrix} w_1 , \cdots , w_m \end{pmatrix}M(T)_{\cdot,k}} \\
+                                                                                &  &                                                                    \\
+\tiny\bordermatrix{ & \cr & 0 \cr & \vdots \cr k& 1 \cr &\vdots \cr & 0 } \arrow[rr] &  & {M(T)_{\cdot,k}} \arrow[uu]     
+\end{tikzcd}
+\end{center}
+明显地，$T'$在两个standard basis下的matrix representation的第$k$列对应上了$\mathcal{M}(T)$的第$k$列. {\color{blue}所以我们的结论是当$F^{n,1}$与$F^{m,1}$上都选择standard basis的时候，有$\mathcal{M}(T) = \mathcal{M}(T')$}.
+
+
+我们把这个特殊的linear map $T'$ 称为{\color{red}matrix multiplication map}. 当然了你也可以想象每一个从$V$到$W$(finite-dimensional)的linear map，都可以唯一确定上述的matrix multiplication map.
 
 \newpage
 \subsection{Operators}
@@ -921,7 +969,7 @@ $$
 \begin{enumerate}
 	\item multiplication by $x^2$: $T \in \mathcal{L}(\mathcal{P}(\mathbb{R}),\mathcal{P}(\mathbb{R}))$
 	$$
-		(Tp)(x) = x^2p(x).
+		T(p(x)) = x^2p(x).
 	$$
 	\item backward shift: $T \in \mathcal{L}(F^{\infty},F^{\infty})$
 	$$
@@ -932,14 +980,14 @@ $$
 
 {\color{blue} operator其实就是endomorphism，可以把条件加强一点变成automorphism(自同构). 也就是说需要把operator变成一个isomorphism}.
 
-\begin{proposition}
+\begin{proposition}\label{operator: iso-cond}
 \rm 给定finite-dimensional $V$和 operator $T \in \mathcal{L}(V)$. 下面条件相互等价
 \begin{enumerate}
 	\item $T$ is invertible.
 	\item $T$ is injective.
 	\item $T$ is surjective.
 \end{enumerate}
-注意这里必须是{\color{red} finitie-dimensional}. 也就是说现在判定invertible不需要injective和surjective同时满足.
+注意这里必须是{\color{red} finitie-dimensional}. {\color{blue}也就是说现在判定operator的invertible时不需要injective和surjective同时满足}.
 \end{proposition}
 
 \begin{proof}
@@ -948,7 +996,7 @@ $$
 \dim V  = \dim \nul{V}  + \dim \range{V}.
 $$
 
-($2 \Rightarrow 3$) 若$T$是injective，上面的式子就变成了$dim V = dim \range{T}$. $\range{T}$是$V$的一个subspace. 若要上述式子成立，则$\range{T} = V$，所以$T$是一个surjective.
+($2 \Rightarrow 3$) 若$T$是injective，上面的式子就变成了$\dim V = \dim \range{T}$. $\range{T}$是$V$的一个subspace. 若要上述式子成立，则$\range{T} = V$，所以$T$是一个surjective.
 
 ($3 \Rightarrow 2$) 若$T$是surjective，$\range{T} = V$上面的式子就变成了$0 = \dim\nul{T}$. 所以$T$是一个injective. 
 
@@ -956,17 +1004,18 @@ $$
 \end{proof}
 
 \begin{example}
-对任意的多项式$q \in \mathcal{P}(\mathbb{R})$，存在$p \in \mathcal{P}(\mathbb{R})$使得$((x^2+5x+7)p)^{''}=q$.
+证明对任意的多项式$q \in \mathcal{P}(\mathbb{R})$，存在$p \in \mathcal{P}(\mathbb{R})$使得$((x^2+5x+7)p)^{''}=q$.
 \end{example}
 
 \begin{proof}
-这个题实际做之前你需要想一下$q$和$p$的次数关系，你会发现它们的次数应该是一样的才对，因为$p$乘上了一个2次多项式，两次求导之后整个式子次数会减少2次，总体保持不变就是$p$的次数. 然后你设$p$和$q$的次数为$m$，再把它们换成对应的$p_m(x)=c_mx^m+\cdots+c_0$. 左边去掉求导符合，即展开，对比系数，得到关系式.
+这个题可以利用$q$和$p$的次数关系的初等方法来做，你会发现它们的次数应该是一样的才对，因为$p$乘上了一个2次多项式，两次求导之后整个式子次数会减少2次，总体保持不变就是$p$的次数. 然后你设$p$和$q$的次数为$m$，再把它们换成对应的$p_m(x)=c_mx^m+\cdots+c_0$. 左边去掉求导符合，即展开，对比系数，得到关系式.
 
-这里也可以通过operator来做，前面说了任意时刻$p$和$q$的系数相等，我们设为$m$，我们再把眼光放到$\mathcal{P}_m(x)$上，构造一个operator $\func{T}{\mathcal{P}_m(\mathbb{R})}{\mathcal{P}_m(\mathbb{R})}$
+这里也可以通过operator来做，考虑前面提到的operator $\func{T}{\mathcal{P}(\mathbb{R})}{\mathcal{P}(\mathbb{R})}$
 $$
-Tp = ((x^2+5x+7)p)''
+T(p) = ((x^2+5x+7)p)''.
 $$
-这里$q \in \mathcal{P}_m(x)$，所以我们只需要证明这个$T$是一个surjective即可，用上面的proposition，我们来证明它是一个injective. 若要使得$Tp = 0$，二次导之后为0的多项式只能是形如$ax+b$，很显然这里$p$只能等于$0$. 即$\nul{T} = \{0\}$，那么$T$是一个injective，即$T$是一个surjective.
+那么我们就是想证明$T$是一个surjective. 但是现在这里有一个问题，$\mathcal{P}(\mathbb{R})$这是一个infinite vector space，如果我们想用
+\ref{operator: iso-cond}来通过injective间接说明它是一个surjective是不行的. 但是给定任意一个多项式$q$都有一个最高次$m$，所以我们可以限制$T$一下，把它限制到$\func{T_m}{\mathcal{P}_m(\mathbb{R})}{\mathcal{P}_m(\mathbb{R})}$上，这样就是一个infinite vector space上的映射了. 再考虑$T_m$是不是一个injective. 若要使得$T(p) = 0$，由于二次求导之后为0的多项式只能是形如$ax+b$，要满足条件这里只能使得$p$等于$0$. 即$\nul{T} = \{0\}$，那么$T$是一个injective，即$T$是一个surjective.
 \end{proof}
 
 \newpage
@@ -1051,7 +1100,7 @@ $$
 
 
 \begin{definition}
-\rm 给定$V$上一个subspace $V$. 集合
+\rm 给定$V$上一个subspace $U$. 集合
 $$
 \Set{v+U}{v \in V}
 $$
@@ -1094,7 +1143,7 @@ $$
 \end{definition}
 
 
-{\color{blue} 我们必须得说明quotient sapce是一个vector space，才能引入重要的quotient map}.
+{\color{blue} 我们必须得说明quotient space是一个vector space，才能引入重要的quotient map}.
 \begin{proposition}
 \rm Quotient space是一个vector space.
 \end{proposition}
@@ -1202,10 +1251,8 @@ linear functional的例子
 \end{enumerate}
 \end{example}
 
-{\color{red} 对偶空间的定义}.
-
 \begin{definition}
-\rm $V$上所有的linear functional构成的集合是一个vector space，其被称为\textbf{dual space}，记为$V'$. 换句话说就是$V' = \mathcal{L}(V,F)$.
+\rm {\color{red} 对偶空间的定义} $V$上所有的linear functional构成的集合是一个vector space，其被称为\textbf{dual space}，记为$V'$. 换句话说就是$V' = \mathcal{L}(V,F)$.
 \end{definition}
 
 \begin{proposition}	
@@ -1213,7 +1260,7 @@ $\dim V' = \dim V$.
 \end{proposition}
 
 \begin{proof}
-from $\dim(V,W)=\dim V \dim W$.
+由\ref{linear-map-space: dim} $F$ over $F$的dimension是1???? haha
 \end{proof}
 
 \begin{definition}
@@ -1240,7 +1287,7 @@ $$
 \end{proof}
 
 \begin{definition}
-\rm 给定linear map $T \in \mathcal{L}(V,W)$. 它的\textbf{dual map} $T' \in \mathcal{L}(W',V')$定义为
+\rm 给定linear map $T \in \mathcal{L}(V,W)$. $T$的\textbf{dual map} $T' \in \mathcal{L}(W',V')$定义为
 $$
 T'(\varphi) = \varphi \circ T,
 $$
@@ -1289,9 +1336,9 @@ $$
 
 clearly $0 \in U^0$.
 
-设$v,w \in U^0$. 我们考虑$(v+w)(u) = v(u)+w(u)$其中$u \in U$. clearly $v(u)+w(u) \in U^0$.
+设$v,w \in U^0$. 我们考虑$(v+w)(u) = v(u)+w(u) = 0$其中$u \in U$. clearly $v(u)+w(u) \in U^0$.
 
-相似的，取$\lambda \in F$. 考虑$(\lambda v)(u)=\lambda v(u)$. clearly $\lambda v(u) \in U^0.$
+相似的，取$\lambda \in F$. 考虑$(\lambda v)(u)=\lambda v(u) = 0$. clearly $\lambda v(u) \in U^0.$
 \end{proof}
 
 {\color{red} 那么我们现在就可以问annihilator的dimension是多少}？ 
@@ -1367,6 +1414,14 @@ $$
 其中$T^{-1}$表示取preimage. 这样$TS = 1$，单位映射。 所以$T'$是surjective的.
 \end{proof}
 
+\begin{proposition}\label{dual-map: range-space}
+\rm 给定两个finite-dimensional vector space $V,W$和linear map $T \in \mathcal{L}(V,W)$. 则
+\begin{enumerate}
+	\item $\dim \range{T'} = \dim \range{T}$;
+	\item $\range{T'} = (\nul{T})^0$.
+\end{enumerate}
+\end{proposition}
+
 
 \newpage
 \subsection{The Matrix of the Dual of a Linear Map}
@@ -1405,7 +1460,7 @@ $$
 
 {\color{red} $T'$对应matrix是$T$对应matrix的转置}
 
-\begin{proposition}
+\begin{proposition}\label{dual-map: matrix-representation}
 给定$T \in \mathcal{L}(V,W)$.则
 $$
 	\mathcal{M}(T') = (\mathcal{M}(T))^t.
@@ -1475,11 +1530,11 @@ $$
 
 {\color{red} $\mathcal{M}(T)$的column rank}.
 
-\begin{proposition}
+\begin{proposition}\label{rank: prop1}
 \rm 给定两个finite-dimensional vector space $V,W$和linear map $T \in \mathcal{L}(V,W)$. 则$\range{T}$的dimension等于$\mathcal{M}(T)$的column rank.
 \end{proposition}
 
-这是很显然的，$\mathcal{M}$的每一列对应$Tv_1,\cdots,Tv_n$是可以确定$\range{T}$上任意一个vector的.
+这是很显然的，$\mathcal{M}$的每一列对应$T(v_1),\cdots,T(v_n)$是可以确定$\range{T}$上任意一个vector的.
 
 {\color{red} row rank和column rank的关系}.
 \begin{proposition}
@@ -1487,20 +1542,18 @@ $$
 \end{proposition}
 
 \begin{proof}
-这个问题拿到手的时候，似乎单纯从定义我们无法下手. 不用说肯定是要用前面的proposition. 至少我们这里需要构造一个linear map出来. 这里用一个之前我们提到的matrix multiplication map $\func{T}{F^{n,1}}{F^{m,1}}$
+由\ref{linear map: matrix-mul} 定义matric multiplication map $\func{T'}{F^{n,1}}{F^{m,1}}$
 $$
-T(x)=Ax, x \in F^{n,1}.
+T'(x) = Ax.
 $$
-要是把$A$可以换成$\mathcal{M}(T)$那就太好了. 只要我们fix的basis都是standard basis($\begin{pmatrix} 1\\0 \\ \vdots \\ 0 \end{pmatrix},\begin{pmatrix} 0\\1 \\ \vdots \\ 0 \end{pmatrix},\cdots$)就行，可以简单的验算一下.
-
-那么
+则$A = \mathcal{M}(T)$，其中$\mathcal{M}^{-1}_{(\varepsilon_1,\cdots,\varepsilon_n)}\colon F^{n,1} \rightarrow V$定义为$ \mathcal{M}^{-1}_{(\varepsilon_1,\cdots,\varepsilon_n)}= (\varepsilon_1,\cdots,\varepsilon_n)x$，$(\varepsilon_1,\cdots,\varepsilon_n)$为标准基，同理$\mathcal{M}^{-1}_{(\varepsilon_1,\cdots,\varepsilon_n=m)}\colon F^{m,1} \rightarrow W$定义为$ \mathcal{M}^{-1}_{(\varepsilon_1,\cdots,\varepsilon_n)}= (\varepsilon_1,\cdots,\varepsilon_m)x$，$(\varepsilon_1,\cdots,\varepsilon_m)$为标准基. ({\color{blue}改定义需仔细体会一下\ref{linear map: matrix-mul}中的交换图})
 $$
 \begin{aligned}
 \text{column rank of } A &= \text{column rank of } \mathcal{M}(T) \\
-						 &= \dim \range{T} \\
-						 &= \dim \range{T'} \\
-						 &= \text{column rank of } \mathcal{M}(T')\\
-						 &= \text{column rank of } A^{t} \\
+						 &= \dim \range{T} & \ref{rank: prop1} \\
+						 &= \dim \range{T'} & \ref{dual-map: range-space}\\
+						 &= \text{column rank of } \mathcal{M}(T') & \ref{rank: prop1}\\
+						 &= \text{column rank of } A^{t} & \ref{dual-map: matrix-representation}\\
 						 &= \text{row rank of } A 	
 \end{aligned}
 $$
@@ -1508,5 +1561,5 @@ $$
 %https://math.stackexchange.com/questions/332908/looking-for-an-intuitive-explanation-why-the-row-rank-is-equal-to-the-column-ran 里面有一种novel的proof
 \end{proof}
 
-{\color{blue} 所以以后column rank和row rank统称为rank}！
+{\color{blue} 至此column rank和row rank统称为rank}！
 \end{document}
