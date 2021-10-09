@@ -142,13 +142,13 @@ An element $x \in P$ is {\color{red} maximal}	if there is no element $y \in  P$ 
 {\color{red} 这个lemma被称为descending chain condition(DCC). 对偶地也有ascending chain condition(ACC). original 'a partially ordered set $\mathcal{P}$ requires that all decreasing sequences in $\mathcal{P}$ become eventually constant'}.
 
 \begin{proof}
-(2) $\Rightarrow$ (3). 前提只存在finite descending chain. 假设(3)不成立，且$a_0 \geq a_1 \geq a_2 \geq \cdots$是infinite chain. 则对于任意的$k$，都能找到$n \geq k$使得$a_n \neq a_k$且$a_k \geq a_n$，那么$a_k > a_n$. 这样从$k=0,1,2,\cdots$开始我们每次都可以找到$a_{n_0} > a_{n_1} > \cdots$. 这样我们实际构造了一个infinite descending chain，这是和前提矛盾的. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是一个finite chain，它的最后一个元素显然是满足(3)，这和假设是矛盾的. 
+(2) $\Rightarrow$ (3). 前提只存在finite descending chain. 假设(3)不成立. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是infinite chain, 则对于任意的$k$，都能找到$n \geq k$使得$a_n \neq a_k$且$a_k \geq a_n$，那么$a_k > a_n$. 这样从$k=0,1,2,\cdots$开始我们每次都可以找到$a_{n_0} > a_{n_1} > \cdots$. 这样我们实际构造了一个infinite descending chain，这是和前提矛盾的. 若$a_0 \geq a_1 \geq a_2 \geq \cdots$是一个finite chain，它的最后一个元素显然是满足(3)，这和假设是矛盾的. 
 
 (3) $\Rightarrow$ (2). 也是分infinite chain和finite chain来讨论，finite是显然的，infinite的时候可以把它变成finite.
 
 (1) $\Rightarrow$ (2). (1)前提满足下，假设(2)不成立，即$\mathcal{P}$存在infinite descending chain. 把这个chain上的所有元素取出来组成一个subset $S$，那么任取$a_k$都有$a_{k+1} \leq a_k$. 即找不到minimal.
 
-(2) $\Rightarrow$ (1). (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \subseteq S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
+(2) $\Rightarrow$ (1). (2)前提满足下，假设(1)不成立.  这里需要用一下{\color{blue} 选择公理}了，定义$S$上一个选择函数$\func{f}{S}{T}$，其中$T \in S$. 让$a_0 = f(S)$，递归地定义对任意的$i \in \omega$有$a_{i+1} = f(\Set{s \in S}{s < a_i})$. 接下来让这个definition make sense，(2)前提下$S$是没有minimal, 所以$\Set{s \in S}{s \leq a_i}$不是empty set. 这样就找到了一个infinite descending chain，与假设矛盾.
 
 (1) $\Rightarrow$ (2) $\Rightarrow$ (3).
 
