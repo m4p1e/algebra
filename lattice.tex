@@ -185,24 +185,24 @@ then $\varphi(x)$ is true for every element of $P$.
 \begin{definition}
 \rm Define the {\color{red} width} of an poset $\mathcal{P}$ by
 $$
-	w(\mathcal{P}) = \sup\Set{|A|}{\text{A is an antichain in $\mathcal{P}$}}
+	w(\mathcal{P}) = \sup\Set{|A|}{\text{$A$ is an antichain in $\mathcal{P}$}}
 $$
 where $|A|$ denotes the cardinality(集合的势) of $A$. 
 \end{definition}
 
 
 \begin{definition}
-\rm We define the {\color{red} chain-covering-number} CCN $c(\mathcal{P})$ to be the least cardinal number k, such that $P$ is a union of $k$ chains(finite) of $P$, means $P = \bigcup C_i$
+\rm We define the {\color{red} chain-covering-number} CCN $c(\mathcal{P})$ to be the least cardinal number k, such that $P$ is a union of $k$ chains(finite) of $P$, means $P = \bigcup C_i$.
 \end{definition}
 
-{\color{blue} 另一种covering number，有趣}.
+{\color{blue} 拿同等最小规模的finite chain把整个poset盖住}.
 
 \begin{lemma}
 Suppose $P = \bigcup C_i$ where $i \in I$，then $ w(\mathcal{P}) \leq |I|$.
 \end{lemma}
 
 \begin{proof}
-因为$ |A \cap C_i| \leq 1 $ for $i \in I$. 也就是说你把$A$里面的元素分开塞到$C_i$上，每次都只能塞一个. 那么最多你可以每个$C_i$上都塞一个. 
+这里前提条件是任意一个chain cover. 因为对任意一个antichain $A$和$C_i$有$|A \cap C_i| \leq 1$，且$A \in \bigcup C_i$，所以如果$A$里面有两个以上的元素，那么你要分开塞到$C_i$上，且每个$C_i$你都只能塞一个，那么最多你可以每个$C_i$上都塞一个进去，因此就有$w(P) \leq |I|$. 
 \end{proof}
 
 \begin{theorem}
@@ -210,7 +210,7 @@ Suppose $P = \bigcup C_i$ where $i \in I$，then $ w(\mathcal{P}) \leq |I|$.
 \end{theorem}
 
 \begin{proof}
-TODO.
+TODO. 这有意思
 \end{proof}
 
 \newpage
