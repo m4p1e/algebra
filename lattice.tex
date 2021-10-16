@@ -56,7 +56,7 @@
 \tableofcontents
 
 \newpage
-\section{Ordered Sets}
+	\section{Ordered Sets}
 
 \begin{definition}
 \rm {\color{red} Partially ordered set} is a system $\mathcal{P} = (P,\leq)$ where $P$ is a nonempty set and $\leq$ is a binary relation on $P$ satisfying，for all $x,y,z \in P,$
@@ -93,6 +93,10 @@
 
 \begin{definition}
 \rm Given a partially order set， $f$ is a {\color{red} order preserving map} satisfying the condition $x \leq y$ implies $f(x) \leq f(y)$.
+\end{definition}
+
+\begin{definition}
+\rm Given two posets $(P,\leq_S)$ and $(Q,\leq_Q)$, $f: P \to Q$ is an {\color{red}order-reflecting map} if and only if $f(x) \leq_Q f(y) \Rightarrow x \leq_S y $ 
 \end{definition}
 
 \begin{definition}
@@ -222,14 +226,14 @@ TODO. 这有意思
 \begin{enumerate}
 	\item $x * x = x,$
 	\item $x * y = y *x,$
-	\item $x*(y*z) = x*(y*z).$
+	\item $(x*y)*z = x*(y*z).$
 \end{enumerate}
 where $*$ is binary operator.
 {\color{red} 换句话说semilattice就是一个idempotent commutative semigroup(幂等交换半群)}. 
 \end{definition}
 
 \begin{theorem}
-\rm In a semilattice $\slattice$，define $x \leq y$ if $x * y = x$. Then $(S,\leq)$ is a poset in which every pair of elements has a greater lower bound.
+\rm In a semilattice $\slattice$，define $x \leq y$ if $x * y = x$. Then $(S,\leq)$ is a poset in which every pair of elements has a greater lower bound(generally finite subset of poset).
 
 Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).$ Then $(P,*)$ is a semilattice.
 \end{theorem}
@@ -247,7 +251,7 @@ Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).
 {\color{blue} semilattice上弄了一个特殊的poset出来, 它最好的性质就是任意两个元素都有一个下确界}.
 
 \begin{definition}
-\rm A semilattice with the above ordering is usually called {\color{red} meet semilattice}. 对偶地，使得$x \geq y \iff x * y = x$，则称$\slattice$为是一个{\color{red} join semilattice}. 自然地在$(S,\leq)$下任意的pair都有一个least upper bound $x \vee y$.
+\rm A semilattice with the above ordering is usually called {\color{red} meet semilattice} $(S, \wedge)$. 对偶地，使得$x \geq y \iff x * y = x$，则称$\slattice$为是一个{\color{red} join semilattice} $(S, \vee)$. 自然地在$(S,\leq)$下任意的pair都有一个least upper bound $x \vee y$.
 \end{definition}
 
 \begin{definition}\rm A {\color{red} homomorphism} between two semilattice is a map $\func{f}{\slattice}{\mathcal{T}}$ with the property that $f(x*y) = f(x) * f(y)$. An {\color{red} isomorphism} is a homomorphism that injective and surjective.
@@ -258,23 +262,23 @@ Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).
 {\color{blue} nothing new}... {\color{red} has some!}
 
 \begin{definition}
-\rm A semilattice is {\color{red} bounded} if there is a top/bottom element. 
+\rm A semilattice is {\color{red} bounded} if there is a top/bottom(only want to require one) element. 
 \end{definition}
 
 
 
 \begin{theorem}
-\rm Let $\slattice$ be a meet semilattice. Define $\func{\phi}{S}{\mathcal{O}(S)}$ by
+\rm Let $\slattice$ be a meet semilattice $(S,\wedge)$. Define $\func{\phi}{S}{\mathcal{O}(S)}$ by
 $$
 \phi(x) = \Set{y \in S}{y \leq x}
 $$
-where $\mathcal{O}(S)$ is collection of all order ideals of $\slattice$. Then $\slattice$ is isomophic $(\mathcal{O}(S),\cap)$(注意这里是$\slattice$的image).
+where $\mathcal{O}(S)$ is collection of all order ideals of $\slattice$. Then $\slattice$ is isomophic $(\mathcal{O}(S),\cap)$.
 \end{theorem}
 
-{\color{blue} 怎么感觉这些ideal都是principle ideal}.
+{\color{blue} 怎么感觉这些ideal都是principle ideal(the ideal is generate by the element)}.
 
 \begin{proof}
-$\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是比较obvious. 所以$\phi$是一个order embedding of $\slattice$ into $\mathcal{O}(\slattice)$. Moreover $\phi(x \wedge y) = \phi(x) \cap \phi(y)$ because $x \wedge y$ is the greate lower bound of $\{x,y\}$，so that $z \leq x \wedge v$ if and only if $z \leq x$ and $z \leq y$. 
+$\cap$表示set intersection，$\phi$是order-preserving和order-reflecting还是比较obvious. 所以$\phi$是一个order embedding of $\slattice$ into $\mathcal{O}(\slattice)$. Moreover $\phi(x \wedge y) = \phi(x) \cap \phi(y)$ because $x \wedge y$ is the greatest lower bound of $\{x,y\}$，so that $z \leq x \wedge y$ if and only if $z \leq x$ and $z \leq y$. 
 \end{proof}
 
 
@@ -290,7 +294,7 @@ $\cap$表示set inclusion，$\phi$是order-preserving和order-reflecting还是�
 \end{enumerate}
 \end{definition}
 
-{\color{blue} 就第四个在我们眼里似乎没有那么自然，它叫absorption laws(吸收律)，它在这里可以保证后面$\wedge$和$\vee$定义了相同的partial order(虽然是dual). 前三个我们知道lattice同时在两种binary operator都是semilattice，所以我们只要在lattice上定义前面合适的partial order，它就是both meet and join semilattice}. 
+{\color{blue} 就第四个在我们眼里似乎没有那么自然，它叫absorption laws(吸收律)，它在这里可以保证后面$\wedge$和$\vee$在相同的partial order下面. 前三个我们知道lattice同时在两种binary operator都是semilattice，所以我们只要在lattice上定义前面合适的partial order，它就是both meet and join semilattice}. 
 
 \begin{theorem}
 \rm In a lattice $\lattice$，define $x \leq y$ if and only if $x \wedge y = x$. Then $(L,\leq)$ is a poset in which every pair of elements has a greatest lower bound and a least upper bound.  
