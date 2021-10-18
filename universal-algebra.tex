@@ -48,6 +48,10 @@
 \newcommand\Sg{\text{Sg}}
 \newcommand\algebra{\mathbf{A}}
 \newcommand\Sub[1]{\text{Sub}(#1)}
+
+\newcommand{\redt}[1]{\textcolor{red}{#1}}
+\newcommand{\bluet}[1]{\textcolor{blue}{#1}}
+
 \begin{document}
 \title{Lattice}
 \author{枫聆}
@@ -69,12 +73,14 @@ of several seemingly different types of algebraic structures}.
 \rm A {\color{red} language} (or type) of algebras is a set $\mathcal{F}$ of function symbols such a nonnegative integer $n$ is assgined to each member $f$ of $\mathcal{F}$. This integer is called the arity (or rank) of $f$, and $f$ is said to be an n-ary function symbol. The subset of n-ary function symbols in $\mathcal{F}$ is denoted by $\mathcal{F}_n$.
 \end{definition}
 
+\bluet{the language of algebra 就是一堆$n$元操作，简称n-ary function}. 
+
 \begin{definition}
 \rm If $\mathcal{F}$ is a language of algebras then an {\color{red} algebra} $\mathbf{A}$ of type $\mathcal{F}$ is an ordered pair $\left<A,F\right>$ where $A$ is a {\color{red} nonempty set} and $F$ is a family of {\color{red} finitary operations} on A indexed by the language $\mathcal{F}$ such that corresponding to each n-ary function symbol $f$ in $\mathcal{F}$ there is an n-ary operation $f^\mathbf{A}$ on $A$. The set $A$ is called the {\color{red} universe} ({\color{blue} 全域}) (or underlying set) of $\mathbf{A} =\left<A,F\right>$, and the $f^\mathbf{A}$ ’s are called the {\color{red} fundamental operations} ({\color{blue}基本运算}) of $\mathbf{A}$. (In practice we prefer to write just $f$ for $f ^\mathbf{A}$ —this convention creates an ambiguity which seldom causes a problem. However, in this chapter we will be unusually careful.) If $\mathcal{F}$ is finite, say $\mathcal{F} = \{f_1,\cdots,f_k\}$, we often write $\left<A, f_1,\cdots,f_k\right>$ for $\left<A,F\right>$, usually adopting the convention:
 $$
-arity f_1 \geq \cdots \geq arity f_k.
+\text{arity}~f_1 \geq \cdots \geq \text{arity}~f_k.
 $$
-An algebra $\mathbf{A}$ is {\color{red} unary} if all of its operations are unary, and it is mono-unary if it has just on unary operation.
+An algebra $\mathbf{A}$ is {\color{red} unary} if all of its operations are unary, and it is mono-unary if it has just one unary operation.
 \end{definition}
 
 {\color{blue} 抽象来说一个algebra就是一个集合和一堆finitary operations构成的,在目前已经学到的代数中operation的arity大多数不会超过2(够modern).}
@@ -104,7 +110,7 @@ An algebra $\mathbf{A}$ is {\color{red} unary} if all of its operations are unar
 $$
 \alpha f^\mathbf{A}(a_1,\cdots,a_n) = f^\mathbf{B}(\alpha a_1,\cdots,\alpha a_n).
 $$
-We say $\mathbf{A}$ is isomorphic to $B$, if there is a isomorphism from $\mathbf{A}$ to $\mathbf{B}$.
+We say $\mathbf{A}$ is isomorphic to $B$, if there is a isomorphism from $\mathbf{A}$ to $\mathbf{B}$. i.e. suppose $f$ is  $*$, $\alpha(a * b) = \alpha(a) * \alpha(b)$. 
 \end{definition}
 
 {\color{blue} 老样子元素上保持bijective，对应的运算结果也保持一致}.
@@ -115,7 +121,7 @@ We say $\mathbf{A}$ is isomorphic to $B$, if there is a isomorphism from $\mathb
 A {\color{red} subuniverse} of $\mathbf{A}$ is a subset $B$ of $A$ which is closed under the fundamental operations of $\mathbf{A}$, i.e., if $f$ is a fundamental n-ary operation of $\mathbf{A}$ and $a_1,\cdots,a_n \in B$ we wound required $f(a_1,\cdots,a_n) \in B$. 
 \end{definition}
 
-{\color{blue} 这个restriction就是只对定义域做限制的意思，subalgebra是一种构造新代数的方法，后面会学到另外几种}.
+{\color{blue} 这个restriction就是只对定义域做限制的意思，subalgebra是一种构造新代数的方法，后面会学到另外几种. subalgebra和subuniverse的联系是，subalgebra一定是subuniverse，但是subuniverse不是一定是subalgebra，i.e 如果一个algebra有一个nullary，那么empty set是一个subuniverse，但是它是不是subalgebra}.
 
 \begin{definition}
 \rm Let $\mathbf{A}$ and $\mathbf{B}$ be of the same type. A function $\func{\alpha}{A}{B}$ is an embedding of $\mathbf{A}$ into $\mathbf{B}$ if $\alpha$ is one-to-one and satisfies
@@ -128,15 +134,15 @@ Such an $\alpha$ is also called a monomorphism. We say $\mathbf{A}$ can be embed
 {\color{blue} 单纯地去掉surjective.}
 
 \begin{theorem}
-If $\func{\alpha}{A}{B}$ is an embedding, then $\alpha(A)$ is a subuniverse of $\mathbb{B}$.
+\rm If $\func{\alpha}{A}{B}$ is an embedding, then $\alpha(A)$ is a subuniverse of $\mathbb{B}$.
 \end{theorem}
 
 \begin{proof}
-我们需要说$\alpha(A)$在n-ary operation下保持封闭. 因为$\alpha$是应embedding，所以对应一个n-ary operation $f$和$a_1,\cdots,a_n \in A$有
+我们需要说明$\alpha(A)$在对应的n-ary operation下保持封闭. 因为$\alpha$是embedding，所以对应一个n-ary operation $f$和$a_1,\cdots,a_n \in A$有
 $$
 f^\mathbf{B}(\alpha a_1,\cdots,\alpha a_n) = \alpha f^\mathbf{A}(a_1,\cdots,c_n) \in \alpha(A).
 $$
-已经证闭.
+已经证毕.
 \end{proof}
 
 \newpage

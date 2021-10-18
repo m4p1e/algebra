@@ -294,16 +294,19 @@ $\cap$表示set intersection，$\phi$是order-preserving和order-reflecting还�
 \end{enumerate}
 \end{definition}
 
-{\color{blue} 就第四个在我们眼里似乎没有那么自然，它叫absorption laws(吸收律)，它在这里可以保证后面$\wedge$和$\vee$在相同的partial order下面. 前三个我们知道lattice同时在两种binary operator都是semilattice，所以我们只要在lattice上定义前面合适的partial order，它就是both meet and join semilattice}. 
+{\color{blue} 前三个公理保证$\lattice$同时是meet semilattice 和join semilattice. 最后一个公理交吸收律，它保证前面定理meet和join操作将会诱导出同一个order}. 
 
 \begin{theorem}
 \rm In a lattice $\lattice$，define $x \leq y$ if and only if $x \wedge y = x$. Then $(L,\leq)$ is a poset in which every pair of elements has a greatest lower bound and a least upper bound.  
 \end{theorem}
 
 \begin{proof}
-给定一个pair $(x,y)$. 前面已经证明了$x \wedge y$是它的一个greater lower bound. 再根据lattice definition的第四条的第一个式子，$x \vee y$是它的一个upper bound，第二式子说明当$x \geq y$时，有$x \vee y = x$，对偶地$x \vee y$是least upper bound. 
+给定一个pair $(x,y)$. 前面已经证明了$x \wedge y$是它的一个greater lower bound，这里我们需要再证明$x \vee y$是它的least lower bound. 假设$z \geq x$，由$z \vee (z \wedge x) = z \vee x = z$，这里证明了$\vee$的基本性质，因此回到semilattice中证明least upper bound手法，设$z$是${x,y}$的一个upper bound，那么
+$$
+z \vee (x \vee y) = (z \vee x) \vee y = z \vee y = z. 
+$$
 
-这里若$x \wedge y = x$，则$x \vee y = (x \wedge y) \vee y = y$.  类似地$x \vee y = y$，则$x \wedge y = x \wedge (x \vee y) = x$.  所以有一个很重要的结论就是{\color{blue} $x \wedge y = x \iff x \vee y = y$}.
+这里若$x \wedge y = x$，则$x \vee y = (x \wedge y) \vee y = y$.  类似地$x \vee y = y$，则$x \wedge y = x \wedge (x \vee y) = x$.  所以有一个很重要的结论就是{\color{blue} $x \wedge y = x \iff x \vee y = y$}，这就是lattice definition中吸收律保证same order.
 \end{proof}
 
 {\color{red} 类似的我们可以通过一个poset构造lattice}.
