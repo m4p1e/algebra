@@ -9,7 +9,15 @@
 \usepackage{amssymb}
 
 %\usepackage{unicode-math}
-
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 
 \usepackage[textwidth=18cm]{geometry} % 设置页宽=18
 
@@ -18,6 +26,8 @@
 \parindent=0pt
 \setlength{\parindent}{2em} 
 \usepackage{indentfirst}
+
+
 
 
 \usepackage{xcolor}
@@ -46,7 +56,8 @@
 \newcommand\lattice{\mathcal{L}}
 \newcommand\eql[1]{\ensuremath\mathbf{Eq}~{#1}}
 
-
+\newcommand{\redt}[1]{\textcolor{red}{#1}}
+\newcommand{\bluet}[1]{\textcolor{blue}{#1}}
 
 
 \begin{document}
@@ -294,7 +305,7 @@ $\cap$表示set intersection，$\phi$是order-preserving和order-reflecting还�
 \end{enumerate}
 \end{definition}
 
-{\color{blue} 前三个公理保证$\lattice$同时是meet semilattice 和join semilattice. 最后一个公理交吸收律，它保证前面定理meet和join操作将会诱导出同一个order}. 
+{\color{blue} 前三个公理保证$\lattice$同时是meet semilattice 和join semilattice. 最后一个公理交吸收律，它保证前面定理meet和join操作将会诱导出同一个order，将会在后面的证明过程中make sense}. 
 
 \begin{theorem}
 \rm In a lattice $\lattice$，define $x \leq y$ if and only if $x \wedge y = x$. Then $(L,\leq)$ is a poset in which every pair of elements has a greatest lower bound and a least upper bound.  
@@ -319,7 +330,11 @@ $$
 {\color{blue} 所以实际上lattice可以有两种定义第一种是前面的代数定义，第二种就是在poset上定义join和meet操作，这一点要清楚}.
 
 
-{\color{red} the definitions of sublattice，homomorphism and isomorphism )}.
+{\color{red} the definitions of homomorphism )}.
+
+\begin{definition}
+\rm If $\lattice$ is lattice and $L' \neq \emptyset$ is a subset of $L$ such that for every pair of elements $(a,b) \in L'$ both $a \wedge b$ and $a \vee b$ are in $L'$，where $\wedge$ and $\vee$ are the lattice operations of $\lattice$，then we say $L'$ with the same operations of $\lattice$ is a {\color{red} sublattice} of $\lattice$. 
+\end{definition}
 
 \begin{definition}
 \rm Two lattice $\lattice_1$ and $\lattice_2$ are {\color{red} isomorphic} if there is {\color{red} bijective} $\alpha$ from $\lattice_1$ to $\lattice_2$ such that for every $a,b$ in $\lattice_1$ the following two equations hold: $\alpha(a \wedge b) = \alpha(a) \wedge \alpha(b)$ and $\alpha(a \vee b) = \alpha(a) \vee \alpha(b)$. Such an $\alpha$ is called by an {\color{red} isomorphism}.  
@@ -339,27 +354,29 @@ $\lattice_2$ such that both $\alpha$ and $\alpha^{-1}$ are {\color{red} order-pr
 \end{proof}
 
 \begin{example}
-\rm 记录一个$\alpha$是bijective但只有$\alpha$ order-preserving，这样的$\alpha$可能不是一个isomorphism. Hasse图可能画的不标准!
+\rm 记录一个$f$是bijective但只有$f$ order-preserving，这样的$f$可能不是一个isomorphism. Hasse图可能画的不标准!
 \begin{center}
 % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkR6QBfU9TXfIRTlSxanSat2AI268QGbHgJEATKVXiGLNohABjOXyWCiZAMxbJukFCML+yocgCsFKzvacexgSpRuYjTaUnqyPg4m-q4aHqEG9op+zm6WwdbsdlziMFAA5vBEoABmAE4QALZIIiA4EEgALDQAFjD0dohgzIyMNDj0WIzsFfRocHX2ZZVIZLX1iG4gre1IXT19A0N6I2MTEVNViOpzSABsLW0da721m8Oj4-X75YfmffMA7Bcrnd03-YN7rsnvIDtV3jNvh1wAQ2M9pogahMjlD2JAwHDQS9ISdEG8lpc0bDJtiUbj8ctoejMSVSU1cYtKUSMSSEYtkecCT8YSz4YdOcivlyqcTslwgA
 \begin{tikzcd}
-                                              & a \arrow[rrrr, maps to] \arrow[ld, no head] \arrow[rdd, no head] &                                            &  &  & a \arrow[d, no head] \\
-b \arrow[rrrrr, maps to] \arrow[rdd, no head] &                                                                  &                                            &  &  & b \arrow[d, no head] \\
-                                              &                                                                  & c \arrow[rrr, maps to] \arrow[ld, no head] &  &  & c \arrow[d, no head] \\
-                                              & d \arrow[rrrr, maps to]                                          &                                            &  &  & d                   
+                                              & a \arrow[rrrr, maps to] \arrow[ld, no head] \arrow[rdd, no head] &                                            &  &  & a' \arrow[d, no head] \\
+b \arrow[rrrrr, maps to] \arrow[rdd, no head] &                                                                  &                                            &  &  & b' \arrow[d, no head] \\
+                                              &                                                                  & c \arrow[rrr, maps to] \arrow[ld, no head] &  &  & c' \arrow[d, no head] \\
+                                              & d \arrow[rrrr, maps to]                                          &                                            &  &  & d                  '
 \end{tikzcd}
 \end{center}
+其中$f(b \wedge c) \neq f(b) \wedge f(c)$. 
 \end{example}
 
-\begin{definition}
-\rm If $\lattice$ is lattice and $L' \neq \emptyset$ is a subset of $L$ such that for every pair of elements $a,b in L'$ both $a \wedge b$ and $a \vee b$ are in $L'$，where $\wedge$ and $\vee$ are the lattice operations of $\lattice$，then we say $L'$ with the same operations of $\lattice$ is a {\color{red} sublattice} of $\lattice$. 
-\end{definition}
 
 \newpage
 \subsection{Complete Lattice}
-{\color{red} 集合的upper bound和 lower bound}.
+
 \begin{definition}
-\rm For a subset $A$ of a poset $P$，let $A^u$ denote the set of all upper bounds of $A$，
+\rm 如果$\lattice$上如果存在一个最小元素，则记为$0$. 类似地，如果$\lattice$存在一个最大元素，则记为$1$. 
+\end{definition}
+
+\begin{definition}
+\rm For a subset $A$ of a poset $\mathcal{P}$，let $A^u$ denote the set of all upper bounds of $A$，
 $$
 \begin{aligned}
 A^u &= \Set{x \in P}{x \geq a\ \text{for all}\ a \in A} \\
@@ -376,18 +393,18 @@ $$
 where $\downarrow a = \Set{x \in P}{x \leq a}$.
 \end{definition}
 
-思考一个问题{\color{red} poset $P$的一个subset $A$什么时候least upper bound}? 很显然$A^u$ 一定不是空的，更确切地说$A^u$有一个greatest lower upper $z$，而且$z \in A^u$，根据$z$的definition它是$A$的least upper bound. 这种情况下我们就说{\color{red} the join of $A$ exists，and write $z = \bigvee A$}. 对偶地，{\color{red} 考虑$A$的greatest lower bound}，则$A^l$一定不为空，那么$A^u$里面是有一个lower upper bound的$w$，根据$w$的definition它是$A$的greatest lower bound. 这种情况下我们就说{\color{red} the meet of $A$ exists，and write $w = \bigwedge A$}.
+思考一个问题{\color{red} poset $\mathcal{P}$的一个subset $A$什么时候有一个least upper bound}? 首先你得保证$A^u$不为空，那么这里可以设置一个条件“$\mathcal{P}$有一个maximum element”，显然此时$A^u$就天然不为空了. 再进一步思考，如果$A^u$存在一个greatest lower bound $z$，且$z \in A^u$，那么按照定义$z$就是$A$的least upper bound. 如果前面这样的$z$存在，那么我们the join of $A$存在，记为$z = \bigvee A$，这样对集合的join操作也被定义好了，集合的meet操作也是类似的.  
 
 
-\begin{theorem}
-\rm Let $\slattice$ be a finite meet semilattice with greatest element 1. Then $\slattice$ is a lattice with join operation defined by 
+\begin{theorem}\label{finite-semilattice-to-lattice}
+\rm \redt{有限半格到格} Let $\slattice$ be a finite meet semilattice with greatest element 1. Then $\slattice$ is a lattice with join operation defined by 
 $$
 x \vee y = \bigwedge \{x,y\} ^u = \bigwedge (\uparrow x \cap \uparrow y).
 $$
 \end{theorem}
 
 \begin{proof}
-$\slattice$有greatest element，则$A^u$肯定不是空了，至少这个greatest element里面. $\bigwedge A^u$就是要找$A^u$的lower upper bound. 由于$\slattice$是一个finite lattice，所以$A^u$也是finite. $A^u$里面的元素做有限次meet操作得到就是一个lower upper bound，但是你还得说明它在$A^u$里面. 这是很显然的，$x \wedge z_1 \wedge \cdots \wedge z_k = x$其中$z_i \in A^u$，所以$\bigwedge A^u$是它的一个upper bound.
+由于$\slattice$是一个finite lattice，所以$A^u$也是finite. $A^u$里面的元素做有限次meet操作得到就是一个$A^u$的lower upper bound，但是你还得说明它在$A^u$里面，这是很显然的，因为$x \wedge z_1 \wedge \cdots \wedge z_k = x$其中$x \in A, z_i \in A^u$，所以$\bigwedge A^u$是它的一个upper bound.
 
 还得proof一下它是一个lattice，上面只是证明了这个东西是well behaved. Lattcie definition中前三条还是比较明显的.
 $$
@@ -397,18 +414,18 @@ $$
 $$
 x \vee (x \wedge y) = x
 $$
-因为$x \wedge y$是$\{x,y\}$的一个greatest lower bound，有$x \geq x \wedge y$，那么$\inf(x,x \wedge y) = x$.
+因为$x \wedge y$是$\{x,y\}$的一个greatest lower bound. 
 \end{proof}
 
 这个theorem告诉我们: {\color{red} if a finite poset $P$ has a greatest element and every pair of elements has a meet,
 then $P$ is a lattice}. 这就是lattice非代数形式的definition.
 
 \begin{theorem}
-\rm Every finite subset of a lattice has a greatest lower bound and a leaset upper bound.
+\rm Every finite subset of a lattice has a greatest lower bound and a least upper bound.
 \end{theorem}
 
 \begin{proof}
-$\lattice$是finite，则它的subset也是finite. 前面我们知道lattice中任意一个pair都有greatest lower bound和least upper bound，这是meet和join定义下的partial order所带来的性质. 在finite subset里面先挑两个出来做meet或者join可以得到inf和sup它们也是属于$L$的，再从剩下的subset里面再挑一个出来做同样的操作，这个操作只会做有限多次，所以最终我可以得到这个subset的greatest lower bound和least upper bound.
+$\lattice$是finite，则它的subset也是finite，两个确界的构造与\ref{finite-semilattice-to-lattice}一样.
 \end{proof}
 
 {\color{red} 这个性质在infinite lattice下可能就无法成立，自然地completely就arised}.
@@ -420,7 +437,7 @@ $\lattice$是finite，则它的subset也是finite. 前面我们知道lattice中�
 %{\color{red} finite lattice是complete的，并且所有complete lattice都包含greatest element和least element}.
 
 \begin{definition}
-\rm a {\color{red} complete meet semilattice} is an poset $\slattice$ with greatest element and the property that every nonempty subset $A$ of $S$ has a greatest lower bound $\bigwedge A$.
+\rm A {\color{red} complete meet semilattice} is an poset $\slattice$ with greatest element and the property that every nonempty subset $A$ of $S$ has a greatest lower bound $\bigwedge A$.
 \end{definition}
 
 %{\color{red} 下面这个theorem让我们抛弃了更强的finite，如何在complete meet semilattice上构造一个complete lattice出来}.
@@ -439,7 +456,7 @@ $$
 \newpage
 \subsection{Closure System}
 
-{\color{blue} 这一章我们的主旋律.
+{\color{blue} 这一章我们的主旋律，先给出closure system是什么？ 在告诉你如何构造第一个closure system(closure rules)？ 再告诉你如何在一个closure system上取一个合适的元素出来(closure operator)？ 慢慢享受吧 ） 
 \begin{center}
 % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAdDnGADx2ABjRpmYAnGAAI4ATzg8AtgF8QS0uky58hFACZSxanSat2XHvyEi44qRDQwx9HBDEq1G7HgJFyBowwsbIic3HwCwqISkmLMjPDuRjBQAObwRKAAZmIQCkh+IC5IxB4g2blI+oUQ+aXleYhk1ZU0ABYw9FBIYHGMNDj0WIzskGBsSpRKQA
 \begin{tikzcd}
@@ -463,7 +480,7 @@ $$
 \end{enumerate}
 \end{example}
 
-{\color{red} By convention，特殊地$\bigcap \emptyset = X$ ( $\bigwedge (A\cup\emptyset) = \bigwedge A \vee \bigwedge \emptyset = \bigwedge A$，这就是在说它$\bigwedge \emptyset$比任意子集都大)，closure system现在就是complete meet semilattice with greatest element $X$，所以你按前面构造定义出join，那么closure system就是一个complete lattice了}.
+By convention，特殊地\redt{$\bigcap \emptyset = X$} (but why)，closure system现在就是complete meet semilattice with greatest element $X$，所以你按前面构造定义出join，那么closure system就是一个complete lattice了.
 
 
 \begin{definition}
@@ -501,7 +518,7 @@ $$
 with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed with respect to these rules if $\varphi(D)$ is true for each $\varphi \in \sum$.
 \end{definition}
 
-{\color{blue} 你看到这里一定会感觉非常的困惑，抽象的closure rules到底是个啥东西？不急接着往下看你终会明白的}.
+{\color{blue} 你看到这里一定会感觉非常的困惑，抽象的closure rules到底是个啥东西？ 如果给定了一个$S$，要想把它构造成一个closet set，那你就就要按照$\Sigma$里面规则，往里面加东西. $\Sigma$里面有两类规则，第一类就是告诉你closet set一定要包含一些元素，例如一个子群需要包含单位元，第二类就是告诉你如果存在了一些元素在$S$，那么另外一些元素也需要在$S$里面，例如$a,b$在某个子群里面，那么$a * b$也要在这个子群里面，这样就make sense了}.
 
 \begin{example}
 \rm 对应前面列举到的closure system.
@@ -518,7 +535,6 @@ with $x,z \in X$ and $Y \subseteq X$. A subset $D$ of $X$ is said to be closed w
 \end{enumerate}
 \end{example}
 
-{\color{blue} closure rules就是一系列判断closed set的命题}.
 
 \begin{theorem}
 \rm {\color{red} If $\Gamma$ is a closure operator on a set $X$}，$\sum_{\Gamma}$ be the set of (1)all rules where $c \in \Gamma(\emptyset)$，and (2)all rules
@@ -529,7 +545,7 @@ with $z \in \Gamma(Y)$. Then a set $D \subseteq X$ satisfies all the rules of $\
 \end{theorem}
 
 \begin{proof}
-(1)是在说$\emptyset$的image非空？(2)是在说取$S$上任意子集$Y$，都有$\Gamma(Y) \subseteq S$. 直觉上就说这群规则是一个closure rule，满足它的只有closed set，自然地在closure operator上也是一个closed set. 可这条件都TM都abstract nosense了！！！
+第一类条件，即对任意的subset$A$，有$F(\emptyset) \subseteq \Gamma(A \cup \emptyset)$. 第二类条件，即如果满足规则$Y \subseteq S \Rightarrow s \in S$，那么显然有$s \in \Gamma(S)$，还因为$Y \subseteq Y$，那么也有$s \in \Gamma(Y)$. 显然这些这些规则是非常的自然的，那些固有的元素放在了$F(\emptyset)$中，因为所有子集都包含空集，而根据具体子集需要添加的元素根据所给的规则添加即可. 
 
 我尝试用closure operator的definition来推一下，$Y \subset S$，结合前面那么有
 $$
