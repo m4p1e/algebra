@@ -456,10 +456,10 @@ $$
 \newpage
 \subsection{Closure System}
 
-{\color{blue} 这一章我们的主旋律，先给出closure system是什么？ 在告诉你如何构造第一个closure system(closure rules)？ 再告诉你如何在一个closure system上取一个合适的元素出来(closure operator)？ 慢慢享受吧 ） 
+{\color{blue} 这一章我们的主旋律，先给出closure system是什么？ 再告诉你如何构造第一个closure system(closure rules)？ 再告诉你如何在一个closure system上取一个合适的元素出来(closure operator)？ 慢慢享受吧 ） 
 \begin{center}
 % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAdDnGADx2ABjRpmYAnGAAI4ATzg8AtgF8QS0uky58hFACZSxanSat2XHvyEi44qRDQwx9HBDEq1G7HgJFyBowwsbIic3HwCwqISkmLMjPDuRjBQAObwRKAAZmIQCkh+IC5IxB4g2blI+oUQ+aXleYhk1ZU0ABYw9FBIYHGMNDj0WIzskGBsSpRKQA
-\begin{tikzcd}
+\begin{tikzcd} 
                                 & \text{closure system} \arrow[rd] &                                    \\
 \text{closure rules} \arrow[ru] &                                  & \text{closure operator} \arrow[ll]
 \end{tikzcd}
@@ -545,15 +545,9 @@ with $z \in \Gamma(Y)$. Then a set $D \subseteq X$ satisfies all the rules of $\
 \end{theorem}
 
 \begin{proof}
-第一类条件，即对任意的subset$A$，有$F(\emptyset) \subseteq \Gamma(A \cup \emptyset)$. 第二类条件，即如果满足规则$Y \subseteq S \Rightarrow s \in S$，那么显然有$s \in \Gamma(S)$，还因为$Y \subseteq Y$，那么也有$s \in \Gamma(Y)$. 显然这些这些规则是非常的自然的，那些固有的元素放在了$F(\emptyset)$中，因为所有子集都包含空集，而根据具体子集需要添加的元素根据所给的规则添加即可. 
+给定一个closure operator $\Gamma$. 对任意的子集$A$，有$F(\emptyset) \subseteq \Gamma(A \cup \emptyset)$，因此一类条件所含的固定元素应该是$F(\emptyset)$. 参照前面第一类条件，那么第二类条件我们就可以考虑$S$所有子集，对任意子集$Y \subseteq S$都要有$\Gamma(Y) \subseteq \Gamma(S)$. 
 
-我尝试用closure operator的definition来推一下，$Y \subset S$，结合前面那么有
-$$
-Y \subseteq \Gamma(Y) \subseteq S.
-$$
-特殊点，把$Y$换成$S$，有$S \subseteq \Gamma(S) \subseteq S$，所以$\Gamma(S) = S$. 但是(1)在这里有啥用啊？保证$S$非空？
-
-反过来若$\Gamma(D) = D$. 自然地，当$Y \subseteq D$，则有$Y \subseteq \Gamma(Y) \subseteq \Gamma(D) =  D$.
+我可以来简单验证一下，若$\Gamma(D) = D$，$D$满足上述条件是显然的. 反过来若$D$满足上述条件，那么$D \subseteq D$，因此$\Gamma(D) \subseteq D$，再有$\Gamma$第一个条性质又有$D \subseteq \Gamma(D)$，那么$\Gamma(D) = D$. 
 \end{proof}
 
 {\color{blue} 当有一个closure operator之后，最重要是我们知道了closed set在它的作用下是它本身}.
@@ -568,7 +562,7 @@ $$
 
 {\color{blue} 在这里我们才终于认识到这样closure rules这样抽象的东西，它确实可以刻画一堆closed set组成了一个closure system}.
 
-{\color{red} 总结一下前面的所有东西，前面提到过一个closure system其实是一个complete lattice，现在我们多了另外两个概念closure operator和closure rules. 我们前面3个定理就是在说明它们之前是可以相互转换的，例如给定一个closure operator，它$\Gamma(D) = D$可以对应上closure rules，然后我们用closure rules刻画的sets收集起来，这些sets在交运算下也能保持封闭，所以这些sets是一个closure system，最终也得到了complete lattice}. {\color{blue} 后面我们用$\mathcal{C}_\Gamma$ 表示由closure operator $\Gamma$ 生成的closed sets($\Gamma(D)=D$) with set inclusion 构成poset}. 很自然地有下面的定理.
+{\color{red} 总结一下前面的所有东西. 我们前面3个定理就是在说明它们之前是可以相互转换的，例如给定一个closure operator，它$\Gamma(D) = D$可以对应上closure rules，然后我们用closure rules刻画的sets收集起来，这些sets在交运算下也能保持封闭，所以这些sets是一个closure system}. {\color{blue} 后面我们用$\mathcal{C}_\Gamma$ 表示由closure operator $\Gamma$ 生成的closed sets($\Gamma(D)=D$) with set inclusion 构成poset}. 下面是用closure system来刻画complete lattice.
 
 \begin{theorem}
 \rm If $\Gamma$ is a closure operator on a set $X$，and {\color{red} the operations on $\mathcal{C}_\Gamma$} are given by 
@@ -582,11 +576,7 @@ in where $D_i \in \mathcal{C}_{\Gamma}$. Then $\mathcal{C}_\Gamma$ is complete l
 \end{theorem}
 
 \begin{proof}
-由Theorem 2.25和Theorem 2.26可以知道一族closed set $\mathcal{C}_{\Gamma}$是一个closure system. 自然地我们要用集合上union和interestion. 先考虑interestion $\bigcap\limits_{i \in I} D_i$，它确实是greatest lower bound，且在closure system interestion下有
-$$
-\Gamma(\bigcap\limits_{i \in I} D_i) = \bigcap\limits_{i \in I} D_i.
-$$
-所以$\bigcap\limits_{i \in I} D_i \in \mathcal{C}_{\Gamma}$. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed sets，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \in \bigcap \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可，即它是$\mathcal{C}_{\Gamma}$包含$\bigcup\limits_{i \in I} D_i$最小的closed set. 但是证明过于简单2333，直接用closure operator第二个定义即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq \Gamma(A_j) \subseteq A_j$. 
+在closure system上操作closet set，$\bigwedge\limits_{i \in I} D_i = \bigcap\limits_{i \in I} D_i$是显然合理的. 对于union $\bigcup\limits_{i \in I} D_i$，它肯定是$X$上$\{D_i\}$的greatest upper bound，但是它不一定在$\mathcal{C}_{\Gamma}$中，所以我们要在$\mathcal{C}_{\Gamma}$中找所有包含它的closed sets，再交一下就可以得到$\mathcal{C}_{\Gamma}$上的greatest upper bound. 这是我们的思路，假设这样的closed sets为$\{A_j\}_{i \in J}$. 明显地，$\bigcup\limits_{i \in I} D_i \subseteq \bigcap \{A_j\}_{i \in J}$. 我们只要证明$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq A_j$对任意地$j \in J$都成立即可，即它是$\mathcal{C}_{\Gamma}$包含$\bigcup\limits_{i \in I} D_i$最小的closed set. 但是证明过于简单2333，直接用closure operator第二个定义即可. 因为$\bigcup\limits_{i \in I} D_i \subseteq A_j$，所以$\Gamma(\bigcup\limits_{i \in I} D_i) \subseteq \Gamma(A_j) \subseteq A_j$. 
 \end{proof}
 
 略{\color{red} algebra一般定义和subalgebra上的closure operator}.
@@ -624,6 +614,16 @@ $$
 
 \begin{definition}
 \rm An element $q$ of lattice $\lattice$ is called {\color{red} join irreducible} if $q = \bigvee F$ for a {\color{red} finite set} $F$ implies $q \in F$. The set of all join irreducible elements in $\lattice$ is denoted by $J(\lattice)$.
+
+\begin{center}
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkR6QBfU9TXfIRTlSxanSat2AI268QGbHgJEATKPEMWbRCADGcvksFEALBU2SdHQwv7Khyc2Jpapu2TyMCVKc6sttdgMucRgoAHN4IlAAMwAnCABbJBEQHAgkMhAACxh6KCQwZkZGLxAE5NSaDKRVcsqUxABmGszEUwbEpvN09oBWUK4gA
+\begin{tikzcd}
+  & a \arrow[ld] \arrow[rd] &   &  & a \arrow[d] \\
+b &                         & c &  & b \arrow[d] \\
+  &                         &   &  & c          
+\end{tikzcd}
+\end{center}
+左边$a$不是join irreducible，因为$a = \bigvee\{b,c\}$. 
 \end{definition}
 
 {\color{red} 如果$\lattice$有一个最小元素0，那么0其实不是join irreducible的，因为$0 = \bigvee \emptyset$. 如果想要把0含进来，特殊地$J_0(\lattice) =J(\lattice) \cap \{0\}$. 当然还有一种定义如果$q$是join irreducible，那么当$q = r \vee s$，则$q = r$或者$q =s$，在这种定义下$q$已经是针对非空的集合来说的}. 
@@ -633,11 +633,11 @@ $$
 \end{lemma}
 
 \begin{proof}
-用反证法来证明: 假设存在$\lattice$上一些元素，使得找不到join irreducible elements的join正好是它们. 我们把这些元素记为集合$S$，根据DCC $S$里面有一个最小值，我们设为$x$. 那么$x$肯定也不是join irreducible的，如果它是的话，它就是它自己的一个join，那么$x \notin S$. 既然$x$不是一个join irreducible，那么有$x = \bigvee F$其中$F$是一个finite set且里面的元素都是严格小于$x$的，由于$x$是最小元素这个概念，所以比它小的元素都是the join of finitely many join irreducible elements. 那么对于$F$而言，任意的$f \in F$都有一个$G_f \subseteq J(\lattice)$的join是$f$. 所以
+用反证法来证明: 假设存在$\lattice$上一些元素，使得找不到join irreducible elements的join正好是它们. 我们把这些元素记为集合$S$，因为$\lattice$满足DDC，那么$S$里面有一个最小值，我们设为$x$. 那么$x$本身也肯定不是join irreducible的(不然它可以join自己)，因此有$x = \bigvee F$其中$F$是一个finite set且里面的元素都是严格小于$x$的，由于$x$是最小元素这个概念，所以比它小的元素都是the join of finitely many join irreducible elements. 那么对于$F$而言，任意的$f \in F$都有一个$G_f \subseteq J(\lattice)$的join是$f$. 所以
 $$
 x = \bigvee\limits_{f \in F}\bigvee G_f.
 $$
-这里$f = \bigvee G_f$，所以$x$可以表示称有个多个join irreducible elements的join，这就矛盾了. 这里应该还要考虑一下$x = 0$，但是讨论0确实没什么意义，0可以定义为join irreducible也可以不是，这里还是避免这种情况吧...
+这里$f = \bigvee G_f$，这里也是有限次地join，所以$x$可以表示成有限多个join irreducible elements的join，这就矛盾了. 这里应该还要考虑一下$x = 0$，但是讨论0确实没什么意义，0可以定义为join irreducible也可以不是，这里还是避免这种情况吧...
 \end{proof}
 
 \begin{definition}
@@ -688,15 +688,23 @@ $$
 {\color{blue} fixed point来表征complete lattice}.
 
 \begin{theorem}
-\rm A lattice $\lattice$ is complete of if and only if every order-preserving map $\func{f}{\lattice}{\lattice}$ has a fixed point.
+\rm \redt{Knaster–Tarski theorem} A lattice $\lattice$ is complete of if and only if every order-preserving map $\func{f}{\lattice}{\lattice}$ has a fixed point.
 \end{theorem}
 
 \begin{proof}
-($\Rightarrow$) 如果给定一个 complete lattice $\lattice$和一个order-preserving map $\func{f}{\lattice}{\lattice}$. 定义集合$A = \Set{x \in L}{f(x) \geq x}$. 注意到$0 \in A$ (0表示minimal element of $L$). 再让$a = \bigvee A$，那么对于任意的$x \in A$都有$a \geq x$，结合$f$是order-preserving我们有
+($\Rightarrow$) 如果给定一个 complete lattice $\lattice$和一个order-preserving map $\func{f}{\lattice}{\lattice}$. 定义集合$A = \Set{x \in L}{f(x) \geq x}$. 注意到$0 \in A$ (0表示minimal element of $L$). 令$u = \bigvee A$，那么对于任意的$x \in A$都有$u \geq x$，结合$f$是order-preserving我们有
 $$
-f(a) \geq \bigvee\limits_{x \in A} f(x)  \geq \bigvee\limits_{x \in A} x = a.
+x \leq f(x) \leq f(u)
 $$
-所以$a \in A$，即$f(a) \geq a$，两边再作用一下$f$有$f^2(a) \geq f(a)$，这说明$f(a) \in A$. $a$可是整个$A$的join，那么有$a \geq f(a)$. 综上$f(a) = a$，$a$就是这个fixed point.
+因此$f(u)$是$A$的一个upper bound，而$u$是$A$的least upper bound，从而有
+$$
+u \leq f(u)
+$$
+因此$u \in A$. 由于$f$是monotone，对于任意的$x \in A$有
+$$
+f(x) \leq f(f(x)),
+$$ 
+因此$f(x) \in A$，那么$f(u) \leq A$，从而$f(u) \leq u$，最终可以得到$f(u) = u$. $A$包含了所有fixpoint，按照定义$f(u)$是greatest fixpoint. 
 
 ($\Leftarrow$) 这个方向的证明略微有些复杂，{\color{blue} 故事主线是在every order-preserving map has a fixed point的前提下，假设$\lattice$不是complete，然后构造出来出来一个order-preserving map没有fixed point造成矛盾}.
 
@@ -722,7 +730,7 @@ $$
 {\color{red} 来另一个1955年给出的第一个证明}.
 
 \begin{lemma}
-如果$\lattice$是incomplete，那么存在两个chain $C$和$D$满足下面条件,
+\rm 如果$\lattice$是incomplete，那么存在两个chain $C$和$D$满足下面条件,
 \begin{enumerate}
 	\item $C$是一个strictly ascending chain(严格大于)，$D$是一个strictly descending chain(严格小于).
 	\item $D$中的每个元素都严格大于$C$中的每个元素.
@@ -841,7 +849,7 @@ $$
 \begin{example}
 \rm 一个complete lattice并一定是一个algebraic lattice:
 \begin{enumerate}
-	\item 区间$[0，1]$上所有的实数和自然序构成一个complete lattice $\mathcal{K}$，那么$\mathcal{K}^c = {0}$，但是它并不是join dense的. 
+	\item 区间$[0,1]$上所有的实数在自然序构成一个complete lattice $\mathcal{K}$，那么$\mathcal{K}^c = {0}$，但是它并不是join dense的. 
 	\item 下面的Hasse图也是complete lattice，但是$z$并不是一些complete element的join，那么$\lattice ^c$就不是join dense的.
 	\begin{center}
 	\begin{tikzpicture}
