@@ -259,7 +259,7 @@ Conversely，given an poset $P$ with that property，define $x * y = g.l.b(x,y).
 这个greater lower bound就是$x * y$. 首先证明它是一个lower bound，$x *(x*y)=x*y$ and $y*(x*y) = x*y$，所以$x*y$是一个lower bound. 再来证明所有的lower bound都比它小，假设$z \leq x$和$z \leq y$，即$z$是$\{x,y\}$的一个lower bound. 那么$z * (x * y) = z * y = z$，所以$z \leq (x*y)$. 最后$x*y$的一个greater lower bound. 
 \end{proof}
 
-{\color{blue} semilattice上弄了一个特殊的poset出来, 它最好的性质就是任意两个元素都有一个下确界}.
+{\color{blue} semilattice代数定义和poset上定义是等价的}.
 
 \begin{definition}
 \rm A semilattice with the above ordering is usually called {\color{red} meet semilattice} $(S, \wedge)$. 对偶地，使得$x \geq y \iff x * y = x$，则称$\slattice$为是一个{\color{red} join semilattice} $(S, \vee)$. 自然地在$(S,\leq)$下任意的pair都有一个least upper bound $x \vee y$.
